@@ -2,7 +2,9 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import ServicesIntro from './components/ServicesIntro';
 import Methodology from './components/Methodology';
+import Presencial from './components/Presencial';
 import Evaluation from './components/Evaluation';
 import Feedbacks from './components/Feedbacks';
 import Results from './components/Results';
@@ -16,7 +18,9 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
+        <ServicesIntro />
         <Methodology />
+        <Presencial />
         <Evaluation />
         <Feedbacks />
         <Results />
