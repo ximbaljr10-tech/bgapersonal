@@ -44,8 +44,8 @@ const Feedbacks: React.FC = () => {
         <div className="w-16 md:w-20 h-1 bg-gold-500 mx-auto rounded-full"></div>
       </div>
 
-      {/* 3. Trainer Image - Increased height to overlap with cards */}
-      <div className="absolute top-20 md:top-16 left-1/2 -translate-x-1/2 z-0 w-full h-[58vh] md:h-[75vh] flex items-start justify-center pointer-events-none">
+      {/* 3. Trainer Image - MOVED TO TOP HALF to create separation */}
+      <div className="absolute top-20 md:top-24 left-1/2 -translate-x-1/2 z-0 w-full h-[45vh] md:h-[55vh] flex items-start justify-center pointer-events-none">
          <img 
             src="https://i.postimg.cc/MTmYz0cZ/Design-sem-nome-(24).png" 
             alt="Treinador Braga" 
@@ -53,8 +53,8 @@ const Feedbacks: React.FC = () => {
          />
       </div>
 
-      {/* 4. Feedback Cards - Anchored to overlap waist */}
-      <div className="absolute bottom-32 md:bottom-24 left-0 right-0 z-20 flex justify-center">
+      {/* 4. Feedback Cards - Anchored to Bottom */}
+      <div className="absolute bottom-28 md:bottom-24 left-0 right-0 z-20 flex justify-center">
         <div className="relative w-full max-w-5xl h-[300px] md:h-[400px] flex items-center justify-center [perspective:1000px] transform scale-[0.80] md:scale-100 origin-bottom">
             
             {/* LEFT CARD */}
@@ -105,7 +105,7 @@ const Feedbacks: React.FC = () => {
       </div>
 
       {/* 5. CTA Button - Anchored Bottom */}
-      <div className="absolute bottom-8 md:bottom-10 left-0 w-full z-40 text-center px-6">
+      <div className="absolute bottom-6 md:bottom-10 left-0 w-full z-40 text-center px-6">
           <a 
             href="https://wa.me/5599999999999"
             className="inline-block w-full md:w-auto px-8 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform transform hover:-translate-y-1 text-sm md:text-base"
