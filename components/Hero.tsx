@@ -3,13 +3,20 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
+    <section id="home" className="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
       {/* Background Image with Controlled Fade */}
       <div className="absolute inset-0 z-0">
+        {/* Mobile Background */}
+        <img 
+          src="https://i.postimg.cc/7hhG8mxM/Design-sem-nome-(35).png" 
+          alt="Background Mobile" 
+          className="block md:hidden w-full h-full object-cover"
+        />
+        {/* Desktop Background */}
         <img 
           src="https://i.postimg.cc/bJ2wb8c4/Design-sem-nome-(29).png" 
-          alt="Background Braga Personal" 
-          className="w-full h-full object-cover object-top"
+          alt="Background Desktop" 
+          className="hidden md:block w-full h-full object-cover object-top"
         />
         {/* Gradient Overlay: Concentrated on the left, fading out completely by the middle (60%) */}
         <div className="absolute inset-0 bg-gradient-to-r from-black from-0% via-black/90 via-35% to-transparent to-60%"></div>
