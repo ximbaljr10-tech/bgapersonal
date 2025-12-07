@@ -1,25 +1,52 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const mobileImages = [
+    "https://i.postimg.cc/2SWb4CC3/1.png",
+    "https://i.postimg.cc/bwnDQqqr/2.png",
+    "https://i.postimg.cc/HkMcQTTx/3.png"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % mobileImages.length);
+    }, 3000); // 3 seconds per slide
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
-      {/* Background Image with Controlled Fade */}
+      {/* Background Image Area */}
       <div className="absolute inset-0 z-0">
-        {/* Mobile Background */}
-        <img 
-          src="https://i.postimg.cc/7hhG8mxM/Design-sem-nome-(35).png" 
-          alt="Background Mobile" 
-          className="block md:hidden w-full h-full object-cover"
-        />
-        {/* Desktop Background */}
+        
+        {/* Mobile Slideshow Background */}
+        <div className="md:hidden absolute inset-0 w-full h-full">
+          {mobileImages.map((img, index) => (
+            <img 
+              key={index}
+              src={img} 
+              alt={`Background Slide ${index + 1}`} 
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Desktop Background (Static) */}
         <img 
           src="https://i.postimg.cc/bJ2wb8c4/Design-sem-nome-(29).png" 
           alt="Background Desktop" 
           className="hidden md:block w-full h-full object-cover object-top"
         />
-        {/* Gradient Overlay: Concentrated on the left, fading out completely by the middle (60%) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black from-0% via-black/90 via-35% to-transparent to-60%"></div>
+
+        {/* Gradient Overlay: Darker on left, fading to clear on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
