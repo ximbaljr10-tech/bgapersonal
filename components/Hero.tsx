@@ -3,32 +3,33 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Image Placeholder - In production use actual photo of Braga */}
+    <section id="home" className="relative min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
+      {/* Background Image with Controlled Fade */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/1920/1080?grayscale" 
-          alt="Treinador Braga na academia" 
-          className="w-full h-full object-cover opacity-30"
+          src="https://i.postimg.cc/bJ2wb8c4/Design-sem-nome-(29).png" 
+          alt="Background Braga Personal" 
+          className="w-full h-full object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-richblack via-richblack/80 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-richblack via-richblack/60 to-transparent"></div>
+        {/* Gradient Overlay: Concentrated on the left, fading out completely by the middle (60%) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black from-0% via-black/90 via-35% to-transparent to-60%"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center">
-        <div className="w-full md:w-2/3 lg:w-1/2 space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/10">
+      <div className="container mx-auto px-6 relative z-20">
+        {/* Text Content */}
+        <div className="w-full lg:w-2/3 space-y-8 pt-20 pb-20 drop-shadow-md">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
             <span className="text-gold-400 text-xs font-bold uppercase tracking-widest">Consultoria BP Fitness On-line</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-heading font-extrabold leading-tight text-white">
-            TREINOS <span className="text-gold-gradient">PERSONALIZADOS</span> PARA O SEU OBJETIVO
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold leading-tight text-white drop-shadow-lg">
+            TREINOS <span className="text-gold-gradient drop-shadow-sm">PERSONALIZADOS</span> PARA O SEU OBJETIVO
           </h1>
           
-          <p className="text-lg md:text-xl text-neutral-300 font-light max-w-lg leading-relaxed border-l-2 border-gold-500 pl-4">
+          <p className="text-lg md:text-xl text-white font-medium max-w-lg leading-relaxed border-l-2 border-gold-500 pl-4 bg-black/20 p-2 rounded-r-sm backdrop-blur-sm">
             Especialista em glúteos e eliminação de pochete. Junte-se a mais de 
-            <strong className="text-white"> 1.500 alunos</strong> que transformaram seus corpos com método validado.
+            <strong className="text-gold-400"> 1.500 alunos</strong> que transformaram seus corpos com método validado.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -41,22 +42,22 @@ const Hero: React.FC = () => {
             </a>
             <a 
               href="#methodology"
-              className="px-8 py-4 border border-white/20 hover:border-gold-500 hover:text-gold-500 text-white font-semibold uppercase tracking-widest transition-all duration-300 text-center"
+              className="px-8 py-4 border border-white/40 bg-black/20 backdrop-blur-sm hover:border-gold-500 hover:text-gold-500 text-white font-semibold uppercase tracking-widest transition-all duration-300 text-center"
             >
               Como Funciona
             </a>
           </div>
 
-          <div className="pt-8 flex flex-wrap gap-4 text-sm text-neutral-400">
-            <div className="flex items-center gap-2">
+          <div className="pt-8 flex flex-wrap gap-4 text-sm text-white font-medium">
+            <div className="flex items-center gap-2 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
               <CheckCircle2 className="text-gold-500 w-5 h-5" />
               <span>Avaliação Física Detalhada</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
               <CheckCircle2 className="text-gold-500 w-5 h-5" />
               <span>Protocolo Individualizado</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
               <CheckCircle2 className="text-gold-500 w-5 h-5" />
               <span>Suporte via WhatsApp</span>
             </div>

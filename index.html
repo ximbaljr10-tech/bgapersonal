@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -31,7 +32,22 @@
               'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #F5D76E 50%, #B5902B 100%)',
             }
           }
-        }
+        },
+        plugins: [
+          function ({ addUtilities }) {
+            addUtilities({
+              '.rotate-y-25': {
+                transform: 'rotateY(25deg)',
+              },
+              '.rotate-y--25': {
+                transform: 'rotateY(-25deg)',
+              },
+              '.preserve-3d': {
+                transformStyle: 'preserve-3d',
+              },
+            })
+          }
+        ]
       }
     </script>
     <style>

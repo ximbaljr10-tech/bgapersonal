@@ -27,12 +27,16 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="text-2xl font-heading font-bold tracking-tighter">
-          BRAGA <span className="text-gold-500">PERSONAL</span>
+        <a href="#" className="flex items-center">
+          <img 
+            src="https://i.postimg.cc/SQ31xdjK/Design-sem-nome-(23).png" 
+            alt="Braga Personal Logo" 
+            className="h-14 md:h-16 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
