@@ -1,97 +1,111 @@
 
 import React from 'react';
-import { Globe, MapPin, Zap } from 'lucide-react';
+import { Globe, MapPin, Check, Smartphone } from 'lucide-react';
 
 const ServicesIntro: React.FC = () => {
   return (
-    <section className="relative py-20 bg-neutral-900 border-b border-white/5 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-50"></div>
+    <section className="relative py-24 bg-black overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] h-[500px] bg-gold-500/10 rounded-full blur-[100px] pointer-events-none"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6">
-            DUAS FORMAS DE TREINAR, <br />
-            <span className="text-gold-gradient">A MESMA EXCELÊNCIA</span>
+        <div className="text-center mb-12">
+          <div className="inline-block px-4 py-1 border border-gold-500/30 rounded-full bg-gold-500/10 backdrop-blur-md mb-4">
+            <span className="text-gold-400 text-xs font-bold uppercase tracking-[0.2em]">O Método Braga</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-heading font-black text-white leading-tight">
+            ESCOLHA O SEU <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gold-300 to-gold-600 drop-shadow-sm">NÍVEL DE ACESSO</span>
           </h2>
-          <p className="text-neutral-400 text-lg leading-relaxed">
-            Não importa se você está do outro lado do mundo ou treinando ao meu lado. 
-            O que muda é a logística, mas o <strong className="text-white">Método Braga</strong> e a exigência por resultados são inegociáveis.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           
-          {/* Card Online */}
-          <div className="group relative bg-black p-8 md:p-12 border border-white/5 rounded-sm hover:border-gold-500/40 transition-all duration-500 overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity">
-              <Globe size={120} className="text-white" />
-            </div>
+          {/* CARD 1: ONLINE */}
+          <div className="group relative bg-neutral-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-gold-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
             
-            <div className="relative z-10">
-              <div className="w-14 h-14 bg-neutral-800 rounded-full flex items-center justify-center mb-6 border border-gold-500/20 group-hover:scale-110 transition-transform">
-                <Globe className="text-gold-500 w-7 h-7" />
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-black rounded-2xl border border-white/10 flex items-center justify-center mb-6 shadow-xl shadow-black/50 group-hover:shadow-gold-500/20 group-hover:border-gold-500/30 transition-all">
+                <Globe className="text-white group-hover:text-gold-400 transition-colors w-8 h-8" />
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-wide">
-                Consultoria <span className="text-gold-500">Online</span>
+              <h3 className="text-2xl font-black text-white uppercase italic tracking-wide mb-2">
+                Consultoria <span className="text-gold-500">Global</span>
               </h3>
-              
-              <p className="text-neutral-400 mb-6 leading-relaxed">
-                Liberdade para treinar onde e quando quiser, com meu planejamento estratégico na palma da sua mão. Ideal para quem busca autonomia sem abrir mão de um protocolo profissional.
+              <p className="text-neutral-400 text-sm mb-6 max-w-xs">
+                Liberdade total. Avaliação via fotos/vídeos e protocolo 100% digital.
               </p>
-              
-              <ul className="space-y-2 mb-8">
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> App Exclusivo
-                </li>
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> Análise de vídeos
-                </li>
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> Custo-benefício imbatível
-                </li>
-              </ul>
 
-              <a href="#methodology" className="text-gold-500 text-sm font-bold uppercase tracking-widest border-b border-gold-500/30 pb-1 hover:text-white hover:border-white transition-colors">
-                Entenda como funciona
+              <div className="w-full bg-black/40 rounded-xl p-4 border border-white/5 mb-6 text-left space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-green-500" />
+                  </div>
+                  <span className="text-neutral-300 text-xs font-bold uppercase">Avaliação Digital Guiada</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-green-500" />
+                  </div>
+                  <span className="text-neutral-300 text-xs font-bold uppercase">App Exclusivo</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-green-500" />
+                  </div>
+                  <span className="text-neutral-300 text-xs font-bold uppercase">Atende qualquer país</span>
+                </div>
+              </div>
+
+              <a href="#methodology" className="w-full py-4 bg-white/5 hover:bg-gold-500 hover:text-black border border-white/10 hover:border-gold-500 rounded-lg text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
+                Selecionar Online
               </a>
             </div>
           </div>
 
-          {/* Card Presencial */}
-          <div className="group relative bg-black p-8 md:p-12 border border-white/5 rounded-sm hover:border-gold-500/40 transition-all duration-500 overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity">
-              <MapPin size={120} className="text-white" />
+          {/* CARD 2: PRESENCIAL (HIGHLIGHT) */}
+          <div className="group relative bg-gradient-to-b from-neutral-900 to-black border border-gold-500/30 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:shadow-[0_0_50px_rgba(212,175,55,0.2)] transition-all duration-300 transform scale-100 md:scale-105 z-10">
+            <div className="absolute top-0 right-0 bg-gold-500 text-black text-[10px] font-black px-3 py-1 rounded-bl-xl rounded-tr-xl uppercase tracking-widest">
+              Experiência VIP
             </div>
             
-            <div className="relative z-10">
-              <div className="w-14 h-14 bg-neutral-800 rounded-full flex items-center justify-center mb-6 border border-gold-500/20 group-hover:scale-110 transition-transform">
-                <MapPin className="text-gold-500 w-7 h-7" />
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-neutral-800 rounded-2xl border border-gold-500/50 flex items-center justify-center mb-6 shadow-xl shadow-gold-500/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gold-500/10 animate-pulse"></div>
+                <MapPin className="text-gold-500 w-8 h-8 relative z-10" />
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-wide">
-                Personal <span className="text-gold-500">Presencial</span>
+              <h3 className="text-2xl font-black text-white uppercase italic tracking-wide mb-2">
+                Híbrida <span className="text-gold-500">Presencial</span>
               </h3>
-              
-              <p className="text-neutral-400 mb-6 leading-relaxed">
-                A experiência VIP definitiva. Eu estarei ao seu lado ajustando cada repetição, controlando a carga e garantindo que você chegue à falha real com segurança total.
+              <p className="text-neutral-400 text-sm mb-6 max-w-xs">
+                Precisão clínica. Você vem ao consultório para a avaliação física profissional.
               </p>
-              
-              <ul className="space-y-2 mb-8">
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> Correção em tempo real
-                </li>
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> Motivação e "Spotter"
-                </li>
-                <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <Zap size={14} className="text-gold-500" /> Vagas limitadas (VIP)
-                </li>
-              </ul>
 
-              <a href="#presencial" className="text-gold-500 text-sm font-bold uppercase tracking-widest border-b border-gold-500/30 pb-1 hover:text-white hover:border-white transition-colors">
-                Saiba mais abaixo
+              <div className="w-full bg-neutral-900 rounded-xl p-4 border border-gold-500/20 mb-6 text-left space-y-3">
+                 <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-gold-500" />
+                  </div>
+                  <span className="text-white text-xs font-bold uppercase">Avaliação no Consultório</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-gold-500" />
+                  </div>
+                  <span className="text-white text-xs font-bold uppercase">Medidas com Adipômetro</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-gold-500" />
+                  </div>
+                  <span className="text-white text-xs font-bold uppercase">Análise Postural Ao Vivo</span>
+                </div>
+              </div>
+
+              <a href="#presencial" className="w-full py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest text-xs rounded-lg shadow-lg shadow-gold-500/20 transition-all duration-300">
+                Selecionar Híbrida
               </a>
             </div>
           </div>

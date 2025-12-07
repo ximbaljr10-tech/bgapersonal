@@ -1,87 +1,99 @@
 
 import React from 'react';
-import { Flame, ShieldCheck, TrendingUp, Users } from 'lucide-react';
+import { Ruler, Activity, Eye, CalendarCheck, Smartphone } from 'lucide-react';
 
 const Presencial: React.FC = () => {
   return (
-    <section id="presencial" className="py-20 bg-richblack relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+    <section id="presencial" className="relative py-24 bg-charcoal overflow-hidden">
+      {/* Background Image Darkened */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?q=80&w=1200&auto=format&fit=crop" 
+          alt="Consultório Dark" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-transparent"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-end gap-12">
           
-          {/* Image Side */}
-          <div className="w-full lg:w-1/2 relative order-2 lg:order-1">
-            <div className="relative rounded-sm overflow-hidden border-2 border-gold-500/10 shadow-2xl">
-              <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Treino Presencial com Braga" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
+          {/* Text Content */}
+          <div className="w-full lg:w-1/2">
+            <div className="flex items-center gap-3 mb-6">
+               <span className="w-12 h-[2px] bg-gold-500"></span>
+               <span className="text-gold-500 font-bold tracking-[0.3em] uppercase text-xs">Apenas Presencial</span>
             </div>
-            {/* Floating Card */}
-            <div className="absolute -bottom-6 -right-6 bg-gold-500 p-6 rounded-sm shadow-xl hidden md:block">
-              <p className="text-black font-bold text-3xl font-heading">1:1</p>
-              <p className="text-black text-xs font-bold uppercase tracking-widest">Atendimento VIP</p>
-            </div>
-          </div>
+            
+            <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-6 leading-none">
+              PRECISÃO <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">CIRÚRGICA.</span>
+            </h2>
+            
+            <p className="text-neutral-400 text-lg leading-relaxed mb-10 border-l-2 border-white/10 pl-6">
+              A <strong>Consultoria Presencial</strong> é para quem não abre mão do contato humano. O treino continua no app, mas a coleta de dados é feita no meu laboratório.
+            </p>
 
-          {/* Content Side */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2">
-            <div className="mb-8">
-              <span className="text-gold-500 font-bold tracking-widest uppercase text-sm">Experiência VIP</span>
-              <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mt-2 leading-tight">
-                PERSONAL TRAINER <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">PRESENCIAL</span>
-              </h2>
-              <p className="text-neutral-400 mt-6 text-lg leading-relaxed">
-                Para quem não aceita nada menos que o máximo. No presencial, eu assumo o controle total do seu treino. Você não precisa pensar em contar repetições, montar barras ou calcular descanso. 
-                <span className="text-white font-bold"> Sua única tarefa é treinar até o limite.</span>
-              </p>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               {/* Feature Box 1 */}
+               <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
+                  <Ruler className="text-gold-500 mb-3 w-6 h-6" />
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Adipometria Clínica</h4>
+                  <p className="text-neutral-500 text-xs">Medição exata da espessura das dobras cutâneas.</p>
+               </div>
 
-            <div className="grid gap-6">
-              <div className="flex gap-4">
-                <div className="shrink-0 w-12 h-12 bg-neutral-800 rounded-sm flex items-center justify-center border border-white/5">
-                  <ShieldCheck className="text-gold-500" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg">Segurança Total</h4>
-                  <p className="text-neutral-400 text-sm">Leve seu corpo ao extremo sem risco de lesão. Eu cuido da sua postura em cada milímetro do movimento.</p>
-                </div>
-              </div>
+               {/* Feature Box 2 */}
+               <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
+                  <Activity className="text-gold-500 mb-3 w-6 h-6" />
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Bioimpedância</h4>
+                  <p className="text-neutral-500 text-xs">Análise detalhada da composição corporal (água, músculo, gordura).</p>
+               </div>
+               
+               {/* Feature Box 3 */}
+               <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
+                  <Eye className="text-gold-500 mb-3 w-6 h-6" />
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Olho no Olho</h4>
+                  <p className="text-neutral-500 text-xs">Análise postural ao vivo para identificar desvios invisíveis em fotos.</p>
+               </div>
 
-              <div className="flex gap-4">
-                <div className="shrink-0 w-12 h-12 bg-neutral-800 rounded-sm flex items-center justify-center border border-white/5">
-                  <Flame className="text-gold-500" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg">Intensidade Real</h4>
-                  <p className="text-neutral-400 text-sm">Você acha que treina pesado? Ao meu lado, você vai descobrir que seu corpo aguenta muito mais do que sua mente imagina.</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="shrink-0 w-12 h-12 bg-neutral-800 rounded-sm flex items-center justify-center border border-white/5">
-                  <TrendingUp className="text-gold-500" />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg">Ajuste Fino Diário</h4>
-                  <p className="text-neutral-400 text-sm">Não existe "dia ruim". Eu adapto o treino na hora dependendo de como você está se sentindo, garantindo 100% de aproveitamento.</p>
-                </div>
-              </div>
+               {/* Feature Box 4 */}
+               <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
+                  <Smartphone className="text-gold-500 mb-3 w-6 h-6" />
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Entrega Digital</h4>
+                  <p className="text-neutral-500 text-xs">Você sai do consultório com os dados, e o treino chega no App.</p>
+               </div>
             </div>
 
             <div className="mt-10">
-              <a 
+               <a 
                 href="https://wa.me/5599999999999"
-                className="inline-block w-full text-center md:w-auto px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gold-500 transition-colors shadow-lg"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold-500 text-black font-black uppercase tracking-widest rounded-sm overflow-hidden"
               >
-                Consultar Disponibilidade de Horário
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <CalendarCheck size={20} />
+                Agendar Horário
               </a>
-              <p className="text-neutral-500 text-xs mt-3 text-center md:text-left">
-                * Vagas extremamente limitadas devido à agenda.
-              </p>
             </div>
+          </div>
+
+          {/* Visual Side - Mobile First Aesthetic */}
+          <div className="w-full lg:w-1/2 relative mt-12 lg:mt-0">
+             <div className="relative aspect-[4/5] md:aspect-square bg-neutral-900 rounded-sm overflow-hidden border border-white/10 shadow-2xl">
+                <img 
+                   src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                   alt="Avaliação Física"
+                   className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                
+                {/* HUD Overlay Element */}
+                <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/60 backdrop-blur-md border-l-4 border-gold-500 rounded-r-lg">
+                   <p className="text-gold-500 text-[10px] font-bold uppercase tracking-widest mb-1">Status</p>
+                   <p className="text-white font-heading font-bold text-xl">AGENDA ABERTA</p>
+                   <p className="text-neutral-400 text-xs mt-1">Vagas limitadas para atendimento presencial este mês.</p>
+                </div>
+             </div>
           </div>
 
         </div>
