@@ -30,6 +30,21 @@
             },
             backgroundImage: {
               'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #F5D76E 50%, #B5902B 100%)',
+            },
+            animation: {
+              'scan-light': 'scan 3s ease-in-out infinite',
+              'blink': 'blink 1s step-end infinite',
+            },
+            keyframes: {
+              scan: {
+                '0%': { transform: 'translateX(-100%)' },
+                '50%': { transform: 'translateX(100%)' },
+                '100%': { transform: 'translateX(100%)' },
+              },
+              blink: {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0' },
+              }
             }
           }
         },
@@ -45,6 +60,9 @@
               '.preserve-3d': {
                 transformStyle: 'preserve-3d',
               },
+              '.backface-hidden': {
+                backfaceVisibility: 'hidden',
+              }
             })
           }
         ]
@@ -59,6 +77,47 @@
         background: linear-gradient(to right, #D4AF37, #F5D76E, #D4AF37);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+      }
+      /* Custom Button Scan Animation Classes */
+      .btn-scanner {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-scanner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 0 0 10px #fff;
+        z-index: 20;
+        animation: scan-bar 4s infinite cubic-bezier(0.45, 0, 0.55, 1);
+        opacity: 0.8;
+      }
+      .btn-scanner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #D4AF37; /* Gold */
+        z-index: 10;
+        transform: translateX(-100%);
+        animation: scan-fill 4s infinite cubic-bezier(0.45, 0, 0.55, 1);
+      }
+      
+      @keyframes scan-bar {
+        0%, 10% { transform: translateX(0); opacity: 0; }
+        15% { opacity: 1; }
+        45% { transform: translateX(100%); opacity: 1; }
+        50%, 100% { transform: translateX(100%); opacity: 0; }
+      }
+      @keyframes scan-fill {
+        0%, 10% { transform: translateX(-100%); }
+        45%, 100% { transform: translateX(0); }
       }
     </style>
   <script type="importmap">

@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ServicesIntro from './components/ServicesIntro';
+import BeforeAfter from './components/BeforeAfter';
 import Methodology from './components/Methodology';
 import Presencial from './components/Presencial';
 import Evaluation from './components/Evaluation';
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <ServicesIntro />
+        <BeforeAfter />
         <Methodology />
         <Presencial />
         <Evaluation />
