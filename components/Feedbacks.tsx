@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 const Feedbacks: React.FC = () => {
-  // --- IMAGENS (PRINTS REAIS) ---
+  // --- IMAGENS CORRIGIDAS ---
+  // A barra "/" no começo é essencial para o Vercel encontrar a pasta public
   const feedbackImages = [
-    "media/feedback1.png",
-    "media/feedback2.png",
-    "media/feedback3.png",
-    "media/feedback4.png",
-    "media/feedback5.png"
+    "/media/feedback1.png",
+    "/media/feedback2.png",
+    "/media/feedback3.png",
+    "/media/feedback4.png",
+    "/media/feedback5.png"
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
