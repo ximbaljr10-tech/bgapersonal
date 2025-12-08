@@ -23,7 +23,7 @@ const Presencial: React.FC = () => {
           <div className="w-full lg:w-1/2">
             <div className="flex items-center gap-3 mb-6">
                <span className="w-12 h-[2px] bg-gold-500"></span>
-               <span className="text-gold-500 font-bold tracking-[0.3em] uppercase text-xs">Apenas Presencial</span>
+               <span className="text-gold-500 font-bold tracking-[0.3em] uppercase text-xs">Avaliação Presencial</span>
             </div>
             
             <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-6 leading-none">
@@ -32,7 +32,7 @@ const Presencial: React.FC = () => {
             </h2>
             
             <p className="text-neutral-400 text-lg leading-relaxed mb-10 border-l-2 border-white/10 pl-6">
-              A <strong>Consultoria Presencial</strong> é para quem não abre mão do contato humano. O treino continua no app, mas a coleta de dados é feita no meu laboratório.
+              Esta modalidade une o melhor dos dois mundos: a inteligência do nosso aplicativo de treino com a precisão milimétrica da coleta de dados feita pessoalmente por mim.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -40,28 +40,28 @@ const Presencial: React.FC = () => {
                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
                   <Ruler className="text-gold-500 mb-3 w-6 h-6" />
                   <h4 className="text-white font-bold uppercase text-sm mb-1">Adipometria Clínica</h4>
-                  <p className="text-neutral-500 text-xs">Medição exata da espessura das dobras cutâneas.</p>
+                  <p className="text-neutral-500 text-xs">Medição exata da espessura das dobras cutâneas feita por mim.</p>
                </div>
 
                {/* Feature Box 2 */}
                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
                   <Activity className="text-gold-500 mb-3 w-6 h-6" />
                   <h4 className="text-white font-bold uppercase text-sm mb-1">Bioimpedância</h4>
-                  <p className="text-neutral-500 text-xs">Análise detalhada da composição corporal (água, músculo, gordura).</p>
+                  <p className="text-neutral-500 text-xs">Análise tecnológica da sua composição corporal (água, músculo, gordura).</p>
                </div>
                
                {/* Feature Box 3 */}
                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
                   <Eye className="text-gold-500 mb-3 w-6 h-6" />
                   <h4 className="text-white font-bold uppercase text-sm mb-1">Olho no Olho</h4>
-                  <p className="text-neutral-500 text-xs">Análise postural ao vivo para identificar desvios invisíveis em fotos.</p>
+                  <p className="text-neutral-500 text-xs">Análise postural ao vivo para identificar desvios invisíveis.</p>
                </div>
 
                {/* Feature Box 4 */}
                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl hover:bg-white/10 transition-colors cursor-default">
                   <Smartphone className="text-gold-500 mb-3 w-6 h-6" />
-                  <h4 className="text-white font-bold uppercase text-sm mb-1">Entrega Digital</h4>
-                  <p className="text-neutral-500 text-xs">Você sai do consultório com os dados, e o treino chega no App.</p>
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Acesso Premium ao App</h4>
+                  <p className="text-neutral-500 text-xs">Seu planejamento completo disponível na palma da sua mão 24h por dia.</p>
                </div>
             </div>
 
@@ -72,7 +72,7 @@ const Presencial: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 <CalendarCheck size={20} />
-                Agendar Horário
+                Agendar Avaliação
               </a>
             </div>
           </div>
@@ -91,7 +91,7 @@ const Presencial: React.FC = () => {
                 <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/60 backdrop-blur-md border-l-4 border-gold-500 rounded-r-lg">
                    <p className="text-gold-500 text-[10px] font-bold uppercase tracking-widest mb-1">Status</p>
                    <p className="text-white font-heading font-bold text-xl">AGENDA ABERTA</p>
-                   <p className="text-neutral-400 text-xs mt-1">Vagas limitadas para atendimento presencial este mês.</p>
+                   <p className="text-neutral-400 text-xs mt-1">Vagas limitadas para avaliação presencial este mês.</p>
                 </div>
              </div>
           </div>
