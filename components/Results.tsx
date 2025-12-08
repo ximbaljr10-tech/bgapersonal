@@ -1,108 +1,117 @@
 import React from 'react';
-import { Star, Globe, MapPin } from 'lucide-react';
+import { Star, Globe, MapPin, Check } from 'lucide-react';
 
 const Results: React.FC = () => {
-  // Dados simulados para mostrar a variedade de modalidades mantendo o padrão de resultado
   const transformations = [
     {
       id: 1,
       type: 'online',
-      label: 'CONSULTORIA 100% ONLINE',
-      location: 'Aluno de Portugal 🇵🇹',
-      text: 'Moro fora e achei que a distância atrapalharia. O suporte foi tão próximo quanto se estivesse no Brasil.'
+      tag: 'PROTOCOLO DIGITAL',
+      sub: 'Aluno em Lisboa, Portugal',
+      quote: 'Eu achava que precisava de alguém do meu lado contando repetições. O Braga me provou que eu precisava de planejamento, não de babá.'
     },
     {
       id: 2,
       type: 'presencial',
-      label: 'AVALIAÇÃO PRESENCIAL',
-      location: 'Atendimento em Consultório',
-      text: 'Fiz a avaliação física presencialmente, mas todo o acompanhamento diário seguiu o protocolo digital.'
+      tag: 'AVALIAÇÃO PRESENCIAL',
+      sub: 'Aluno em Recife, PE',
+      quote: 'Fiz a avaliação no consultório, mas a execução do plano foi autônoma. O resultado veio da estratégia, não apenas da visita.'
     },
     {
       id: 3,
       type: 'online',
-      label: 'CONSULTORIA 100% ONLINE',
-      location: 'Aluno de São Paulo 🇧🇷',
-      text: 'A avaliação por vídeo foi mais detalhada do que os personais que eu tive presencialmente na minha academia.'
+      tag: 'PROTOCOLO DIGITAL',
+      sub: 'Aluno em São Paulo, SP',
+      quote: 'A correção por vídeo foi mais técnica do que os personais que tive presencialmente. A distância não escondeu meus erros.'
     }
   ];
 
   return (
-    <section id="results" className="py-20 bg-charcoal relative">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gold-900/5 to-transparent pointer-events-none"></div>
+    <section id="results" className="py-24 bg-charcoal relative">
+      {/* Background discreto e técnico */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-neutral-900 to-transparent pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* TEXTO REESTRUTURADO PARA QUEBRAR OBJEÇÃO DO ONLINE */}
+        {/* CABEÇALHO "ENGENHARIA SOCIAL" */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white uppercase">
-            O MÉTODO SUPERA A <span className="text-gold-500">DISTÂNCIA</span>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">
+            O RESULTADO É A ÚNICA <span className="text-gold-500">CONSTANTE</span>
           </h2>
-          <p className="text-neutral-400 mt-6 max-w-3xl mx-auto text-lg">
-            Muitos perguntam se o acompanhamento Online funciona tanto quanto o Presencial. 
-            A resposta está abaixo: <strong className="text-white">o rigor técnico é o mesmo.</strong> A exigência é a mesma. 
-            Independentemente se fizermos sua avaliação no consultório ou digitalmente, o resultado final é padrão Team Braga.
+          <p className="text-neutral-400 mt-4 max-w-3xl mx-auto text-lg leading-relaxed">
+            É natural pensar que estar presencialmente gera mais resultado. Mas olhe as fotos abaixo. 
+            <span className="text-white font-medium block mt-2">
+              Você consegue distinguir quem foi avaliado no meu consultório e quem foi avaliado pelo computador?
+            </span>
+            A metodologia anula a distância. O que muda é apenas a logística.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        {/* GRID DE RESULTADOS */}
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {transformations.map((item) => (
-            <div key={item.id} className="bg-black p-4 border border-white/5 rounded-sm hover:border-gold-500/30 transition-colors group">
+            <div key={item.id} className="group relative bg-black border border-neutral-800 hover:border-gold-500/40 transition-all duration-500 rounded-sm flex flex-col">
               
-              {/* Container da Imagem */}
-              <div className="relative aspect-[4/5] overflow-hidden mb-4 bg-neutral-800">
+              {/* IMAGEM */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900">
                 <img 
-                  src={`https://picsum.photos/400/500?random=${item.id}`} 
-                  alt="Antes e Depois Team Braga" 
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                  src={`https://picsum.photos/400/500?random=${item.id + 20}`} 
+                  alt="Transformação Team Braga" 
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 
-                {/* TAG DE MODALIDADE: AQUI ESTÁ A PROVA VISUAL */}
-                <div className={`absolute top-0 left-0 w-full py-2 px-3 text-xs font-bold uppercase tracking-widest text-center shadow-lg backdrop-blur-md
-                  ${item.type === 'online' 
-                    ? 'bg-gold-500/90 text-black' 
-                    : 'bg-white/90 text-black'
-                  }`}>
-                  {item.label}
-                </div>
-
-                {/* Localização / Badge Inferior */}
-                <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/80 px-3 py-1 rounded-sm border-l-2 border-gold-500">
-                   {item.type === 'online' ? <Globe size={12} className="text-gold-500"/> : <MapPin size={12} className="text-gold-500"/>}
-                   <span className="text-[10px] text-white uppercase font-bold tracking-wide">{item.location}</span>
+                {/* A ETIQUETA DA VERDADE */}
+                {/* Visualmente idênticas para mostrar que têm o mesmo peso */}
+                <div className="absolute top-4 left-4 bg-black/90 backdrop-blur-sm border-l-2 border-gold-500 px-3 py-1">
+                  <span className="text-[10px] font-bold text-gold-500 uppercase tracking-widest block mb-0.5">
+                    Modalidade
+                  </span>
+                  <span className="text-xs font-bold text-white uppercase tracking-wide">
+                    {item.tag}
+                  </span>
                 </div>
               </div>
 
-              {/* Depoimento e Estrelas */}
-              <div className="flex items-center gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map(star => <Star key={star} size={14} className="fill-gold-500 text-gold-500" />)}
+              {/* CONTEXTO PSICOLÓGICO */}
+              <div className="p-6 flex-grow flex flex-col justify-between bg-gradient-to-b from-black to-neutral-900/50">
+                <div>
+                  <div className="flex items-center gap-2 mb-3 opacity-60">
+                    {item.type === 'online' ? <Globe size={14} className="text-gold-500"/> : <MapPin size={14} className="text-gold-500"/>}
+                    <span className="text-xs text-white font-medium uppercase tracking-wider">{item.sub}</span>
+                  </div>
+                  
+                  <p className="text-neutral-300 text-sm italic leading-relaxed border-l-2 border-neutral-700 pl-3">
+                    "{item.quote}"
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map(star => <Star key={star} size={12} className="fill-gold-500 text-gold-500" />)}
+                  </div>
+                  <span className="text-xs text-neutral-500 font-mono">Resultado Validado</span>
+                </div>
               </div>
-              <p className="text-sm text-neutral-300 italic leading-relaxed">
-                "{item.text}"
-              </p>
             </div>
           ))}
         </div>
 
-        {/* CTA FINAL DE REFORÇO */}
-        <div className="bg-gold-500 rounded-sm p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_0_40px_-10px_rgba(212,175,55,0.3)]">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-          
-          <div className="relative z-10 max-w-xl">
-            <h3 className="text-2xl md:text-3xl font-heading font-bold text-black mb-2 uppercase">
-              Não importa onde você está
+        {/* CTA "LÓGICA" */}
+        <div className="bg-neutral-900 border border-white/5 p-8 md:p-10 rounded-sm max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-white mb-2">
+              A biologia do seu corpo não sabe onde você mora.
             </h3>
-            <p className="text-black/80 font-medium text-lg">
-              Seja em Recife ou do outro lado do mundo, eu tenho o protocolo exato para o seu corpo. Vamos definir seu ponto de partida?
+            <p className="text-neutral-400 text-sm">
+              Ela responde a estímulos corretos. Seja com minha avaliação presencial ou digital, eu garanto o estímulo. Você garante a execução.
             </p>
           </div>
           
           <a 
-            href="https://wa.me/5599999999999"
-            className="relative z-10 px-10 py-4 bg-black text-gold-500 font-bold uppercase tracking-widest hover:bg-neutral-900 transition-colors shadow-xl shrink-0 whitespace-nowrap border border-black hover:border-gold-500"
+            href="#planos"
+            className="px-8 py-3 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase text-sm tracking-widest transition-colors shrink-0"
           >
-            Iniciar Consultoria
+            Escolher meu método
           </a>
         </div>
       </div>
