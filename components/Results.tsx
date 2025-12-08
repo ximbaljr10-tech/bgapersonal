@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, MapPin } from 'lucide-react';
+import { Star, MapPin, CheckCircle2 } from 'lucide-react';
 
 const Results: React.FC = () => {
   const transformations = [
@@ -7,9 +7,9 @@ const Results: React.FC = () => {
       id: 1,
       image: '/media/copy1.jpeg',
       type: 'online',
-      tag: 'ONLINE',
+      tag: '100% ONLINE',
       location: 'Lisboa, PT',
-      quote: 'Segui o plano à risca. O resultado veio em 12 semanas.'
+      quote: 'Achava que precisava de alguém do meu lado. Estava errado. A análise de vídeo corrigiu erros que 3 anos de personal presencial não viram.'
     },
     {
       id: 2,
@@ -17,15 +17,15 @@ const Results: React.FC = () => {
       type: 'presencial',
       tag: 'PRESENCIAL',
       location: 'Recife, PE',
-      quote: 'A estratégia certa mudou completamente minha composição corporal.'
+      quote: 'A avaliação foi no consultório, mas o que mudou meu corpo foi seguir o protocolo diário. A visita é ótima, o método é o que funciona.'
     },
     {
       id: 3,
       image: '/media/copy3.jpeg',
       type: 'online',
-      tag: 'ONLINE',
+      tag: '100% ONLINE',
       location: 'São Paulo, SP',
-      quote: 'Sem desculpas. Apenas execução e orientação precisa.'
+      quote: 'A distância é irrelevante. O protocolo chegou no meu celular, eu executei na academia do prédio, e o resultado está aí.'
     }
   ];
 
@@ -33,23 +33,29 @@ const Results: React.FC = () => {
     <section id="results" className="py-20 bg-charcoal relative">
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* CABEÇALHO */}
+        {/* A RESPOSTA LÓGICA PARA O BOTÃO ANTERIOR */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-4 uppercase tracking-tight">
-            Contra Fatos<br />
-            <span className="text-gold-500">Não Há Argumentos</span>
+          <h2 className="text-2xl md:text-4xl font-heading font-bold text-white mb-6 uppercase">
+            A Biologia não muda<br/>
+            <span className="text-gold-500">Conforme o CEP</span>
           </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-            Sem promessas mágicas. Apenas a aplicação rigorosa do método.
-          </p>
+          
+          <div className="max-w-3xl mx-auto bg-black/40 border-l-4 border-gold-500 p-6 text-left">
+            <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
+              Você clicou para saber se funciona à distância. A resposta é técnica: <strong>Seu músculo não sabe se eu estou do seu lado ou te vendo por uma tela.</strong> Ele responde a estímulo mecânico e dieta calculada. 
+            </p>
+            <p className="text-white mt-4 font-bold">
+              O Presencial é uma experiência. O Online é a mesma ciência. O resultado é idêntico:
+            </p>
+          </div>
         </div>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        {/* GRID DE PROVAS */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {transformations.map((item) => (
-            <div key={item.id} className="relative bg-black border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+            <div key={item.id} className="relative bg-black rounded-sm overflow-hidden border border-white/10 shadow-2xl">
               
-              {/* IMAGEM (Sempre colorida e visível) */}
+              {/* FOTO */}
               <div className="relative aspect-[4/5] bg-neutral-900">
                 <img 
                   src={item.image}
@@ -57,46 +63,49 @@ const Results: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
                 
-                {/* TAG (Sempre visível) */}
-                <div className="absolute top-4 left-4 z-20">
-                  <span className={`text-[10px] font-bold px-3 py-1 uppercase tracking-widest shadow-sm ${
+                {/* TAG DE MODALIDADE - Clara e visível */}
+                <div className="absolute top-0 left-0 w-full p-2 bg-gradient-to-b from-black/80 to-transparent">
+                  <span className={`text-[10px] font-bold px-3 py-1 uppercase tracking-widest border ${
                     item.type === 'online' 
-                      ? 'bg-gold-500 text-black' 
-                      : 'bg-white text-black'
+                      ? 'bg-gold-500 text-black border-gold-500' 
+                      : 'bg-white text-black border-white'
                   }`}>
                     {item.tag}
                   </span>
                 </div>
 
-                {/* OVERLAY DE TEXTO (Sempre visível - Gradiente para leitura) */}
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-5 pt-16 z-20">
-                  <div className="flex items-center gap-2 mb-2 opacity-90">
-                    <MapPin size={12} className="text-gold-500" />
-                    <span className="text-xs text-white font-mono uppercase">{item.location}</span>
+                {/* TEXTO - O que mata a objeção (Sempre visível no mobile) */}
+                <div className="absolute bottom-0 left-0 w-full bg-black/95 p-5 border-t border-gold-500/30">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1">
+                      <MapPin size={12} className="text-gold-500" />
+                      <span className="text-[10px] text-neutral-400 font-mono uppercase">{item.location}</span>
+                    </div>
+                    <div className="flex gap-0.5">
+                       {[1, 2, 3, 4, 5].map(star => <Star key={star} size={8} className="fill-gold-500 text-gold-500" />)}
+                    </div>
                   </div>
-                  <p className="text-white text-sm font-medium italic border-l-2 border-gold-500 pl-3 leading-snug mb-2 drop-shadow-md">
+                  
+                  <p className="text-neutral-200 text-sm font-medium leading-snug">
                     "{item.quote}"
                   </p>
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map(star => <Star key={star} size={10} className="fill-gold-500 text-gold-500" />)}
-                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="flex flex-col items-center justify-center text-center gap-6 border-t border-white/5 pt-10">
-          <h3 className="text-xl md:text-2xl font-bold text-white uppercase">
-            Sua transformação começa na decisão
-          </h3>
-          
+        {/* CONTEXTO FINAL: "Vi que funciona, e agora?" */}
+        <div className="text-center">
+          <p className="text-neutral-400 text-sm mb-6">
+            O método foi validado em centenas de alunos, presencialmente e online.
+          </p>
           <a 
             href="#planos"
-            className="px-8 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors"
           >
-            Iniciar Protocolo
+            <CheckCircle2 size={18} />
+            Quero ter esse resultado
           </a>
         </div>
 
