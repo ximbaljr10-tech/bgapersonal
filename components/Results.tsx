@@ -1,28 +1,28 @@
 import React from 'react';
-import { Star, MapPin, CheckCircle2 } from 'lucide-react';
+import { Star, MapPin } from 'lucide-react';
 
 const Results: React.FC = () => {
   const transformations = [
     {
       id: 1,
       image: '/media/copy1.jpeg',
-      type: '100% Online',
-      tag: 'ONLINE', // Simples e direto
+      type: 'online',
+      tag: 'ONLINE',
       location: 'Lisboa, PT',
       quote: 'Liberdade geográfica com rigor técnico. Treino onde quero, com a supervisão de elite.'
     },
     {
       id: 2,
       image: '/media/copy2.jpeg',
-      type: ' Avaliação Presencial',
-      tag: 'PRESENCIAL', // Destacando a experiência
+      type: 'presencial',
+      tag: 'PRESENCIAL',
       location: 'Recife, PE',
       quote: 'A experiência clínica no consultório trouxe o ajuste fino que meu corpo precisava.'
     },
     {
       id: 3,
       image: '/media/copy3.jpeg',
-      type: '100% Online',
+      type: 'online',
       tag: 'ONLINE',
       location: 'São Paulo, SP',
       quote: 'O protocolo chega no app e eu executo. Sem burocracia, apenas resultado.'
@@ -30,7 +30,8 @@ const Results: React.FC = () => {
   ];
 
   return (
-    <section id="results" className="py-16 bg-charcoal relative">
+    /* AQUI ESTÁ A MUDANÇA: id="feedbacks" para o botão funcionar */
+    <section id="feedbacks" className="py-16 bg-charcoal relative">
       <div className="container mx-auto px-6 relative z-10">
         
         {/* CABEÇALHO CURTO E DIRETO */}
@@ -55,7 +56,7 @@ const Results: React.FC = () => {
                 className="w-full h-full object-cover"
               />
               
-              {/* TAG DE MODALIDADE (Sem confusão) */}
+              {/* TAG DE MODALIDADE */}
               <div className="absolute top-4 left-4 z-20">
                 <span className={`text-[10px] font-bold px-3 py-1.5 uppercase tracking-widest shadow-lg ${
                   item.type === 'online' 
