@@ -21,7 +21,7 @@ const About: React.FC = () => {
                  {/* SUGESTÃO: Use a imagem 'image_e86dd2.jpg' (Militar vs Shape atual) aqui. 
                      Ela mostra disciplina e resultado prático. */}
                 <img 
-                  src="/path-to-image-militar-vs-shape.jpg" 
+                  src="/media/foto.png" 
                   alt="Cláudio Braga - Transformação" 
                   className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
