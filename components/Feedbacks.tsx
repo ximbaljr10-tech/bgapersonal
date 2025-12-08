@@ -46,23 +46,23 @@ const Feedbacks: React.FC = () => {
   const [prevIdx, currIdx, nextIdx] = getDesktopIndices();
 
   return (
-    // Mantive a altura EXATA do seu código original: h-[850px] para mobile
-    <section className="relative w-full bg-black h-[850px] md:h-screen overflow-hidden font-sans">
+    // ALTERAÇÃO 1: Mudei h-screen para min-h-screen e h-auto. 
+    // Removi overflow-hidden vertical (deixei apenas overflow-x-hidden para segurança lateral)
+    <section className="relative w-full bg-black min-h-[850px] md:min-h-screen h-auto overflow-x-hidden font-sans flex flex-col justify-center">
       
-      {/* 1. Background Texture (Global - Igual ao seu original) */}
+      {/* 1. Background Texture (Fixo para cobrir tudo mesmo se esticar) */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://i.postimg.cc/7hhG8mxM/Design-sem-nome-(35).png" 
           alt="Feedbacks Background" 
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-60 fixed-bg" // Pode adicionar object-position se precisar
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
       </div>
 
       {/* =================================================================================
-          VERSÃO MOBILE (Cópia exata do seu código anterior)
-          Só aparece em telas pequenas (md:hidden)
-         ================================================================================= */}
+          VERSÃO MOBILE
+          ================================================================================= */}
       <div className="block md:hidden w-full h-full absolute inset-0 z-10">
           
           {/* Title */}
@@ -82,7 +82,7 @@ const Feedbacks: React.FC = () => {
              />
           </div>
 
-          {/* CARROSSEL ORIGINAL (Posição top-[65%]) */}
+          {/* CARROSSEL MOBILE */}
           <div className="absolute top-[65%] left-0 right-0 z-30 flex flex-col items-center -translate-y-1/2">
             
             <div className="relative w-[85%] max-w-[380px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(212,175,55,0.15)] bg-neutral-900 group">
@@ -125,8 +125,8 @@ const Feedbacks: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA Button */}
-          <div className="absolute bottom-1 left-0 w-full z-40 text-center px-6">
+          {/* CTA Button Mobile */}
+          <div className="absolute bottom-6 left-0 w-full z-40 text-center px-6">
               <a 
                 href="https://wa.me/5599999999999"
                 className="inline-block w-full px-8 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform transform hover:-translate-y-1 text-sm animate-pulse"
@@ -137,13 +137,13 @@ const Feedbacks: React.FC = () => {
       </div>
 
       {/* =================================================================================
-          VERSÃO DESKTOP (NOVA - 3 CARDS)
-          Só aparece em telas médias ou maiores (hidden md:flex)
-          Usa position absolute para sobrepor o background corretamente
-         ================================================================================= */}
-      <div className="hidden md:flex absolute inset-0 z-20 flex-col items-center justify-center px-8">
+          VERSÃO DESKTOP (CORRIGIDA)
+          ALTERAÇÃO 2: Usei 'relative' e padding vertical (py-24) para garantir que 
+          o conteúdo ocupe espaço e empurre o final da página.
+          ================================================================================= */}
+      <div className="hidden md:flex relative z-20 w-full min-h-screen flex-col items-center justify-center px-8 py-24">
         
-        {/* Spotlights dourados extra para desktop */}
+        {/* Spotlights dourados */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vh] bg-gold-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
         {/* Cabeçalho Desktop */}
@@ -155,15 +155,15 @@ const Feedbacks: React.FC = () => {
         </div>
 
         {/* Container 3 Cards */}
-        <div className="w-full max-w-7xl flex items-center justify-center gap-8 perspective-1000 relative">
+        <div className="w-full max-w-7xl flex items-center justify-center gap-8 perspective-1000 relative my-8">
           
           {/* Botão Prev */}
-          <button onClick={prevSlide} className="absolute left-0 z-50 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group">
+          <button onClick={prevSlide} className="absolute -left-12 xl:left-0 z-50 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group">
              <ChevronLeft size={40} className="text-white group-hover:text-black" />
           </button>
 
           {/* CARD ESQUERDA (Prev) */}
-          <div className="w-1/4 h-[500px] opacity-40 hover:opacity-60 transition-all duration-500 transform scale-90 blur-[1px] cursor-pointer" onClick={prevSlide}>
+          <div className="w-1/4 h-[400px] lg:h-[500px] opacity-40 hover:opacity-60 transition-all duration-500 transform scale-90 blur-[1px] cursor-pointer" onClick={prevSlide}>
              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
                <div className="absolute inset-0 bg-black/20 z-10"></div>
                <img src={feedbackImages[prevIdx]} alt="Prev" className="w-full h-full object-contain" />
@@ -171,7 +171,7 @@ const Feedbacks: React.FC = () => {
           </div>
 
           {/* CARD CENTRAL (Atual) */}
-          <div className="w-1/3 h-[600px] z-30 transition-all duration-500 transform scale-100 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
+          <div className="w-1/3 h-[500px] lg:h-[600px] z-30 transition-all duration-500 transform scale-100 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
              <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-gold-500/50 bg-neutral-900">
                 <div className="absolute top-4 right-4 z-20 bg-gold-500 p-2 rounded-full shadow-lg">
                    <Quote size={20} className="text-black fill-current" />
@@ -182,7 +182,7 @@ const Feedbacks: React.FC = () => {
           </div>
 
           {/* CARD DIREITA (Next) */}
-          <div className="w-1/4 h-[500px] opacity-40 hover:opacity-60 transition-all duration-500 transform scale-90 blur-[1px] cursor-pointer" onClick={nextSlide}>
+          <div className="w-1/4 h-[400px] lg:h-[500px] opacity-40 hover:opacity-60 transition-all duration-500 transform scale-90 blur-[1px] cursor-pointer" onClick={nextSlide}>
              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-neutral-900">
                <div className="absolute inset-0 bg-black/20 z-10"></div>
                <img src={feedbackImages[nextIdx]} alt="Next" className="w-full h-full object-contain" />
@@ -190,20 +190,20 @@ const Feedbacks: React.FC = () => {
           </div>
 
           {/* Botão Next */}
-          <button onClick={nextSlide} className="absolute right-0 z-50 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group">
+          <button onClick={nextSlide} className="absolute -right-12 xl:right-0 z-50 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-gold-500 hover:text-black hover:border-gold-500 transition-all duration-300 group">
              <ChevronRight size={40} className="text-white group-hover:text-black" />
           </button>
         </div>
 
         {/* Controles Desktop */}
-        <div className="mt-12 flex items-center gap-4">
+        <div className="mt-8 flex items-center gap-4">
            <button onClick={togglePlay} className="flex items-center gap-2 px-6 py-2 rounded-full border border-gold-500/30 text-gold-500 hover:bg-gold-500 hover:text-black transition-all text-sm uppercase tracking-widest">
               {isPlaying ? <><Pause size={16} /> Pausar Rotação</> : <><Play size={16} /> Continuar Rotação</>}
            </button>
         </div>
 
         {/* CTA Desktop */}
-        <div className="mt-8">
+        <div className="mt-12 pb-8">
             <a href="https://wa.me/5599999999999" className="inline-block px-12 py-5 bg-gold-500 hover:bg-white hover:text-black text-black font-black text-xl uppercase tracking-widest rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all transform hover:-translate-y-1">
               Quero ser o próximo
             </a>
