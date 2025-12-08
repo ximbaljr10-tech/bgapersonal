@@ -1,32 +1,32 @@
-
 import React from 'react';
-import { Scan, Smartphone, CheckCircle2, UploadCloud, ArrowUpRight } from 'lucide-react';
+import { Scan, Smartphone, CheckCircle2, UploadCloud, ArrowRight, Smartphone as SmartphoneIcon, Globe } from 'lucide-react';
 
 const Evaluation: React.FC = () => {
   return (
-    <section className="py-20 bg-black border-t border-white/5 relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-black border-t border-white/5 relative overflow-hidden font-sans">
       {/* Tech Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(20,20,20,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(20,20,20,0.5)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black,transparent)] pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        {/* 1. HEADER - Foco no Digital */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        {/* 1. HEADER */}
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-[10px] font-bold uppercase tracking-widest mb-4">
             <Smartphone size={12} />
-            Via Aplicativo Exclusivo
+            Via App Exclusivo
           </div>
-          <h2 className="text-3xl md:text-5xl font-heading font-black text-white mb-6 leading-tight">
-            AVALIAÇÃO <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">BIOMECÂNICA ONLINE</span>
+          <h2 className="text-2xl md:text-5xl font-heading font-black text-white mb-4 leading-tight">
+            AVALIAÇÃO <br className="md:hidden"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">BIOMECÂNICA ONLINE</span>
           </h2>
-          <p className="text-neutral-400 leading-relaxed text-sm md:text-lg max-w-2xl mx-auto">
-            Esqueça as avaliações presenciais demoradas. Nossa tecnologia permite que eu analise sua estrutura corporal e movimento com <strong className="text-white">precisão clínica</strong>, direto pelo seu celular.
+          <p className="text-neutral-400 leading-relaxed text-xs md:text-lg max-w-xl mx-auto px-2">
+            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão, direto pelo seu celular.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        {/* 2. CONTEÚDO PRINCIPAL */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* 2. VISUAL TECH - O "Scanner" no Celular */}
+          {/* VISUAL TECH - O "Scanner" no Celular (RESTAURADO) */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <div className="relative w-[280px] md:w-[320px] h-[550px] bg-neutral-900 border-[8px] border-neutral-800 rounded-[3rem] shadow-2xl shadow-gold-500/20 overflow-hidden">
                {/* Phone Notch */}
@@ -106,52 +106,83 @@ const Evaluation: React.FC = () => {
             </div>
           </div>
 
-          {/* 3. CONTEÚDO EXPLICATIVO */}
-          <div className="w-full lg:w-1/2 space-y-8">
-            
-            <div className="pl-6 border-l-2 border-gold-500 space-y-2">
-               <h3 className="text-xl font-bold text-white">Como funciona?</h3>
-               <p className="text-neutral-400 text-sm leading-relaxed">
-                  Você recebe um <strong>Guia de Poses</strong> no App. Basta posicionar o celular, tirar as 3 fotos (frente, costas e perfil) e fazer o upload.
+          {/* TEXTO EXPLICATIVO */}
+          <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2">
+            <div className="pl-4 md:pl-6 border-l-2 border-gold-500 space-y-1">
+               <h3 className="text-lg md:text-xl font-bold text-white">Como funciona?</h3>
+               <p className="text-neutral-400 text-xs md:text-sm leading-relaxed max-w-sm">
+                  Você recebe um <strong>Guia de Poses</strong> no App. Tira as fotos, envia e eu faço toda a análise.
                </p>
             </div>
-
-            <div className="grid gap-6">
-               <div className="flex gap-4">
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
-                     <UploadCloud size={20} />
+            <div className="grid gap-4 md:gap-6">
+               <div className="flex gap-3 md:gap-4">
+                  <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
+                     <UploadCloud size={18} />
                   </div>
                   <div>
                      <h4 className="text-white font-bold text-sm">Envio 100% Digital</h4>
-                     <p className="text-neutral-500 text-xs mt-1">
-                        Segurança total dos seus dados. As fotos ficam armazenadas em ambiente criptografado e exclusivo para minha análise.
+                     <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
+                        Seus dados e fotos ficam em ambiente seguro e criptografado.
                      </p>
                   </div>
                </div>
-
-               <div className="flex gap-4">
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
-                     <Scan size={20} />
+               <div className="flex gap-3 md:gap-4">
+                  <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
+                     <Scan size={18} />
                   </div>
                   <div>
-                     <h4 className="text-white font-bold text-sm">Análise Postural Profunda</h4>
-                     <p className="text-neutral-500 text-xs mt-1">
-                        Eu uso as imagens para traçar linhas de simetria, identificar encurtamentos musculares e desvios posturais que impedem seus resultados.
+                     <h4 className="text-white font-bold text-sm">Análise Postural</h4>
+                     <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
+                        Identifico encurtamentos e desvios que travam seus ganhos.
                      </p>
                   </div>
                </div>
             </div>
+          </div>
+        </div>
 
-            <div className="pt-4">
-               <div className="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-widest bg-gold-500/20 px-4 py-2 rounded-lg border border-gold-500/30">
-                  <CheckCircle2 size={14} className="text-gold-500" />
-                  Mesma precisão do presencial
-               </div>
+        {/* 3. CTA FINAL REESTRUTURADO (Separado e Hierarquizado) */}
+        <div className="flex flex-col items-center justify-center mt-8 md:mt-16 gap-8">
+            
+            {/* A. BOTÃO PRINCIPAL (Destaque Máximo) */}
+            <div className="relative w-full max-w-md text-center">
+                <a 
+                    href="https://wa.me/5599999999999" 
+                    className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
+                >
+                    {/* Efeito Shine */}
+                    <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
+                    
+                    <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
+                    <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <p className="text-neutral-500 text-[10px] mt-2 flex items-center justify-center gap-1">
+                   <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                   Análise feita pessoalmente pelo Braga
+                </p>
             </div>
 
-          </div>
+            {/* B. OBJEÇÃO / PROVA SOCIAL (Separado, estilo secundário) */}
+            <div className="bg-neutral-900/60 backdrop-blur-sm border border-white/10 rounded-xl p-5 max-w-lg w-full text-center">
+                <h4 className="text-white font-bold text-sm mb-1">
+                   Ainda em dúvida se funciona à distância?
+                </h4>
+                <p className="text-neutral-400 text-xs mb-4">
+                   Veja transformações reais de alunos acompanhados 100% Online.
+                </p>
+                
+                <a 
+                  href="#feedbacks" 
+                  className="inline-flex items-center gap-2 text-white/80 hover:text-gold-500 transition-colors text-xs font-bold uppercase tracking-wider group border-b border-transparent hover:border-gold-500 pb-0.5"
+                >
+                  <Globe size={14} />
+                  Ver Resultados 100% Online
+                  <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+            </div>
 
         </div>
+
       </div>
 
       <style>{`
@@ -160,6 +191,11 @@ const Evaluation: React.FC = () => {
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
+         }
+         @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
          }
       `}</style>
     </section>

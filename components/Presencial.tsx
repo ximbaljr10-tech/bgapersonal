@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Ruler, Activity, Eye, CalendarCheck, Smartphone, MapPin } from 'lucide-react';
 
@@ -19,7 +18,7 @@ const Presencial: React.FC = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
-          {/* TEXT CONTENT */}
+          {/* TEXT CONTENT (Lado Esquerdo) */}
           <div className="w-full lg:w-1/2">
             
             {/* Tag de Luxo */}
@@ -37,8 +36,8 @@ const Presencial: React.FC = () => {
               Esta modalidade une o melhor dos dois mundos: a inteligência do nosso aplicativo de treino com a precisão milimétrica da coleta de dados feita pessoalmente por mim.
             </p>
 
-            {/* FEATURES GRID - PREMIUM CARDS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+            {/* FEATURES GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {/* Item 1 */}
                <div className="group bg-neutral-900/80 border border-white/5 p-5 rounded-xl hover:border-gold-500/50 transition-all duration-300 hover:bg-neutral-800/80">
                   <div className="flex items-center gap-3 mb-2">
@@ -83,49 +82,50 @@ const Presencial: React.FC = () => {
                   <p className="text-neutral-500 text-[11px] leading-snug group-hover:text-neutral-300">Seu planejamento completo disponível na palma da sua mão 24h por dia.</p>
                </div>
             </div>
+            {/* FIM DA COLUNA DE TEXTO - BOTÃO REMOVIDO DAQUI */}
+          </div>
 
-            {/* CTA BUTTON */}
-            <a 
+          {/* VISUAL SIDE (Lado Direito) */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-8">
+             
+             {/* Wrapper da Imagem */}
+             <div className="relative w-full aspect-square rounded-2xl overflow-hidden border border-white/10 group">
+               
+               {/* Image Source Atualizado */}
+               <img 
+                  src="/media/foto.png" 
+                  alt="Consultório Premium" 
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+               />
+
+               {/* Floating "Notification" Badge */}
+               <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-xl border border-gold-500/30 p-3 rounded-lg shadow-2xl flex items-center justify-between z-20">
+                  <div>
+                     <div className="flex items-center gap-1.5 mb-0.5">
+                        <MapPin size={10} className="text-gold-500" />
+                        <span className="text-gold-500 text-[9px] font-bold uppercase tracking-wider">Rio Branco - Acre</span>
+                     </div>
+                     <p className="text-white font-bold text-sm">AGENDA ABERTA</p>
+                  </div>
+                  <div className="h-8 w-8 rounded-full border border-green-500/50 flex items-center justify-center bg-green-500/10 animate-pulse">
+                     <div className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></div>
+                  </div>
+               </div>
+
+               {/* Decorative Elements (Cantoneiras) */}
+               <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-gold-500/30 rounded-tr-3xl pointer-events-none"></div>
+               <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-gold-500/30 rounded-bl-3xl pointer-events-none"></div>
+             </div>
+
+             {/* CTA BUTTON (MOVIDO PARA CÁ - DEPOIS DA FOTO) */}
+             <a 
               href="https://wa.me/5599999999999"
-              className="relative w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-black uppercase tracking-widest rounded-lg shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] transition-all transform hover:-translate-y-1"
+              className="relative w-full inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-black uppercase tracking-widest rounded-lg shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] transition-all transform hover:-translate-y-1"
             >
               <CalendarCheck size={20} strokeWidth={2.5} />
               <span>Agendar no Consultório</span>
             </a>
-          </div>
 
-          {/* VISUAL SIDE - "PORTAL VIP" */}
-          <div className="w-full lg:w-1/2 relative">
-             <div className="relative aspect-[3/4] md:aspect-square rounded-2xl overflow-hidden border border-white/10 group">
-                
-                {/* Image */}
-                <img 
-                   src="https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?q=80&w=1200&auto=format&fit=crop" 
-                   alt="Consultório Premium" 
-                   className="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
-                />
-                
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-
-                {/* Floating "Notification" Badge */}
-                <div className="absolute bottom-8 left-6 right-6 bg-black/80 backdrop-blur-xl border border-gold-500/30 p-5 rounded-xl shadow-2xl flex items-center justify-between">
-                   <div>
-                      <div className="flex items-center gap-2 mb-1">
-                         <MapPin size={12} className="text-gold-500" />
-                         <span className="text-gold-500 text-[10px] font-bold uppercase tracking-wider">Rio Branco - Acre</span>
-                      </div>
-                      <p className="text-white font-bold text-lg">AGENDA ABERTA</p>
-                   </div>
-                   <div className="h-10 w-10 rounded-full border-2 border-green-500/50 flex items-center justify-center bg-green-500/10 animate-pulse">
-                      <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
-                   </div>
-                </div>
-             </div>
-
-             {/* Decorative Elements around image */}
-             <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-gold-500/30 rounded-tr-3xl"></div>
-             <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-gold-500/30 rounded-bl-3xl"></div>
           </div>
 
         </div>

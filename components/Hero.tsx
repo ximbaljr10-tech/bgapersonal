@@ -1,8 +1,19 @@
-
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
+
+  // --- FUNÇÃO DE ROLAGEM SUAVE ---
+  const scrollToBeforeAfter = () => {
+    // Procura o elemento com o id "before-after"
+    const section = document.getElementById('before-after');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn("Seção 'before-after' não encontrada. Verifique se o ID está correto no outro componente.");
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
       
@@ -39,7 +50,7 @@ const Hero: React.FC = () => {
           className="hidden md:block w-full h-full object-cover object-top"
         />
         
-        {/* 1. Camada Geral levemente escura (Um pouquinho de nada escuro) */}
+        {/* 1. Camada Geral levemente escura */}
         <div className="absolute inset-0 bg-black/30"></div>
 
         {/* 2. Gradiente Lateral (Leitura do Texto) */}
@@ -50,10 +61,10 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        {/* Text Content - Aumentei o padding-top (pt-32) no mobile para desgrudar da logo */}
+        {/* Text Content */}
         <div className="w-full lg:w-2/3 space-y-8 pt-32 pb-20 drop-shadow-md">
           
-          {/* TAG SUPERIOR (Texto encurtado e sem quebra) */}
+          {/* TAG SUPERIOR */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
             <span className="text-gold-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
@@ -75,7 +86,7 @@ const Hero: React.FC = () => {
           {/* BOTÕES */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
             
-            {/* Botão 1: Principal (Texto restaurado para não quebrar linha) */}
+            {/* Botão 1: Principal */}
             <a 
               href="https://wa.me/5599999999999"
               className="group relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap"
@@ -84,14 +95,15 @@ const Hero: React.FC = () => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
-            {/* Botão 2: O Reveal (Antes e Depois) */}
+            {/* Botão 2: O Reveal (AGORA COM ONCLICK) */}
             <button 
-              className="relative px-8 py-4 bg-black border border-white/30 text-white font-bold uppercase tracking-widest overflow-hidden group w-full sm:w-auto h-[56px] flex items-center justify-center text-sm md:text-base"
+              onClick={scrollToBeforeAfter} // <--- AQUI ESTÁ A CORREÇÃO
+              className="relative px-8 py-4 bg-black border border-white/30 text-white font-bold uppercase tracking-widest overflow-hidden group w-full sm:w-auto h-[56px] flex items-center justify-center text-sm md:text-base cursor-pointer hover:border-white/50 transition-colors"
             >
-              {/* Texto Base (Fundo Preto / Texto Branco) */}
+              {/* Texto Base */}
               <span className="relative z-10 whitespace-nowrap">Ver Antes e Depois</span>
 
-              {/* Camada Overlay (Fundo Branco / Texto Preto) */}
+              {/* Camada Overlay */}
               <div className="absolute inset-0 bg-white z-20 overflow-hidden animate-reveal left-0">
                  <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                     <span className="text-black whitespace-nowrap font-bold tracking-widest uppercase px-8">Ver Antes e Depois</span>
