@@ -7,9 +7,9 @@ const Results: React.FC = () => {
       id: 1,
       image: '/media/copy1.jpeg',
       type: 'online',
-      tag: '100% ONLINE',
+      tag: 'ONLINE',
       location: 'Lisboa, PT',
-      quote: 'Achava que precisava de alguém do meu lado. Estava errado. A análise de vídeo corrigiu erros que 3 anos de personal presencial não viram.'
+      quote: 'A liberdade de treinar onde eu quiser, com a segurança de ter um protocolo profissional guiando cada passo.'
     },
     {
       id: 2,
@@ -17,15 +17,15 @@ const Results: React.FC = () => {
       type: 'presencial',
       tag: 'PRESENCIAL',
       location: 'Recife, PE',
-      quote: 'A avaliação foi no consultório, mas o que mudou meu corpo foi seguir o protocolo diário. A visita é ótima, o método é o que funciona.'
+      quote: 'Não abro mão do contato presencial. A avaliação no consultório traz um nível de detalhe e confiança impagável.'
     },
     {
       id: 3,
       image: '/media/copy3.jpeg',
       type: 'online',
-      tag: '100% ONLINE',
+      tag: 'ONLINE',
       location: 'São Paulo, SP',
-      quote: 'A distância é irrelevante. O protocolo chegou no meu celular, eu executei na academia do prédio, e o resultado está aí.'
+      quote: 'Mesmo à distância, o rigor técnico é absoluto. O método funciona porque exige disciplina, não importa o CEP.'
     }
   ];
 
@@ -33,24 +33,27 @@ const Results: React.FC = () => {
     <section id="results" className="py-20 bg-charcoal relative">
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* A RESPOSTA LÓGICA PARA O BOTÃO ANTERIOR */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-heading font-bold text-white mb-6 uppercase">
-            A Biologia não muda<br/>
-            <span className="text-gold-500">Conforme o CEP</span>
+        {/* CABEÇALHO EQUILIBRADO */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6 uppercase tracking-tight">
+            FORMATOS DIFERENTES<br />
+            <span className="text-gold-500">A MESMA EXIGÊNCIA</span>
           </h2>
           
-          <div className="max-w-3xl mx-auto bg-black/40 border-l-4 border-gold-500 p-6 text-left">
-            <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-              Você clicou para saber se funciona à distância. A resposta é técnica: <strong>Seu músculo não sabe se eu estou do seu lado ou te vendo por uma tela.</strong> Ele responde a estímulo mecânico e dieta calculada. 
+          <div className="max-w-4xl mx-auto">
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              A escolha entre Consultoria Online ou Avaliação Presencial é uma questão de 
+              <span className="text-white font-bold"> preferência e estilo de vida</span>, não de qualidade.
             </p>
-            <p className="text-white mt-4 font-bold">
-              O Presencial é uma experiência. O Online é a mesma ciência. O resultado é idêntico:
+            <p className="text-neutral-400 mt-4 text-base">
+              Quem prioriza o contato "olho no olho" e a experiência clínica, vai ao consultório. 
+              Quem precisa de liberdade geográfica, vai de digital. 
+              Em ambos os casos, a metodologia aplicada no seu corpo é o <span className="text-gold-500 font-medium">Padrão Team Braga</span>.
             </p>
           </div>
         </div>
 
-        {/* GRID DE PROVAS */}
+        {/* GRID DE RESULTADOS MISTOS */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {transformations.map((item) => (
             <div key={item.id} className="relative bg-black rounded-sm overflow-hidden border border-white/10 shadow-2xl">
@@ -63,9 +66,9 @@ const Results: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
                 
-                {/* TAG DE MODALIDADE - Clara e visível */}
-                <div className="absolute top-0 left-0 w-full p-2 bg-gradient-to-b from-black/80 to-transparent">
-                  <span className={`text-[10px] font-bold px-3 py-1 uppercase tracking-widest border ${
+                {/* TAG DE MODALIDADE - Diferenciando com elegância */}
+                <div className="absolute top-0 left-0 w-full p-2 bg-gradient-to-b from-black/60 to-transparent">
+                  <span className={`text-[10px] font-bold px-3 py-1 uppercase tracking-widest border shadow-lg ${
                     item.type === 'online' 
                       ? 'bg-gold-500 text-black border-gold-500' 
                       : 'bg-white text-black border-white'
@@ -74,8 +77,8 @@ const Results: React.FC = () => {
                   </span>
                 </div>
 
-                {/* TEXTO - O que mata a objeção (Sempre visível no mobile) */}
-                <div className="absolute bottom-0 left-0 w-full bg-black/95 p-5 border-t border-gold-500/30">
+                {/* TEXTO - SEMPRE VISÍVEL */}
+                <div className="absolute bottom-0 left-0 w-full bg-black/95 p-5 border-t border-gold-500/20">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-1">
                       <MapPin size={12} className="text-gold-500" />
@@ -95,17 +98,17 @@ const Results: React.FC = () => {
           ))}
         </div>
 
-        {/* CONTEXTO FINAL: "Vi que funciona, e agora?" */}
-        <div className="text-center">
-          <p className="text-neutral-400 text-sm mb-6">
-            O método foi validado em centenas de alunos, presencialmente e online.
+        {/* CTA NEUTRO E PODEROSO */}
+        <div className="text-center pt-8 border-t border-white/5">
+          <p className="text-neutral-400 text-sm mb-6 uppercase tracking-widest">
+            Presencialmente ou Online: O foco é a sua evolução
           </p>
           <a 
             href="#planos"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors"
+            className="inline-flex items-center gap-2 px-10 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors shadow-lg hover:shadow-gold-500/20"
           >
             <CheckCircle2 size={18} />
-            Quero ter esse resultado
+            Definir meu Ponto de Partida
           </a>
         </div>
 
