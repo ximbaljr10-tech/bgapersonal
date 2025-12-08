@@ -6,42 +6,42 @@ const Benefits: React.FC = () => {
   // Removido "Zero Estresse" para fechar 8 itens (par) e deixar o grid perfeito
   const benefits = [
     {
-      icon: <Flame />,
+      Icon: Flame,
       title: "Queima de Gordura",
       desc: "Emagrecimento definitivo sem efeito sanfona."
     },
     {
-      icon: <Dumbbell />,
+      Icon: Dumbbell,
       title: "Definição Muscular",
       desc: "Corpo firme, tonificado e estético."
     },
     {
-      icon: <Sparkles />,
+      Icon: Sparkles,
       title: "Autoestima Alta",
       desc: "Sinta-se poderosa e confiante no espelho."
     },
     {
-      icon: <Zap />,
+      Icon: Zap,
       title: "Energia Total",
       desc: "Mais disposição para o trabalho e rotina."
     },
     {
-      icon: <Timer />,
+      Icon: Timer,
       title: "Treinos Práticos",
       desc: "Rápidos e adaptáveis ao seu dia a dia."
     },
     {
-      icon: <UserCheck />,
+      Icon: UserCheck,
       title: "Acompanhamento",
       desc: "Você não estará sozinha nessa jornada."
     },
     {
-      icon: <HeartPulse />,
+      Icon: HeartPulse,
       title: "Zero Dores",
       desc: "Fortalecimento que elimina desconfortos."
     },
     {
-      icon: <Moon />,
+      Icon: Moon,
       title: "Sono Reparador",
       desc: "Durma melhor e acorde renovada."
     }
@@ -81,12 +81,12 @@ const Benefits: React.FC = () => {
               
               {/* Ícone Gigante de Fundo (Marca d'água) */}
               <div className="absolute -right-4 -bottom-4 text-white/5 group-hover:text-gold-500/10 transition-colors duration-500 transform rotate-12 scale-150 pointer-events-none">
-                {React.cloneElement(item.icon as React.ReactElement, { size: 80 })}
+                <item.Icon size={80} />
               </div>
 
               <div className="p-4 md:p-6 relative z-10 h-full flex flex-col justify-center">
                 <div className="text-gold-500 mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
+                  <item.Icon size={24} />
                 </div>
                 <h3 className="text-white font-bold text-sm md:text-lg uppercase leading-tight mb-1">
                   {item.title}
