@@ -38,8 +38,15 @@ const Hero: React.FC = () => {
           alt="Background Desktop" 
           className="hidden md:block w-full h-full object-cover object-top"
         />
-        {/* Gradient Overlay */}
+        
+        {/* 1. Camada Geral levemente escura (Um pouquinho de nada escuro) */}
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        {/* 2. Gradiente Lateral (Leitura do Texto) */}
         <div className="absolute inset-0 bg-gradient-to-r from-black from-0% via-black/90 via-35% to-transparent to-60%"></div>
+
+        {/* 3. Gradiente Inferior (O Chão Preto) */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-richblack via-richblack/60 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
