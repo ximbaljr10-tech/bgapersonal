@@ -20,10 +20,10 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <ServicesIntro />
-        <BeforeAfter />
         <Methodology />
-        <Presencial />
         <Evaluation />
+        <Presencial />
+        <BeforeAfter />
         <Feedbacks />
         <Results />
         <About />
