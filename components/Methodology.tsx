@@ -96,14 +96,14 @@ const Methodology: React.FC = () => {
         </div>
 
         {/* TIMELINE CONTAINER */}
-        <div ref={containerRef} className="relative pl-4 md:pl-0 md:w-2/3 mx-auto">
+        <div ref={containerRef} className="relative md:w-2/3 mx-auto">
           
           {/* THE LIQUID LINE (Background Guide) */}
-          <div className="absolute left-[27px] md:left-[29px] top-4 bottom-10 w-[2px] bg-neutral-800 z-0"></div>
+          <div className="absolute left-[24px] md:left-[26px] top-4 bottom-10 w-[2px] bg-neutral-800 z-0"></div>
           
           {/* THE LIQUID ANIMATION (Gold Fill) */}
           <div 
-            className="absolute left-[27px] md:left-[29px] top-4 w-[2px] bg-gold-500 z-0 transition-all duration-75 ease-linear shadow-[0_0_10px_#D4AF37]"
+            className="absolute left-[24px] md:left-[26px] top-4 w-[2px] bg-gold-500 z-0 transition-all duration-75 ease-linear shadow-[0_0_10px_#D4AF37]"
             style={{ height: `${scrollProgress}%` }}
           ></div>
 
@@ -114,20 +114,20 @@ const Methodology: React.FC = () => {
               const isActive = scrollProgress >= stepProgressThreshold - 5; // -5 buffer
 
               return (
-                <div key={index} className="flex gap-6 items-start group">
+                <div key={index} className="flex gap-4 md:gap-6 items-start group">
                    {/* Icon Bubble */}
                    <div 
-                      className={`shrink-0 w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
+                      className={`shrink-0 w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 bg-richblack z-10 ${
                         isActive 
-                        ? 'bg-black border-gold-500 text-gold-500 shadow-[0_0_20px_rgba(212,175,55,0.3)] scale-110' 
-                        : 'bg-neutral-900 border-neutral-800 text-neutral-600'
+                        ? 'border-gold-500 text-gold-500 shadow-[0_0_20px_rgba(212,175,55,0.3)] scale-110' 
+                        : 'border-neutral-800 text-neutral-600'
                       }`}
                    >
                       {step.icon}
                    </div>
                    
                    {/* Content */}
-                   <div className={`transition-all duration-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-50 translate-x-2'}`}>
+                   <div className={`transition-all duration-500 pt-2 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-50 translate-x-2'}`}>
                       <h3 className={`font-heading font-bold text-lg mb-2 transition-colors ${isActive ? 'text-white' : 'text-neutral-500'}`}>
                         {step.title}
                       </h3>

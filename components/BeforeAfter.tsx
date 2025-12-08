@@ -109,18 +109,18 @@ const BeforeAfter: React.FC = () => {
             
             {/* Overlay Info (Bottom) */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12 pointer-events-none z-10">
-               <p className="text-white font-bold text-lg uppercase">{cases[activeCase].label}</p>
+               <p className="text-white font-bold text-lg uppercase drop-shadow-md">{cases[activeCase].label}</p>
             </div>
           </div>
 
-          {/* Controls Footer */}
-          <div className="mt-6 flex items-center justify-between">
+          {/* Controls Footer - ALIGNED PERFECTLY */}
+          <div className="mt-6 flex items-center justify-between w-full gap-4">
             {/* Counter Card */}
-            <div className="flex items-center gap-3 bg-neutral-900 border border-white/10 px-4 py-2 rounded-lg">
-              <Layers className="text-gold-500 w-5 h-5" />
-              <div className="flex flex-col">
-                <span className="text-[10px] text-neutral-500 uppercase font-bold tracking-wider">Caso</span>
-                <span className="text-white font-bold text-sm leading-none">
+            <div className="flex-1 flex items-center gap-3 bg-neutral-900 border border-white/10 px-4 h-14 rounded-lg">
+              <Layers className="text-gold-500 w-5 h-5 shrink-0" />
+              <div className="flex flex-col justify-center">
+                <span className="text-[10px] text-neutral-500 uppercase font-bold tracking-wider leading-tight">Caso</span>
+                <span className="text-white font-bold text-sm leading-tight">
                   {activeCase + 1} <span className="text-neutral-600">/ {cases.length}</span>
                 </span>
               </div>
@@ -129,7 +129,7 @@ const BeforeAfter: React.FC = () => {
             {/* Next Button */}
             <button 
               onClick={nextCase}
-              className="flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wider transition-all active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-4 h-14 rounded-lg font-bold uppercase text-xs md:text-sm tracking-wider transition-all active:scale-95 whitespace-nowrap"
             >
               Próximo Resultado
               <ChevronRight size={18} />
