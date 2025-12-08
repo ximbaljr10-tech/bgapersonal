@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0">
         {/* Mobile Background */}
         <img 
-          src="https://i.postimg.cc/sgp5bxcm/Gemini-Generated-Image-1za83z1za83z1za8.png" 
+          src="/media/hero.png" 
           alt="Background Mobile" 
           className="block md:hidden w-full h-full object-cover"
         />

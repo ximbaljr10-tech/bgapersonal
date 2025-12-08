@@ -144,7 +144,7 @@ const Benefits: React.FC = () => {
               </div>
               <div className="text-center md:text-left">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2 uppercase">
-                    E o melhor: <span className="text-gold-500">Sem dietas malucas!</span>
+                    E o melhor: <span className="text-gold-500">Sem Treinos Intermináveis, Logos, ou Extensos!</span>
                   </h3>
                   <p className="text-neutral-400 text-sm md:text-base max-w-2xl">
                     Sem precisar morar na academia. Os treinos são feitos <strong className="text-white">sob medida para você</strong>, considerando sua rotina real e o que traz resultados definitivos.
