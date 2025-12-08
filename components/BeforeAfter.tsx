@@ -8,23 +8,21 @@ const BeforeAfter: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Exemplo de Casos (Substituir por imagens reais)
-  // Usando seeds diferentes para garantir imagens diferentes no placeholder
   const cases = [
     {
-      before: "https://images.unsplash.com/photo-1550345332-09e3ac987658?q=80&w=800&auto=format&fit=crop", // Exemplo de corpo 'antes' (menos definido)
-      after: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=800&auto=format&fit=crop", // Exemplo 'depois' (treinando)
+      before: "https://i.postimg.cc/Th8jzDWP/1.png",
+      after: "https://i.postimg.cc/7bv1F2TH/2.png",
+      label: "Emagrecimento"
+    },
+    {
+      before: "https://i.postimg.cc/14x0kqNR/3.png",
+      after: "https://i.postimg.cc/xqrGwzbT/4.png",
+      label: "Emagrecimento"
+    },
+    {
+      before: "https://i.postimg.cc/V5y9xCbM/5.png",
+      after: "https://i.postimg.cc/9z3P67qZ/6.png",
       label: "Emagrecimento e Definição"
-    },
-    {
-      before: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800&auto=format&fit=crop", 
-      after: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop",
-      label: "Hipertrofia de Glúteos"
-    },
-    {
-      before: "https://images.unsplash.com/photo-1574680096141-9877b4386121?q=80&w=800&auto=format&fit=crop",
-      after: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=800&auto=format&fit=crop",
-      label: "Definição Abdominal"
     }
   ];
 
@@ -62,10 +60,10 @@ const BeforeAfter: React.FC = () => {
         </div>
 
         {/* Comparison Area */}
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-md md:max-w-2xl mx-auto">
           <div 
             ref={containerRef}
-            className="relative w-full aspect-[4/5] md:aspect-video rounded-xl overflow-hidden border-2 border-gold-500/30 cursor-ew-resize select-none shadow-[0_0_30px_rgba(212,175,55,0.1)]"
+            className="relative w-full aspect-[4/5] md:aspect-square lg:aspect-video rounded-xl overflow-hidden border-2 border-gold-500/30 cursor-ew-resize select-none shadow-[0_0_30px_rgba(212,175,55,0.1)]"
             onMouseDown={() => setIsDragging(true)}
             onMouseUp={() => setIsDragging(false)}
             onMouseLeave={() => setIsDragging(false)}
@@ -79,7 +77,7 @@ const BeforeAfter: React.FC = () => {
                 alt="Depois" 
                 className="w-full h-full object-cover pointer-events-none"
               />
-              <div className="absolute top-4 right-4 bg-gold-500 text-black font-bold text-xs px-2 py-1 rounded-sm">
+              <div className="absolute top-4 right-4 bg-gold-500 text-black font-bold text-xs px-2 py-1 rounded-sm z-10">
                 DEPOIS
               </div>
             </div>
@@ -92,9 +90,9 @@ const BeforeAfter: React.FC = () => {
               <img 
                 src={cases[activeCase].before} 
                 alt="Antes" 
-                className="w-full h-full object-cover grayscale pointer-events-none"
+                className="w-full h-full object-cover pointer-events-none"
               />
-               <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-xs px-2 py-1 rounded-sm">
+               <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-xs px-2 py-1 rounded-sm z-10">
                 ANTES
               </div>
             </div>
@@ -110,7 +108,7 @@ const BeforeAfter: React.FC = () => {
             </div>
             
             {/* Overlay Info (Bottom) */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12 pointer-events-none">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12 pointer-events-none z-10">
                <p className="text-white font-bold text-lg uppercase">{cases[activeCase].label}</p>
             </div>
           </div>
