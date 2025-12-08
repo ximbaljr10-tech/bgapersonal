@@ -1,10 +1,9 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Key, Camera, ClipboardList, Smartphone, MessageCircle, CalendarClock, MapPin } from 'lucide-react';
 
-const Methodology: React.FC = () => {
+const Methodology = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef(null);
 
   // Lógica da Animação "Líquida" (Scroll Progress)
   useEffect(() => {
@@ -32,6 +31,7 @@ const Methodology: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -47,8 +47,8 @@ const Methodology: React.FC = () => {
       text: (
         <>
           Peço algumas fotos (frente, costas e perfil) em um fundo neutro para analisar seu corpo e criar seu treino sob medida.
-          <div className="mt-3 p-3 bg-gold-500/10 border-l-2 border-gold-500 rounded-r-md">
-            <p className="text-xs text-gold-400 font-bold flex items-center gap-1 mb-1">
+          <div className="mt-3 p-3 bg-yellow-500/10 border-l-2 border-yellow-500 rounded-r-md">
+            <p className="text-xs text-yellow-400 font-bold flex items-center gap-1 mb-1">
               <MapPin size={12} /> Rio Branco - Acre
             </p>
             <p className="text-xs text-neutral-300">
@@ -81,13 +81,13 @@ const Methodology: React.FC = () => {
   ];
 
   return (
-    <section id="methodology" className="py-16 md:py-24 bg-richblack overflow-hidden relative">
+    <section id="methodology" className="py-16 md:py-24 bg-neutral-950 overflow-hidden relative">
       <div className="container mx-auto px-6 max-w-5xl">
         
         {/* Intro Text */}
         <div className="mb-12 md:text-center">
-          <span className="text-gold-500 font-bold tracking-widest uppercase text-xs">O Passo a Passo</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-black text-white mt-2 mb-4">
+          <span className="text-yellow-500 font-bold tracking-widest uppercase text-xs">O Passo a Passo</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
             COMO FUNCIONA
           </h2>
           <p className="text-neutral-400 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -103,32 +103,49 @@ const Methodology: React.FC = () => {
           
           {/* THE LIQUID ANIMATION (Gold Fill) */}
           <div 
-            className="absolute left-[24px] md:left-[26px] top-4 w-[2px] bg-gold-500 z-0 transition-all duration-75 ease-linear shadow-[0_0_10px_#D4AF37]"
-            style={{ height: `${scrollProgress}%` }}
+            className="absolute left-[24px] md:left-[26px] top-4 w-[2px] bg-yellow-500 z-0 transition-all duration-75 ease-linear"
+            style={{ 
+              height: `${scrollProgress}%`,
+              boxShadow: '0 0 10px rgba(234, 179, 8, 0.6)'
+            }}
+          ></div>
+
+          {/* LIQUID CONNECTION TO FINAL CARD */}
+          <div 
+            className="absolute left-[24px] md:left-[26px] w-[2px] bg-yellow-500 transition-all duration-300 ease-out"
+            style={{ 
+              top: scrollProgress >= 95 ? `calc(${scrollProgress}% + 1rem)` : '100%',
+              height: scrollProgress >= 95 ? '60px' : '0px',
+              opacity: scrollProgress >= 95 ? 1 : 0,
+              boxShadow: '0 0 10px rgba(234, 179, 8, 0.6)'
+            }}
           ></div>
 
           <div className="space-y-12 relative z-10">
             {steps.map((step, index) => {
               // Verifica se o "liquido" já passou por este item para acendê-lo
               const stepProgressThreshold = (index / (steps.length - 1)) * 100;
-              const isActive = scrollProgress >= stepProgressThreshold - 5; // -5 buffer
+              const isActive = scrollProgress >= stepProgressThreshold - 5;
 
               return (
                 <div key={index} className="flex gap-4 md:gap-6 items-start group">
                    {/* Icon Bubble */}
                    <div 
-                      className={`shrink-0 w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 bg-richblack z-10 ${
+                      className={`shrink-0 w-14 h-14 rounded-full border-2 flex items-center justify-center transition-all duration-500 bg-neutral-950 z-10 ${
                         isActive 
-                        ? 'border-gold-500 text-gold-500 shadow-[0_0_20px_rgba(212,175,55,0.3)] scale-110' 
+                        ? 'border-yellow-500 text-yellow-500 scale-110' 
                         : 'border-neutral-800 text-neutral-600'
                       }`}
+                      style={{
+                        boxShadow: isActive ? '0 0 20px rgba(234, 179, 8, 0.3)' : 'none'
+                      }}
                    >
                       {step.icon}
                    </div>
                    
                    {/* Content */}
                    <div className={`transition-all duration-500 pt-2 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-50 translate-x-2'}`}>
-                      <h3 className={`font-heading font-bold text-lg mb-2 transition-colors ${isActive ? 'text-white' : 'text-neutral-500'}`}>
+                      <h3 className={`font-bold text-lg mb-2 transition-colors ${isActive ? 'text-white' : 'text-neutral-500'}`}>
                         {step.title}
                       </h3>
                       <div className="text-neutral-400 text-sm leading-relaxed">
@@ -143,9 +160,21 @@ const Methodology: React.FC = () => {
         </div>
 
         {/* Resumo Final */}
-        <div className="mt-16 bg-neutral-900/50 border border-gold-500/20 p-6 rounded-xl md:text-center max-w-3xl mx-auto backdrop-blur-sm">
-          <p className="text-white text-sm md:text-base leading-relaxed">
-            <span className="text-gold-500 font-bold mr-2">👉 Resumindo:</span>
+        <div 
+          className={`mt-16 bg-neutral-900/50 border p-6 rounded-xl md:text-center max-w-3xl mx-auto backdrop-blur-sm relative transition-all duration-500 ${
+            scrollProgress >= 95 
+              ? 'border-yellow-500' 
+              : 'border-yellow-500/20'
+          }`}
+          style={{
+            boxShadow: scrollProgress >= 95 
+              ? '0 0 30px rgba(234, 179, 8, 0.3), inset 0 0 20px rgba(234, 179, 8, 0.1)' 
+              : 'none'
+          }}
+        >
+          
+          <p className="text-white text-sm md:text-base leading-relaxed relative z-10">
+            <span className="text-yellow-500 font-bold mr-2">👉 Resumindo:</span>
             você terá um treino feito só pra você, acompanhamento de perto e praticidade total. É só dar o primeiro passo e começar sua transformação. 🚀
           </p>
         </div>
