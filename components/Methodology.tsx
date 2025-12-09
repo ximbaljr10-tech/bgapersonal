@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Key, Camera, ClipboardList, Smartphone, MessageCircle, CalendarClock, MapPin, ArrowRight } from 'lucide-react';
+import { Key, Camera, ClipboardList, Smartphone, MessageCircle, CalendarClock, MapPin } from 'lucide-react';
 
 const Methodology = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -179,34 +179,7 @@ const Methodology = () => {
           </p>
         </div>
 
-        {/* ----------------------------------------------------- */}
-        {/* NOVO CTA ESPECIAL */}
-        {/* ----------------------------------------------------- */}
-        <div className={`mt-10 md:mt-12 flex justify-center transition-all duration-1000 transform ${scrollProgress >= 80 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <a 
-              href="https://wa.me/556881155392?text=Ol%C3%A1!%20Vi%20como%20funciona%20e%20quero%20come%C3%A7ar%20agora%20com%20a%20condi%C3%A7%C3%A3o%20especial."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 px-8 py-5 bg-yellow-500 hover:bg-yellow-400 text-black font-black uppercase tracking-widest rounded-lg shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all transform hover:-translate-y-1 overflow-hidden"
-            >
-              <span className="relative z-10 text-sm md:text-base">Começar agora com condição especial</span>
-              <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              
-              {/* Efeito Shine/Brilho passando */}
-              <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
-            </a>
-        </div>
-
       </div>
-
-      {/* Styles para animação do Shine caso não tenha no global */}
-      <style>{`
-        @keyframes shine {
-          0% { left: -100%; }
-          20% { left: 100%; }
-          100% { left: 100%; }
-        }
-      `}</style>
     </section>
   );
 };
