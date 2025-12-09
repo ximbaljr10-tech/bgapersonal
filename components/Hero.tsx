@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
         .animate-slider { animation: sliderLoop 4s infinite ease-in-out alternate; }
       `}</style>
 
-      {/* Background Image with Controlled Fade */}
+{/* Background Image with Controlled Fade */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background */}
         <img 
@@ -50,14 +50,22 @@ const Hero: React.FC = () => {
           className="hidden md:block w-full h-full object-cover object-top"
         />
         
-        {/* 1. Camada Geral levemente escura */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        {/* 1. Camada Geral: Reduzi de 30% para 10% (quase imperceptível, só para unir) */}
+        <div className="absolute inset-0 bg-black/10"></div>
 
-        {/* 2. Gradiente Lateral (Leitura do Texto) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black from-0% via-black/90 via-35% to-transparent to-60%"></div>
+        {/* 2. Gradiente Lateral SUAVIZADO */}
+        <div className="absolute inset-0 bg-gradient-to-r 
+          from-black/70 via-black/40 to-transparent 
+          md:from-black/80 md:via-black/50 md:to-transparent">
+          {/* EXPLICAÇÃO DA MUDANÇA:
+             - Antes: from-black (100% sólido) -> Criava a parede preta.
+             - Agora: from-black/70 (70% opacidade) -> Deixa ver a foto atrás do texto.
+             - Via: via-black/40 -> Suaviza a transição do meio.
+          */}
+        </div>
 
-        {/* 3. Gradiente Inferior (O Chão Preto) */}
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-richblack via-richblack/60 to-transparent"></div>
+        {/* 3. Gradiente Inferior (Mantive, mas ajustei levemente para não brigar) */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-richblack via-richblack/60 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
