@@ -76,7 +76,7 @@ const Methodology = () => {
     {
       icon: <CalendarClock className="w-5 h-5" />,
       title: "Duração",
-      text: "Seu treino é renovado a cada 40 dias. Antes de montar o próximo ciclo, conversamos sobre sua experiência anterior pra garantir que você continue evoluindo no caminho certo."
+      text: "Seu treino é renovado a cada 30 dias. Antes de montar o próximo ciclo, conversamos sobre sua experiência anterior pra garantir que você continue evoluindo no caminho certo."
     }
   ];
 
