@@ -117,9 +117,11 @@ const Presencial: React.FC = () => {
                <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-gold-500/30 rounded-bl-3xl pointer-events-none"></div>
              </div>
 
-             {/* CTA BUTTON (MOVIDO PARA CÁ - DEPOIS DA FOTO) */}
+             {/* CTA BUTTON - LINK ATUALIZADO */}
              <a 
-              href="https://wa.me/5599999999999"
+              href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20presencial%20no%20consult%C3%B3rio."
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative w-full inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-black uppercase tracking-widest rounded-lg shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] transition-all transform hover:-translate-y-1"
             >
               <CalendarCheck size={20} strokeWidth={2.5} />
