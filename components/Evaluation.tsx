@@ -1,8 +1,7 @@
-import React, { useState } from import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle2, UploadCloud, ArrowRight, Globe, Maximize2, X } from 'lucide-react';
 
 const Evaluation: React.FC = () => {
-  // Estado para controlar qual imagem está expandida
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const photoExamples = [
@@ -35,33 +34,35 @@ const Evaluation: React.FC = () => {
         {/* CONTEÚDO PRINCIPAL */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* GRID DE FOTOS */}
+          {/* GRID DE FOTOS - MOBILE FIRST */}
           <div className="w-full lg:w-1/2 flex justify-center relative">
             
-            {/* Grid 2x2 */}
+            {/* grid-cols-2: Garante 2 fotos por linha no Mobile 
+               max-w-[360px]: Garante que o tamanho das fotos seja ideal para visualização
+            */}
             <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-[360px]">
                 {photoExamples.map((photo, index) => (
                     <div 
                         key={index} 
-                        // Formato Retrato (9/16)
-                        className="relative aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-neutral-950 cursor-pointer shadow-lg transition-all hover:border-gold-500/50 hover:shadow-gold-500/10 group"
+                        // aspect-[9/16]: Formato vertical (Retrato) para não cortar cabeça/pés
+                        className="relative aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-neutral-950 cursor-pointer shadow-lg transition-all active:scale-95 md:hover:border-gold-500/50 md:hover:shadow-gold-500/10 group"
                         onClick={() => setSelectedImage(photo.src)}
                     >
                         {/* Imagem */}
                         <img 
                             src={photo.src} 
                             alt={`Exemplo ${photo.label}`} 
-                            className="w-full h-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                            className="w-full h-full object-cover opacity-80 md:group-hover:opacity-100 transition-opacity"
                         />
                         
-                        {/* Ícone discreto no canto superior direito */}
-                        <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-full text-white/70 border border-white/10 group-hover:bg-gold-500 group-hover:text-black transition-colors">
+                        {/* Ícone de Expandir (Sempre visível, discreto) */}
+                        <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-full text-white/90 border border-white/10 md:group-hover:bg-gold-500 md:group-hover:text-black transition-colors">
                            <Maximize2 size={12} />
                         </div>
 
                         {/* Label inferior */}
                         <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent flex justify-center pointer-events-none">
-                            <span className="text-gold-400 text-[9px] font-bold tracking-[0.15em] uppercase">
+                            <span className="text-gold-400 text-[9px] font-bold tracking-[0.15em] uppercase shadow-black drop-shadow-md">
                                 {photo.label}
                             </span>
                         </div>
@@ -121,7 +122,7 @@ const Evaluation: React.FC = () => {
                    href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20minha%20avalia%C3%A7%C3%A3o%20biomec%C3%A2nica%20online%20com%20a%20condi%C3%A7%C3%A3o%20especial." 
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
+                   className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)] active:scale-95"
                 >
                    <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
                    <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
@@ -162,7 +163,7 @@ const Evaluation: React.FC = () => {
             onClick={() => setSelectedImage(null)}
         >
             <button 
-                className="absolute top-4 right-4 text-white/70 hover:text-gold-500 transition-colors bg-white/5 p-2 rounded-full border border-white/10 z-10"
+                className="absolute top-4 right-4 text-white/70 hover:text-gold-500 transition-colors bg-white/5 p-3 rounded-full border border-white/10 z-10 active:bg-white/20"
                 onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
             >
                 <X size={24} />
@@ -170,7 +171,7 @@ const Evaluation: React.FC = () => {
             <img 
                 src={selectedImage} 
                 alt="Visualização ampliada" 
-                className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300"
+                className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300"
                 onClick={(e) => e.stopPropagation()} 
             />
         </div>
