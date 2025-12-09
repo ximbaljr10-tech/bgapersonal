@@ -2,12 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play, Quote } from 'lucide-react';
 
 const Feedbacks: React.FC = () => {
+  // LISTA DE IMAGENS ATUALIZADA
   const feedbackImages = [
+    "/media/1.png",
+    "/media/2.png",
+    "/media/3.png",
+    "/media/4.png",
     "/media/feedback1.png",
     "/media/feedback2.png",
     "/media/feedback3.png",
-    "/media/feedback4.png",
-    "/media/feedback5.png"
+    "/media/feedback5.png",
+    "/media/5.png",
+    "/media/6.png",
+    "/media/7.png",
+    "/media/8.png"
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -46,26 +54,24 @@ const Feedbacks: React.FC = () => {
   const [prevIdx, currIdx, nextIdx] = getDesktopIndices();
 
   return (
-    // ALTERAÇÃO 1: Mudei h-screen para min-h-screen e h-auto. 
-    // Removi overflow-hidden vertical (deixei apenas overflow-x-hidden para segurança lateral)
     <section className="relative w-full bg-black min-h-[850px] md:min-h-screen h-auto overflow-x-hidden font-sans flex flex-col justify-center">
       
-      {/* 1. Background Texture (Fixo para cobrir tudo mesmo se esticar) */}
+      {/* Background Texture */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://i.postimg.cc/7hhG8mxM/Design-sem-nome-(35).png" 
           alt="Feedbacks Background" 
-          className="w-full h-full object-cover opacity-60 fixed-bg" // Pode adicionar object-position se precisar
+          className="w-full h-full object-cover opacity-60 fixed-bg"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
       </div>
 
       {/* =================================================================================
-          VERSÃO MOBILE
+          VERSÃO MOBILE (CORRIGIDA - BLOCO ÚNICO)
           ================================================================================= */}
       <div className="block md:hidden w-full h-full absolute inset-0 z-10">
           
-          {/* Title */}
+          {/* Título */}
           <div className="absolute top-8 left-0 w-full z-10 text-center px-4">
             <h3 className="text-xl font-heading font-bold text-white mb-2 uppercase tracking-wide drop-shadow-md">
               O que falam do <span className="text-gold-500">Time Braga</span>
@@ -73,7 +79,7 @@ const Feedbacks: React.FC = () => {
             <div className="w-16 h-1 bg-gold-500 mx-auto rounded-full"></div>
           </div>
 
-          {/* Trainer Image */}
+          {/* Imagem do Treinador */}
           <div className="absolute top-20 left-1/2 -translate-x-1/2 z-0 w-full h-[40vh] flex items-start justify-center pointer-events-none">
              <img 
                src="https://i.postimg.cc/MTmYz0cZ/Design-sem-nome-(24).png" 
@@ -82,9 +88,11 @@ const Feedbacks: React.FC = () => {
              />
           </div>
 
-          {/* CARROSSEL MOBILE */}
-          <div className="absolute top-[65%] left-0 right-0 z-30 flex flex-col items-center -translate-y-1/2">
+          {/* --- BLOCO CENTRAL (CARD + BOTÕES) --- */}
+          {/* Mude o 'top-[62%]' aqui para subir ou descer TUDO junto */}
+          <div className="absolute top-[62%] left-0 right-0 z-30 flex flex-col items-center -translate-y-1/2">
             
+            {/* 1. O CARD (IMAGEM) */}
             <div className="relative w-[85%] max-w-[380px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(212,175,55,0.15)] bg-neutral-900 group">
                  
                  {feedbackImages.map((src, index) => (
@@ -99,21 +107,8 @@ const Feedbacks: React.FC = () => {
                       />
                     </div>
                  ))}
-
-                {/* CONTROLES FLUTUANTES */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-6 bg-black/60 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 shadow-lg z-50">
-                    <button onClick={prevSlide} className="text-white hover:text-gold-500 transition-colors active:scale-90">
-                      <ChevronLeft size={24} />
-                    </button>
-                    <button onClick={togglePlay} className="text-gold-500 hover:text-white transition-colors active:scale-90">
-                      {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
-                    </button>
-                    <button onClick={nextSlide} className="text-white hover:text-gold-500 transition-colors active:scale-90">
-                      <ChevronRight size={24} />
-                    </button>
-                </div>
                  
-                 {/* Indicadores */}
+                 {/* Indicadores (Bolinhas) */}
                  <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-40">
                     {feedbackImages.map((_, idx) => (
                         <div 
@@ -123,9 +118,25 @@ const Feedbacks: React.FC = () => {
                     ))}
                  </div>
             </div>
-          </div>
 
-          {/* CTA Button Mobile */}
+            {/* 2. OS CONTROLES (SETINHAS E PLAY) */}
+            {/* mt-6 dá o espaço entre o card e os botões */}
+            <div className="mt-0 flex items-center gap-6 bg-black/60 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 shadow-lg z-50">
+                <button onClick={prevSlide} className="text-white hover:text-gold-500 transition-colors active:scale-90">
+                  <ChevronLeft size={24} />
+                </button>
+                <button onClick={togglePlay} className="text-gold-500 hover:text-white transition-colors active:scale-90">
+                  {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
+                </button>
+                <button onClick={nextSlide} className="text-white hover:text-gold-500 transition-colors active:scale-90">
+                  <ChevronRight size={24} />
+                </button>
+            </div>
+
+          </div>
+          {/* --- FIM DO BLOCO CENTRAL --- */}
+
+          {/* Botão CTA Mobile (Fixo no rodapé) */}
           <div className="absolute bottom-6 left-0 w-full z-40 text-center px-6">
               <a 
                 href="https://wa.me/5599999999999"
@@ -137,9 +148,7 @@ const Feedbacks: React.FC = () => {
       </div>
 
       {/* =================================================================================
-          VERSÃO DESKTOP (CORRIGIDA)
-          ALTERAÇÃO 2: Usei 'relative' e padding vertical (py-24) para garantir que 
-          o conteúdo ocupe espaço e empurre o final da página.
+          VERSÃO DESKTOP
           ================================================================================= */}
       <div className="hidden md:flex relative z-20 w-full min-h-screen flex-col items-center justify-center px-8 py-24">
         
