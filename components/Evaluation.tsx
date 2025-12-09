@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scan, Smartphone, CheckCircle2, UploadCloud, ArrowRight, Smartphone as SmartphoneIcon, Globe } from 'lucide-react';
+import { Scan, Smartphone, CheckCircle2, UploadCloud, ArrowRight, Globe } from 'lucide-react';
 
 const Evaluation: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const Evaluation: React.FC = () => {
         {/* 2. CONTEÚDO PRINCIPAL */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* VISUAL TECH - O "Scanner" no Celular (RESTAURADO) */}
+          {/* VISUAL TECH - O "Scanner" no Celular */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <div className="relative w-[280px] md:w-[320px] h-[550px] bg-neutral-900 border-[8px] border-neutral-800 rounded-[3rem] shadow-2xl shadow-gold-500/20 overflow-hidden">
                {/* Phone Notch */}
@@ -141,13 +141,19 @@ const Evaluation: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. CTA FINAL REESTRUTURADO (Separado e Hierarquizado) */}
+        {/* 3. CTA FINAL REESTRUTURADO */}
         <div className="flex flex-col items-center justify-center mt-8 md:mt-16 gap-8">
             
-            {/* A. BOTÃO PRINCIPAL (Destaque Máximo) */}
-            <div className="relative w-full max-w-md text-center">
+            {/* A. BOTÃO PRINCIPAL COM TEXTO ACIMA */}
+            <div className="relative w-full max-w-md text-center flex flex-col items-center">
+                
+                {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL --- */}
+                <span className="text-gold-500 font-bold text-xs md:text-sm uppercase tracking-widest mb-3 animate-pulse">
+                   ⚡ Comece agora com uma condição especial
+                </span>
+
                 <a 
-                   href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20minha%20avalia%C3%A7%C3%A3o%20biomec%C3%A2nica%20online." 
+                   href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20minha%20avalia%C3%A7%C3%A3o%20biomec%C3%A2nica%20online%20com%20a%20condi%C3%A7%C3%A3o%20especial." 
                    target="_blank"
                    rel="noopener noreferrer"
                    className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
@@ -158,13 +164,14 @@ const Evaluation: React.FC = () => {
                    <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
                    <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
+                
                 <p className="text-neutral-500 text-[10px] mt-2 flex items-center justify-center gap-1">
                    <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                    Análise feita pessoalmente pelo Braga
                 </p>
             </div>
 
-            {/* B. OBJEÇÃO / PROVA SOCIAL (Separado, estilo secundário) */}
+            {/* B. OBJEÇÃO / PROVA SOCIAL */}
             <div className="bg-neutral-900/60 backdrop-blur-sm border border-white/10 rounded-xl p-5 max-w-lg w-full text-center">
                 <h4 className="text-white font-bold text-sm mb-1">
                    Ainda em dúvida se funciona à distância?
