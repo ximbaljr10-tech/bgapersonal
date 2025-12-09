@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Smartphone, CheckCircle2, UploadCloud, ArrowRight, Globe, Maximize2, X } from 'lucide-react';
+import { CheckCircle2, UploadCloud, ArrowRight, Globe, Maximize2, X } from 'lucide-react';
 
 const Evaluation: React.FC = () => {
   // Estado para controlar qual imagem está expandida (null se nenhuma)
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Array com os dados das fotos para facilitar o map
+  // IMPORTANTE: Certifique-se que as imagens na pasta /media/ são fotos altas (retrato)
   const photoExamples = [
     { src: '/media/frente.jpg', label: 'FRENTE' },
     { src: '/media/costa.jpg', label: 'COSTAS' },
-    { src: '/media/Perfildireito.jpg', label: 'PERFIL DIR.' },
+    { src: '/media/perfildireito.jpg', label: 'PERFIL DIR.' },
     { src: '/media/perfilesquerdo.jpg', label: 'PERFIL ESQ.' },
   ];
 
@@ -30,52 +31,61 @@ const Evaluation: React.FC = () => {
             AVALIAÇÃO <br className="md:hidden"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">BIOMECÂNICA ONLINE</span>
           </h2>
           <p className="text-neutral-400 leading-relaxed text-xs md:text-lg max-w-xl mx-auto px-2">
-            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão. Basta seguir o guia de fotos.
+            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão. Basta seguir o guia de fotos abaixo.
           </p>
         </div>
 
         {/* 2. CONTEÚDO PRINCIPAL */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* VISUAL TECH - GRID DE FOTOS (SUBSTITUINDO O CELULAR) */}
+          {/* VISUAL TECH - GRID DE FOTOS */}
           <div className="w-full lg:w-1/2 flex justify-center relative">
             
-            {/* Grid Container - 2 colunas no mobile, tamanho controlado */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-[380px]">
+            {/* Grid Container - 2 colunas, largura controlada para não ficar gigante */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-[360px]">
                 {photoExamples.map((photo, index) => (
                     <div 
                         key={index} 
-                        className="group relative aspect-[3/4] rounded-xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer shadow-lg transition-transform hover:-translate-y-1"
+                        // MUDANÇA AQUI: aspect-[9/16] é bem mais alto (formato de tela de celular em pé) para não cortar cabeça/pés
+                        className="relative aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-neutral-950 cursor-pointer shadow-lg transition-all hover:border-gold-500/50 hover:shadow-gold-500/10"
                         onClick={() => setSelectedImage(photo.src)}
                     >
                         {/* Imagem */}
                         <img 
                             src={photo.src} 
                             alt={`Exemplo ${photo.label}`} 
-                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            // object-cover garante que preenche tudo, mas o aspect-9/16 garante que é alto o suficiente
+                            className="w-full h-full object-cover opacity-70 transition-opacity duration-300 hover:opacity-100"
                         />
                         
-                        {/* Overlay Gradiente */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+                        {/* Overlay Gradiente para facilitar leitura */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
 
-                        {/* Label e Ícone de Expandir */}
-                        <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
-                            <span className="text-gold-500 text-[10px] font-bold tracking-widest bg-black/50 backdrop-blur-sm px-2 py-1 rounded border border-gold-500/20">
+                        {/* NOVO: Indicador Central de Expandir (Sempre visível para mobile) */}
+                        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none opacity-80">
+                           <div className="bg-neutral-900/80 backdrop-blur-md p-2 rounded-full border border-gold-500/30 text-gold-500 mb-1 shadow-lg">
+                              <Maximize2 size={16} />
+                           </div>
+                           <span className="text-[8px] text-white font-bold uppercase tracking-widest bg-neutral-900/80 px-1.5 py-0.5 rounded-sm border border-white/5">
+                              Expandir
+                           </span>
+                        </div>
+
+                        {/* Label inferior */}
+                        <div className="absolute bottom-2 left-2 right-2 flex justify-center pointer-events-none z-30">
+                            <span className="text-gold-400 text-[9px] font-bold tracking-[0.15em] bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-gold-500/10 w-full text-center">
                                 {photo.label}
                             </span>
-                            <div className="bg-white/10 p-1.5 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                                <Maximize2 size={14} />
-                            </div>
                         </div>
                     </div>
                 ))}
             </div>
 
             {/* Decorativo de fundo atrás das fotos */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/5 blur-[60px] rounded-full"></div>
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gold-500/5 blur-[50px] rounded-full pointer-events-none"></div>
           </div>
 
-          {/* TEXTO EXPLICATIVO */}
+          {/* TEXTO EXPLICATIVO (Mantido igual) */}
           <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2">
             <div className="pl-4 md:pl-6 border-l-2 border-gold-500 space-y-1">
                <h3 className="text-lg md:text-xl font-bold text-white">Guia de Fotos Simples</h3>
@@ -112,7 +122,7 @@ const Evaluation: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. CTA FINAL */}
+        {/* 3. CTA FINAL (Mantido igual) */}
         <div className="flex flex-col items-center justify-center mt-8 md:mt-16 gap-8">
             <div className="relative w-full max-w-md text-center flex flex-col items-center">
                 <span className="text-gold-500 font-bold text-xs md:text-sm uppercase tracking-widest mb-3 animate-pulse">
@@ -160,20 +170,29 @@ const Evaluation: React.FC = () => {
       {/* --- MODAL / LIGHTBOX (EXPANDIR IMAGEM) --- */}
       {selectedImage && (
         <div 
-            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
             onClick={() => setSelectedImage(null)}
         >
+            {/* Botão Fechar */}
             <button 
-                className="absolute top-4 right-4 text-white hover:text-gold-500 transition-colors bg-white/10 p-2 rounded-full"
-                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 text-white/70 hover:text-gold-500 transition-colors bg-white/5 p-2 rounded-full border border-white/10 z-10"
+                onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
             >
                 <X size={24} />
             </button>
+            
+            {/* Imagem Expandida */}
             <img 
                 src={selectedImage} 
                 alt="Visualização ampliada" 
-                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300"
+                // object-contain garante que a imagem inteira apareça na tela cheia sem cortes
+                className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300"
+                onClick={(e) => e.stopPropagation()} // Evita fechar se clicar na imagem
             />
+            
+            <p className="absolute bottom-8 text-white/50 text-xs font-bold uppercase tracking-widest pointer-events-none animate-pulse">
+                Toque fora para fechar
+            </p>
         </div>
       )}
 
