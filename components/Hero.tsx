@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
    - space-y-4 (antes era 8): Cola o título no texto e nos botões
    - md:*: Mantém o layout original no PC
 */}
-<div className="w-full lg:w-2/3 space-y-4 md:space-y-8 pt-22 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
+<div className="w-full lg:w-2/3 space-y-4 md:space-y-8 pt-20 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
           {/* TAG SUPERIOR */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
