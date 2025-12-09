@@ -93,7 +93,7 @@ const Presencial: React.FC = () => {
                
                {/* Image Source Atualizado */}
                <img 
-                  src="/media/foto.png" 
+                  src="/media/foto1.png" 
                   alt="Consultório Premium" 
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                />
