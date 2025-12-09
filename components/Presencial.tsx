@@ -44,7 +44,7 @@ const Presencial: React.FC = () => {
                      <div className="p-2 bg-gold-500/10 rounded-lg text-gold-500 group-hover:scale-110 transition-transform">
                         <Ruler size={20} />
                      </div>
-                     <h4 className="text-white font-bold uppercase text-xs tracking-wider">Adipometria</h4>
+                     <h4 className="text-white font-bold uppercase text-xs tracking-wider">Adipometria + Perimetria</h4>
                   </div>
                   <p className="text-neutral-500 text-[11px] leading-snug group-hover:text-neutral-300">Medição exata da espessura das dobras cutâneas feita por mim.</p>
                </div>
@@ -55,7 +55,6 @@ const Presencial: React.FC = () => {
                      <div className="p-2 bg-gold-500/10 rounded-lg text-gold-500 group-hover:scale-110 transition-transform">
                         <Activity size={20} />
                      </div>
-                     <h4 className="text-white font-bold uppercase text-xs tracking-wider">Bioimpedância</h4>
                   </div>
                   <p className="text-neutral-500 text-[11px] leading-snug group-hover:text-neutral-300">Análise tecnológica da sua composição corporal (água, músculo, gordura).</p>
                </div>
