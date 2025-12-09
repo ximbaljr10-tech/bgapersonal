@@ -17,7 +17,7 @@ const Results: React.FC = () => {
       type: 'presencial',
       tag: 'AVALIAÇÃO PRESENCIAL',
       location: 'Recife, PE',
-      quote: 'A experiência clínica no consultório trouxe o ajuste fino que meu corpo precisava.'
+      quote: 'Olhar para trás e ver essa evolução é surreal. Braga, você foi o catalisador dessa mudança e eu só tenho a agradecer pela parceria.'
     },
     {
       id: 3,
@@ -25,7 +25,7 @@ const Results: React.FC = () => {
       type: 'online',
       tag: '100% ONLINE',
       location: 'São Paulo, SP',
-      quote: 'O protocolo chega no app e eu executo. Sem burocracia, apenas resultado.'
+      quote: 'Se eu tinha alguma dúvida de que era possível ter esse nível de resultado com consultoria online, ela acabou hoje. Você superou todas as minhas expectativas, Braga!'
     }
   ];
 
