@@ -136,10 +136,12 @@ const Feedbacks: React.FC = () => {
           </div>
           {/* --- FIM DO BLOCO CENTRAL --- */}
 
-          {/* Botão CTA Mobile (Fixo no rodapé) */}
+          {/* Botão CTA Mobile (Fixo no rodapé) - LINK ATUALIZADO */}
           <div className="absolute bottom-6 left-0 w-full z-40 text-center px-6">
               <a 
-                href="https://wa.me/5599999999999"
+                href="https://wa.me/556881155392?text=Ol%C3%A1!%20Vi%20os%20resultados%20dos%20seus%20alunos%20e%20tamb%C3%A9m%20quero%20ter%20esses%20resultados."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block w-full px-8 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform transform hover:-translate-y-1 text-sm animate-pulse"
               >
                 Quero ter esses resultados
@@ -211,9 +213,14 @@ const Feedbacks: React.FC = () => {
            </button>
         </div>
 
-        {/* CTA Desktop */}
+        {/* CTA Desktop - LINK ATUALIZADO */}
         <div className="mt-12 pb-8">
-            <a href="https://wa.me/5599999999999" className="inline-block px-12 py-5 bg-gold-500 hover:bg-white hover:text-black text-black font-black text-xl uppercase tracking-widest rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all transform hover:-translate-y-1">
+            <a 
+              href="https://wa.me/556881155392?text=Ol%C3%A1!%20Vi%20os%20resultados%20dos%20seus%20alunos%20e%20tamb%C3%A9m%20quero%20ter%20esses%20resultados." 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-12 py-5 bg-gold-500 hover:bg-white hover:text-black text-black font-black text-xl uppercase tracking-widest rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all transform hover:-translate-y-1"
+            >
               Quero ser o próximo
             </a>
         </div>
