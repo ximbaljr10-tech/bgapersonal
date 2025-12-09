@@ -7,7 +7,7 @@ const Evaluation: React.FC = () => {
   const photoExamples = [
     { src: '/media/frente.jpg', label: 'FRENTE' },
     { src: '/media/costa.jpg', label: 'COSTAS' },
-    { src: '/media/perfildireito.jpg', label: 'PERFIL DIR.' },
+    { src: '/media/Perfildireito.jpg', label: 'PERFIL DIR.' },
     { src: '/media/perfilesquerdo.jpg', label: 'PERFIL ESQ.' },
   ];
 
