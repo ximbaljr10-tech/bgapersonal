@@ -1,69 +1,16 @@
-import React from 'react';
-import { Scan, UploadCloud, ArrowRight, Globe, Maximize, Minimize } from 'lucide-react';
-
-// Componente para o Modal/Expansão (usando useState para simular a lógica)
-const PhotoGuideCard: React.FC<{ src: string, title: string, description: string }> = ({ src, title, description }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  // Se expandido, renderiza um modal/overlay simples para demonstrar a funcionalidade
-  if (isExpanded) {
-    return (
-      <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={toggleExpand}>
-        <div className="relative bg-neutral-900 rounded-xl max-w-sm w-full h-[90vh] md:h-[80vh] overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
-          <img
-            src={src}
-            alt={title}
-            className="w-full h-full object-contain"
-          />
-          <button
-            onClick={toggleExpand}
-            className="absolute top-4 right-4 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-50"
-          >
-            <Minimize size={20} />
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // Visualização normal (card)
-  return (
-    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-neutral-900 border border-white/10 shadow-lg group">
-      {/* Imagem (simulada via background ou caminho da media) */}
-      <img
-        src={src}
-        alt={title}
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] opacity-80"
-      />
-      
-      {/* Overlay com Texto e Botão de Expandir */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-3 md:p-4">
-        <h4 className="text-white text-xs md:text-sm font-bold leading-none mb-1">{title}</h4>
-        <p className="text-gold-400 text-[10px] md:text-xs font-medium mb-2">{description}</p>
-        
-        <button
-          onClick={toggleExpand}
-          className="absolute top-2 right-2 p-1 bg-black/60 text-white rounded-full hover:bg-black/80 transition-colors"
-        >
-          <Maximize size={12} />
-        </button>
-      </div>
-    </div>
-  );
-};
-
+import React, { useState } from 'react';
+import { Smartphone, CheckCircle2, UploadCloud, ArrowRight, Globe, Maximize2, X } from 'lucide-react';
 
 const Evaluation: React.FC = () => {
-  // Dados das fotos conforme solicitado
+  // Estado para controlar qual imagem está expandida (null se nenhuma)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // Array com os dados das fotos para facilitar o map
   const photoExamples = [
-    { src: 'media/perfil-direito.jpg', title: '1. Perfil Direito', description: 'Posição Lateral, braços ao lado.' },
-    { src: 'media/perfil-esquerdo.jpg', title: '2. Perfil Esquerdo', description: 'Posição Lateral, braços ao lado.' },
-    { src: 'media/frente.jpg', title: '3. Vista Frontal', description: 'Músculos relaxados, posição neutra.' },
-    { src: 'media/costas.jpg', title: '4. Vista Posterior', description: 'Músculos relaxados, posição neutra.' },
+    { src: '/media/frente.jpg', label: 'FRENTE' },
+    { src: '/media/costa.jpg', label: 'COSTAS' },
+    { src: '/media/perfildireito.jpg', label: 'PERFIL DIR.' },
+    { src: '/media/perfilesquerdo.jpg', label: 'PERFIL ESQ.' },
   ];
 
   return (
@@ -76,45 +23,67 @@ const Evaluation: React.FC = () => {
         {/* 1. HEADER */}
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-[10px] font-bold uppercase tracking-widest mb-4">
-            <UploadCloud size={12} />
-            Protocolo Digital
+            <CheckCircle2 size={12} />
+            Protocolo de Avaliação
           </div>
           <h2 className="text-2xl md:text-5xl font-heading font-black text-white mb-4 leading-tight">
             AVALIAÇÃO <br className="md:hidden"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">BIOMECÂNICA ONLINE</span>
           </h2>
           <p className="text-neutral-400 leading-relaxed text-xs md:text-lg max-w-xl mx-auto px-2">
-            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão, com um **guia visual** simples de seguir.
+            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão. Basta seguir o guia de fotos.
           </p>
         </div>
 
         {/* 2. CONTEÚDO PRINCIPAL */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* VISUAL TECH - O GUIA DE FOTOS */}
-          <div className="w-full lg:w-1/2 flex justify-center order-1 lg:order-1">
-            <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-              {photoExamples.map((photo, index) => (
-                <PhotoGuideCard 
-                  key={index} 
-                  src={photo.src} 
-                  title={photo.title} 
-                  description={photo.description}
-                />
-              ))}
-              <p className="col-span-2 text-center text-neutral-500 text-[10px] mt-2">
-                 *Clique na foto para expandir e ver o detalhe.
-              </p>
+          {/* VISUAL TECH - GRID DE FOTOS (SUBSTITUINDO O CELULAR) */}
+          <div className="w-full lg:w-1/2 flex justify-center relative">
+            
+            {/* Grid Container - 2 colunas no mobile, tamanho controlado */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-[380px]">
+                {photoExamples.map((photo, index) => (
+                    <div 
+                        key={index} 
+                        className="group relative aspect-[3/4] rounded-xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer shadow-lg transition-transform hover:-translate-y-1"
+                        onClick={() => setSelectedImage(photo.src)}
+                    >
+                        {/* Imagem */}
+                        <img 
+                            src={photo.src} 
+                            alt={`Exemplo ${photo.label}`} 
+                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        />
+                        
+                        {/* Overlay Gradiente */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+
+                        {/* Label e Ícone de Expandir */}
+                        <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                            <span className="text-gold-500 text-[10px] font-bold tracking-widest bg-black/50 backdrop-blur-sm px-2 py-1 rounded border border-gold-500/20">
+                                {photo.label}
+                            </span>
+                            <div className="bg-white/10 p-1.5 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <Maximize2 size={14} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
+
+            {/* Decorativo de fundo atrás das fotos */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/5 blur-[60px] rounded-full"></div>
           </div>
 
           {/* TEXTO EXPLICATIVO */}
-          <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2 order-2 lg:order-2">
+          <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2">
             <div className="pl-4 md:pl-6 border-l-2 border-gold-500 space-y-1">
-               <h3 className="text-lg md:text-xl font-bold text-white">Como funciona?</h3>
+               <h3 className="text-lg md:text-xl font-bold text-white">Guia de Fotos Simples</h3>
                <p className="text-neutral-400 text-xs md:text-sm leading-relaxed max-w-sm">
-                  Você utiliza o guia visual acima para tirar as fotos nas poses corretas. Envia as 4 imagens e eu faço toda a análise biomecânica.
+                  Você não precisa de equipamentos profissionais. Basta pedir para alguém tirar essas 4 fotos em um fundo neutro.
                </p>
             </div>
+            
             <div className="grid gap-4 md:gap-6">
                <div className="flex gap-3 md:gap-4">
                   <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
@@ -123,18 +92,19 @@ const Evaluation: React.FC = () => {
                   <div>
                      <h4 className="text-white font-bold text-sm">Envio 100% Digital</h4>
                      <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
-                        Suas fotos são o ponto de partida para a minha análise de assimetrias.
+                        Seus dados e fotos ficam em ambiente seguro e criptografado para análise do Braga.
                      </p>
                   </div>
                </div>
+               
                <div className="flex gap-3 md:gap-4">
                   <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white/5 flex items-center justify-center text-gold-500">
-                     <Scan size={18} />
+                     <CheckCircle2 size={18} />
                   </div>
                   <div>
-                     <h4 className="text-white font-bold text-sm">Análise Postural Profunda</h4>
+                     <h4 className="text-white font-bold text-sm">Correção Postural</h4>
                      <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
-                        Identifico encurtamentos e desvios que travam seus ganhos e causam lesões.
+                        Com essas fotos, identifico exatamente onde sua postura está travando seus resultados.
                      </p>
                   </div>
                </div>
@@ -142,13 +112,9 @@ const Evaluation: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. CTA FINAL REESTRUTURADO */}
+        {/* 3. CTA FINAL */}
         <div className="flex flex-col items-center justify-center mt-8 md:mt-16 gap-8">
-            
-            {/* A. BOTÃO PRINCIPAL COM TEXTO ACIMA */}
             <div className="relative w-full max-w-md text-center flex flex-col items-center">
-                
-                {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL --- */}
                 <span className="text-gold-500 font-bold text-xs md:text-sm uppercase tracking-widest mb-3 animate-pulse">
                    ⚡ Comece agora com uma condição especial
                 </span>
@@ -159,9 +125,7 @@ const Evaluation: React.FC = () => {
                    rel="noopener noreferrer"
                    className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
                 >
-                   {/* Efeito Shine */}
                    <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
-                   
                    <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
                    <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -172,7 +136,6 @@ const Evaluation: React.FC = () => {
                 </p>
             </div>
 
-            {/* B. OBJEÇÃO / PROVA SOCIAL */}
             <div className="bg-neutral-900/60 backdrop-blur-sm border border-white/10 rounded-xl p-5 max-w-lg w-full text-center">
                 <h4 className="text-white font-bold text-sm mb-1">
                    Ainda em dúvida se funciona à distância?
@@ -190,13 +153,31 @@ const Evaluation: React.FC = () => {
                   <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                 </a>
             </div>
-
         </div>
 
       </div>
 
+      {/* --- MODAL / LIGHTBOX (EXPANDIR IMAGEM) --- */}
+      {selectedImage && (
+        <div 
+            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+            onClick={() => setSelectedImage(null)}
+        >
+            <button 
+                className="absolute top-4 right-4 text-white hover:text-gold-500 transition-colors bg-white/10 p-2 rounded-full"
+                onClick={() => setSelectedImage(null)}
+            >
+                <X size={24} />
+            </button>
+            <img 
+                src={selectedImage} 
+                alt="Visualização ampliada" 
+                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300"
+            />
+        </div>
+      )}
+
       <style>{`
-         /* Mantive apenas a animação de brilho para o botão, já que a de 'scan' não é mais necessária */
          @keyframes shine {
             0% { left: -100%; }
             20% { left: 100%; }
