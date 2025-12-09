@@ -1,81 +1,69 @@
-import React, { useState } from 'react';
-import { Scan, Smartphone, CheckCircle2, UploadCloud, ArrowRight, Globe, Maximize2, Minimize2 } from 'lucide-react';
+import React from 'react';
+import { Scan, UploadCloud, ArrowRight, Globe, Maximize, Minimize } from 'lucide-react';
 
-// Um componente auxiliar para exibir as fotos com a funcionalidade de zoom/expansão
-interface ImageCardProps {
-    src: string;
-    alt: string;
-    label: string;
-}
+// Componente para o Modal/Expansão (usando useState para simular a lógica)
+const PhotoGuideCard: React.FC<{ src: string, title: string, description: string }> = ({ src, title, description }) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
-const ImageCard: React.FC<ImageCardProps> = ({ src, alt, label }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
-    // Função para toggle (expandir/desexpandir)
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-    };
-
-    // O div 'fixed' com o fundo escuro (dimmer) e a imagem expandida (modal)
-    // Só é renderizado se isExpanded for true.
-    if (isExpanded) {
-        return (
-            <div 
-                className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer"
-                onClick={toggleExpand} // Clicar em qualquer lugar fecha
-            >
-                <div className="relative max-w-full max-h-full">
-                    <img 
-                        src={src} 
-                        alt={alt} 
-                        className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" 
-                    />
-                    <div className="absolute top-4 right-4 text-white p-2 rounded-full bg-black/50 hover:bg-black/80 transition">
-                        <Minimize2 size={24} />
-                    </div>
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/70 px-4 py-2 rounded-lg text-sm font-bold">
-                        {label} - Clique para fechar
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    // A view normal do card no grid
+  // Se expandido, renderiza um modal/overlay simples para demonstrar a funcionalidade
+  if (isExpanded) {
     return (
-        <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg shadow-lg border border-white/10 group">
-            {/* Imagem (Portrait) */}
-            <img
-                src={src}
-                alt={alt}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            
-            {/* Overlay com Label e Botão de Expandir */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-3 md:p-4">
-                <div className="flex justify-between items-center">
-                    <span className="text-white text-xs md:text-sm font-bold uppercase">{label}</span>
-                    <button 
-                        onClick={toggleExpand}
-                        className="text-gold-500 bg-black/50 p-1 rounded-full hover:bg-gold-500 hover:text-black transition-colors"
-                        aria-label={`Expandir foto ${label}`}
-                    >
-                        <Maximize2 size={16} />
-                    </button>
-                </div>
-            </div>
+      <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={toggleExpand}>
+        <div className="relative bg-neutral-900 rounded-xl max-w-sm w-full h-[90vh] md:h-[80vh] overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
+          <img
+            src={src}
+            alt={title}
+            className="w-full h-full object-contain"
+          />
+          <button
+            onClick={toggleExpand}
+            className="absolute top-4 right-4 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-50"
+          >
+            <Minimize size={20} />
+          </button>
         </div>
+      </div>
     );
+  }
+
+  // Visualização normal (card)
+  return (
+    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-neutral-900 border border-white/10 shadow-lg group">
+      {/* Imagem (simulada via background ou caminho da media) */}
+      <img
+        src={src}
+        alt={title}
+        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] opacity-80"
+      />
+      
+      {/* Overlay com Texto e Botão de Expandir */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-3 md:p-4">
+        <h4 className="text-white text-xs md:text-sm font-bold leading-none mb-1">{title}</h4>
+        <p className="text-gold-400 text-[10px] md:text-xs font-medium mb-2">{description}</p>
+        
+        <button
+          onClick={toggleExpand}
+          className="absolute top-2 right-2 p-1 bg-black/60 text-white rounded-full hover:bg-black/80 transition-colors"
+        >
+          <Maximize size={12} />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 
 const Evaluation: React.FC = () => {
-  // Lista de imagens para o grid
+  // Dados das fotos conforme solicitado
   const photoExamples = [
-    { src: '/media/perfilesquerdo.jpg', alt: 'Perfil Esquerdo', label: 'PERFIL ESQUERDO' },
-    { src: '/media/perfilfrente.jpg', alt: 'Perfil Direito', label: 'PERFIL DIREITO' }, // Mantendo 'perfilfrente' para ter 4 fotos
-    { src: '/media/frente.jpg', alt: 'Vista Frontal', label: 'FRENTE' },
-    { src: '/media/costa.jpg', alt: 'Vista Posterior', label: 'COSTAS' },
+    { src: 'media/perfil-direito.jpg', title: '1. Perfil Direito', description: 'Posição Lateral, braços ao lado.' },
+    { src: 'media/perfil-esquerdo.jpg', title: '2. Perfil Esquerdo', description: 'Posição Lateral, braços ao lado.' },
+    { src: 'media/frente.jpg', title: '3. Vista Frontal', description: 'Músculos relaxados, posição neutra.' },
+    { src: 'media/costas.jpg', title: '4. Vista Posterior', description: 'Músculos relaxados, posição neutra.' },
   ];
 
   return (
@@ -88,41 +76,43 @@ const Evaluation: React.FC = () => {
         {/* 1. HEADER */}
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-[10px] font-bold uppercase tracking-widest mb-4">
-            <Smartphone size={12} />
-            Via App Exclusivo
+            <UploadCloud size={12} />
+            Protocolo Digital
           </div>
           <h2 className="text-2xl md:text-5xl font-heading font-black text-white mb-4 leading-tight">
-            PROTOCOLO <br className="md:hidden"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">DE FOTOS</span>
+            AVALIAÇÃO <br className="md:hidden"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-white">BIOMECÂNICA ONLINE</span>
           </h2>
           <p className="text-neutral-400 leading-relaxed text-xs md:text-lg max-w-xl mx-auto px-2">
-            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão, direto pelo seu celular.
+            Minha tecnologia permite analisar sua estrutura corporal e movimento com precisão, com um **guia visual** simples de seguir.
           </p>
         </div>
 
-        {/* 2. CONTEÚDO PRINCIPAL (COM GRID DE FOTOS) */}
-        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-20 mb-12">
+        {/* 2. CONTEÚDO PRINCIPAL */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20 mb-12">
           
-          {/* VISUAL TECH - O GRID DE FOTOS SUBSTITUI O CELULAR */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            {/* GRID DE FOTOS (2 por linha, 4 fotos total) */}
+          {/* VISUAL TECH - O GUIA DE FOTOS */}
+          <div className="w-full lg:w-1/2 flex justify-center order-1 lg:order-1">
             <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-                {photoExamples.map((photo, index) => (
-                    <ImageCard 
-                        key={index}
-                        src={photo.src}
-                        alt={photo.alt}
-                        label={photo.label}
-                    />
-                ))}
+              {photoExamples.map((photo, index) => (
+                <PhotoGuideCard 
+                  key={index} 
+                  src={photo.src} 
+                  title={photo.title} 
+                  description={photo.description}
+                />
+              ))}
+              <p className="col-span-2 text-center text-neutral-500 text-[10px] mt-2">
+                 *Clique na foto para expandir e ver o detalhe.
+              </p>
             </div>
           </div>
 
           {/* TEXTO EXPLICATIVO */}
-          <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2 mt-8 lg:mt-0">
+          <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 px-2 order-2 lg:order-2">
             <div className="pl-4 md:pl-6 border-l-2 border-gold-500 space-y-1">
                <h3 className="text-lg md:text-xl font-bold text-white">Como funciona?</h3>
                <p className="text-neutral-400 text-xs md:text-sm leading-relaxed max-w-sm">
-                  Você recebe um <strong>Guia de Poses e Enquadramento</strong> no App. Tira as fotos exatamente como nos exemplos acima, envia e eu faço toda a análise.
+                  Você utiliza o guia visual acima para tirar as fotos nas poses corretas. Envia as 4 imagens e eu faço toda a análise biomecânica.
                </p>
             </div>
             <div className="grid gap-4 md:gap-6">
@@ -133,7 +123,7 @@ const Evaluation: React.FC = () => {
                   <div>
                      <h4 className="text-white font-bold text-sm">Envio 100% Digital</h4>
                      <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
-                        Suas fotos devem ser em <strong>formato retrato</strong> e com a melhor iluminação possível para garantir a precisão.
+                        Suas fotos são o ponto de partida para a minha análise de assimetrias.
                      </p>
                   </div>
                </div>
@@ -142,9 +132,9 @@ const Evaluation: React.FC = () => {
                      <Scan size={18} />
                   </div>
                   <div>
-                     <h4 className="text-white font-bold text-sm">Análise Postural</h4>
+                     <h4 className="text-white font-bold text-sm">Análise Postural Profunda</h4>
                      <p className="text-neutral-500 text-[11px] md:text-xs mt-1 leading-snug">
-                        Com base nas 4 vistas, identifico desvios, assimetrias e encurtamentos que travam seus resultados.
+                        Identifico encurtamentos e desvios que travam seus ganhos e causam lesões.
                      </p>
                   </div>
                </div>
@@ -152,7 +142,7 @@ const Evaluation: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. CTA FINAL REESTRUTURADO (Sem alterações aqui) */}
+        {/* 3. CTA FINAL REESTRUTURADO */}
         <div className="flex flex-col items-center justify-center mt-8 md:mt-16 gap-8">
             
             {/* A. BOTÃO PRINCIPAL COM TEXTO ACIMA */}
@@ -206,12 +196,7 @@ const Evaluation: React.FC = () => {
       </div>
 
       <style>{`
-         @keyframes scan {
-            0% { top: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-         }
+         /* Mantive apenas a animação de brilho para o botão, já que a de 'scan' não é mais necessária */
          @keyframes shine {
             0% { left: -100%; }
             20% { left: 100%; }
