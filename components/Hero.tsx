@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
         />
         {/* Desktop Background */}
         <img 
-          src="https://i.postimg.cc/bJ2wb8c4/Design-sem-nome-(29).png" 
+          src="/media/hero2.png" 
           alt="Background Desktop" 
           className="hidden md:block w-full h-full object-cover object-top"
         />
