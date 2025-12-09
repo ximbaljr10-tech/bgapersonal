@@ -147,14 +147,16 @@ const Evaluation: React.FC = () => {
             {/* A. BOTÃO PRINCIPAL (Destaque Máximo) */}
             <div className="relative w-full max-w-md text-center">
                 <a 
-                    href="https://wa.me/5599999999999" 
-                    className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
+                   href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20minha%20avalia%C3%A7%C3%A3o%20biomec%C3%A2nica%20online." 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)]"
                 >
-                    {/* Efeito Shine */}
-                    <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
-                    
-                    <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
-                    <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                   {/* Efeito Shine */}
+                   <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite]"></div>
+                   
+                   <span className="relative z-10 text-sm md:text-base">QUERO MINHA AVALIAÇÃO</span>
+                   <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <p className="text-neutral-500 text-[10px] mt-2 flex items-center justify-center gap-1">
                    <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>

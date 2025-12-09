@@ -15,8 +15,8 @@ const Hero: React.FC = () => {
   };
 
   return (
-// Troque a linha da section por essa:
-<section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
+    // Troque a linha da section por essa:
+    <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
       {/* INJECT STYLES FOR BUTTON ANIMATION */}
       <style>{`
         @keyframes revealLoop {
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
         .animate-slider { animation: sliderLoop 4s infinite ease-in-out alternate; }
       `}</style>
 
-{/* Background Image with Controlled Fade */}
+      {/* Background Image with Controlled Fade */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background */}
         <img 
@@ -70,12 +70,12 @@ const Hero: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-20">
         {/* Text Content */}
-{/* - pt-20 (antes era 32): Tira espaço do topo
-   - pb-10 (antes era 20): Tira espaço de baixo
-   - space-y-4 (antes era 8): Cola o título no texto e nos botões
-   - md:*: Mantém o layout original no PC
-*/}
-<div className="w-full lg:w-2/3 space-y-4 md:space-y-8 pt-20 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
+        {/* - pt-20 (antes era 32): Tira espaço do topo
+           - pb-10 (antes era 20): Tira espaço de baixo
+           - space-y-4 (antes era 8): Cola o título no texto e nos botões
+           - md:*: Mantém o layout original no PC
+        */}
+        <div className="w-full lg:w-2/3 space-y-4 md:space-y-8 pt-20 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
           {/* TAG SUPERIOR */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
@@ -98,9 +98,11 @@ const Hero: React.FC = () => {
           {/* BOTÕES */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
             
-            {/* Botão 1: Principal */}
+            {/* Botão 1: Principal - LINK ATUALIZADO */}
             <a 
-              href="https://wa.me/5599999999999"
+              href="https://wa.me/556881155392?text=Ol%C3%A1!%20Tenho%20interesse%20na%20consultoria%20e%20gostaria%20de%20entrar%20para%20o%20time."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap"
             >
               Quero entrar pro time
