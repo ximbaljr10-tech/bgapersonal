@@ -6,16 +6,16 @@ const Results: React.FC = () => {
     {
       id: 1,
       image: '/media/copy1.jpeg',
-      type: '100% Online',
-      tag: 'ONLINE',
+      type: 'online',
+      tag: '100% ONLINE',
       location: 'Campina Grande, PB',
-      quote: 'Liberdade geográfica com rigor técnico. Treino onde quero, com a supervisão de elite.'
+      quote: 'Braga, mesmo me acompanhando de tão longe olha que resultado incrível que alcançamos.'
     },
     {
       id: 2,
       image: '/media/copy2.jpeg',
-      type: 'Avaliação presencial',
-      tag: 'PRESENCIAL',
+      type: 'presencial',
+      tag: 'AVALIAÇÃO PRESENCIAL',
       location: 'Recife, PE',
       quote: 'A experiência clínica no consultório trouxe o ajuste fino que meu corpo precisava.'
     },
