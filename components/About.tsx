@@ -23,7 +23,7 @@ const About: React.FC = () => {
                 <img 
                   src="/media/foto.png" 
                   alt="Cláudio Braga - Transformação" 
-                  className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-auto object-cover"
                 />
                 
                 {/* Badge Flutuante */}
