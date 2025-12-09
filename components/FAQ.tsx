@@ -36,20 +36,28 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 const FAQ: React.FC = () => {
   const faqs = [
     {
-      question: "A consultoria serve para iniciantes?",
-      answer: "Sim! O planejamento é feito 100% baseado no seu nível atual. Se você nunca treinou, começaremos com uma fase de adaptação para garantir que você aprenda os movimentos corretamente."
+      question: "Como recebo acesso aos treinos após a compra?",
+      answer: "Assim que confirmar sua inscrição, você recebe no e-mail seu login e senha para acessar o MFITPERSONAL. É através deste app exclusivo que você terá acesso ao seu plano, vídeos explicativos e acompanhamento."
     },
     {
-      question: "Como funciona o envio dos treinos?",
-      answer: "Você receberá acesso ao nosso aplicativo exclusivo, onde terá sua ficha completa com vídeos explicativos de cada exercício, contagem de séries e descanso."
+      question: "Como funciona a avaliação física?",
+      answer: "Para consultoria online, peço fotos (frente, costas e perfil) em fundo neutro para análise corporal. Se você for de Rio Branco (Acre), podemos agendar uma avaliação física presencial no consultório."
     },
     {
-      question: "Posso treinar em casa?",
-      answer: "Com certeza. Se você não frequenta academia, adapto o treino para ser realizado em casa utilizando o peso do corpo ou acessórios que você possua."
+      question: "O treino é adaptado à minha rotina?",
+      answer: "Sim! Através da Anamnese, você responderá um questionário rápido sobre sua rotina, objetivos e particularidades. Com isso, monto um plano totalmente adaptado à sua vida."
     },
     {
-      question: "E se eu tiver dúvidas durante o treino?",
-      answer: "Você tem suporte direto via WhatsApp. Pode enviar vídeos executando o exercício para eu corrigir sua postura e técnica."
+      question: "Qual o prazo para receber meu treino?",
+      answer: "Em até 3 a 5 dias úteis após a avaliação e confirmação do pagamento. Seu treino ficará pronto no App e cada exercício possui vídeo explicativo para você executar sem dúvidas."
+    },
+    {
+      question: "Tenho suporte se precisar de ajustes?",
+      answer: "Com certeza. Você tem suporte direto via WhatsApp. Eu acompanho de perto e faço as adaptações necessárias conforme sua evolução e feedback."
+    },
+    {
+      question: "Como funciona a renovação do treino?",
+      answer: "Seu treino é renovado a cada 30 dias. Antes de montar o próximo ciclo, conversamos sobre sua experiência anterior para garantir que você continue evoluindo no caminho certo."
     }
   ];
 
