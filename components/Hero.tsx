@@ -15,8 +15,8 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center bg-richblack overflow-hidden">
-      
+// Troque a linha da section por essa:
+<section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
       {/* INJECT STYLES FOR BUTTON ANIMATION */}
       <style>{`
         @keyframes revealLoop {
@@ -70,8 +70,12 @@ const Hero: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-20">
         {/* Text Content */}
-        <div className="w-full lg:w-2/3 space-y-8 pt-32 pb-20 drop-shadow-md">
-          
+{/* - pt-20 (antes era 32): Tira espaço do topo
+   - pb-10 (antes era 20): Tira espaço de baixo
+   - space-y-4 (antes era 8): Cola o título no texto e nos botões
+   - md:*: Mantém o layout original no PC
+*/}
+<div className="w-full lg:w-2/3 space-y-4 md:space-y-8 pt-22 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
           {/* TAG SUPERIOR */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
