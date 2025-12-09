@@ -22,8 +22,8 @@ const Results: React.FC = () => {
     {
       id: 3,
       image: '/media/copy3.jpeg',
-      type: '100% Online',
-      tag: 'ONLINE',
+      type: 'online',
+      tag: '100% ONLINE',
       location: 'São Paulo, SP',
       quote: 'O protocolo chega no app e eu executo. Sem burocracia, apenas resultado.'
     }
