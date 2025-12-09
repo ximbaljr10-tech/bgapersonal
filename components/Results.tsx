@@ -16,7 +16,7 @@ const Results: React.FC = () => {
       image: '/media/copy2.jpeg',
       type: 'presencial',
       tag: 'AVALIAÇÃO PRESENCIAL',
-      location: 'Recife, PE',
+      location: 'Rio Branco, Acre',
       quote: 'Olhar para trás e ver essa evolução é surreal. Braga, você foi o catalisador dessa mudança e eu só tenho a agradecer pela parceria.'
     },
     {
