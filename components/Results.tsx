@@ -6,15 +6,15 @@ const Results: React.FC = () => {
     {
       id: 1,
       image: '/media/copy1.jpeg',
-      type: 'online',
+      type: '100% Online',
       tag: 'ONLINE',
-      location: 'Lisboa, PT',
+      location: 'Campina Grande, PB',
       quote: 'Liberdade geográfica com rigor técnico. Treino onde quero, com a supervisão de elite.'
     },
     {
       id: 2,
       image: '/media/copy2.jpeg',
-      type: 'presencial',
+      type: 'Avaliação presencial',
       tag: 'PRESENCIAL',
       location: 'Recife, PE',
       quote: 'A experiência clínica no consultório trouxe o ajuste fino que meu corpo precisava.'
@@ -22,7 +22,7 @@ const Results: React.FC = () => {
     {
       id: 3,
       image: '/media/copy3.jpeg',
-      type: 'online',
+      type: '100% Online',
       tag: 'ONLINE',
       location: 'São Paulo, SP',
       quote: 'O protocolo chega no app e eu executo. Sem burocracia, apenas resultado.'
