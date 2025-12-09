@@ -49,16 +49,6 @@ const Presencial: React.FC = () => {
                   <p className="text-neutral-500 text-[11px] leading-snug group-hover:text-neutral-300">Medição exata da espessura das dobras cutâneas feita por mim.</p>
                </div>
 
-               {/* Item 2 */}
-               <div className="group bg-neutral-900/80 border border-white/5 p-5 rounded-xl hover:border-gold-500/50 transition-all duration-300 hover:bg-neutral-800/80">
-                  <div className="flex items-center gap-3 mb-2">
-                     <div className="p-2 bg-gold-500/10 rounded-lg text-gold-500 group-hover:scale-110 transition-transform">
-                        <Activity size={20} />
-                     </div>
-                  </div>
-                  <p className="text-neutral-500 text-[11px] leading-snug group-hover:text-neutral-300">Análise tecnológica da sua composição corporal (água, músculo, gordura).</p>
-               </div>
-               
                {/* Item 3 */}
                <div className="group bg-neutral-900/80 border border-white/5 p-5 rounded-xl hover:border-gold-500/50 transition-all duration-300 hover:bg-neutral-800/80">
                   <div className="flex items-center gap-3 mb-2">
