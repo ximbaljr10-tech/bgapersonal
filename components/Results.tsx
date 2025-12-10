@@ -1,7 +1,15 @@
 import React from 'react';
-import { Star, MapPin } from 'lucide-react';
+import { Star, MapPin, MessageCircle } from 'lucide-react'; // Adicionei o ícone do Whats se quiser usar
 
 const Results: React.FC = () => {
+  // Substitua pelo número real do Braga (DD + Número, apenas números)
+  const whatsappNumber = "556899377763"; 
+  
+  // Mensagem personalizada codificada para URL
+  const message = encodeURIComponent("Olá Braga, vi as transformações dos seus alunos e quero começar minha evolução.");
+  
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
+
   const transformations = [
     {
       id: 1,
@@ -30,7 +38,6 @@ const Results: React.FC = () => {
   ];
 
   return (
-    /* AQUI ESTÁ A MUDANÇA: id="feedbacks" para o botão funcionar */
     <section id="feedbacks" className="py-16 bg-charcoal relative">
       <div className="container mx-auto px-6 relative z-10">
         
@@ -60,14 +67,14 @@ const Results: React.FC = () => {
               <div className="absolute top-4 left-4 z-20">
                 <span className={`text-[10px] font-bold px-3 py-1.5 uppercase tracking-widest shadow-lg ${
                   item.type === 'online' 
-                    ? 'bg-black text-gold-500 border border-gold-500' // Contraste alto pro Online
-                    : 'bg-white text-black border border-white' // Clean pro Presencial
+                    ? 'bg-black text-gold-500 border border-gold-500' 
+                    : 'bg-white text-black border border-white'
                 }`}>
                   {item.tag}
                 </span>
               </div>
 
-              {/* INFO SEMPRE VISÍVEL (Legibilidade perfeita no mobile) */}
+              {/* INFO SEMPRE VISÍVEL */}
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/90 to-transparent p-5 pt-16 z-20">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin size={12} className="text-gold-500" />
@@ -86,13 +93,15 @@ const Results: React.FC = () => {
           ))}
         </div>
 
-        {/* CTA FINAL */}
+        {/* CTA FINAL COM LINK DO WHATSAPP */}
         <div className="flex justify-center">
           <a 
-            href="#planos"
-            className="w-full md:w-auto text-center px-8 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto text-center px-8 py-4 bg-gold-500 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transform hover:-translate-y-1"
           >
-            Escolher meu Formato
+            QUERO TER ESSES RESULTADOS
           </a>
         </div>
 
