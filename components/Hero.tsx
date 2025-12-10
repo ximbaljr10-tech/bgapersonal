@@ -1,142 +1,134 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
 
+  // --- FUNÇÃO DE ROLAGEM SUAVE ---
   const scrollToBeforeAfter = () => {
     const section = document.getElementById('before-after');
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn("Seção 'before-after' não encontrada.");
     }
   };
 
   return (
-    <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden font-sans">      
-      {/* BACKGROUND & OVERLAYS */}
+    <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
+      {/* STYLE INJECTION */}
+      <style>{`
+        @keyframes revealLoop {
+          0% { width: 0%; }
+          45% { width: 100%; }
+          55% { width: 100%; }
+          100% { width: 0%; }
+        }
+        @keyframes sliderLoop {
+          0% { left: 0%; }
+          45% { left: 100%; }
+          55% { left: 100%; }
+          100% { left: 0%; }
+        }
+        .animate-reveal { animation: revealLoop 4s infinite ease-in-out alternate; }
+        .animate-slider { animation: sliderLoop 4s infinite ease-in-out alternate; }
+      `}</style>
+
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        {/* Mobile IMG */}
-        <img src="/media/hero.png" alt="Background Mobile" className="block md:hidden w-full h-full object-cover"/>
-        {/* Desktop IMG */}
-        <img src="/media/hero2.png" alt="Background Desktop" className="hidden md:block w-full h-full object-cover object-top"/>
+        {/* Mobile Background */}
+        <img 
+          src="/media/hero.png" 
+          alt="Background Mobile" 
+          className="block md:hidden w-full h-full object-cover"
+        />
+        {/* Desktop Background */}
+        <img 
+          src="/media/hero2.png" 
+          alt="Background Desktop" 
+          className="hidden md:block w-full h-full object-cover object-top"
+        />
         
-        {/* Gradientes sofisticados para leitura */}
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent"></div>
+        {/* Camadas de Contraste */}
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent md:from-black/80 md:via-black/50 md:to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-richblack via-richblack/60 to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-5 relative z-20">
-        <div className="w-full lg:w-2/3 pt-20 pb-8 md:py-20">          
+      <div className="container mx-auto px-6 relative z-20">
+        {/* Conteúdo Principal */}
+        <div className="w-full lg:w-2/3 space-y-4 md:space-y-6 pt-20 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
           
-          {/* 1. BADGE SUPERIOR (Minimalista) */}
-          <div className="inline-flex items-center gap-2 mb-6 opacity-0 animate-[fadeIn_1s_ease-out_forwards]">
-            <div className="h-[1px] w-8 bg-gold-500"></div>
-            <span className="text-gold-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
-              Consultoria Exclusiva
+          {/* Tag */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-black/40 backdrop-blur-sm whitespace-nowrap">
+            <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+            <span className="text-gold-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+              Consultoria Online e Presencial
             </span>
           </div>
 
-          {/* 2. TÍTULO MODERNIZADO (Contraste Outline/Solid) */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] text-white mb-8 drop-shadow-xl">
-            TREINOS <br/>
-            {/* Texto com borda (Stroke) para estilo moderno */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 md:text-white" style={{ WebkitTextStroke: '0px' }}>
-                PERSONALIZADOS
-            </span>
-            <span className="block text-2xl md:text-4xl text-gold-500 font-bold tracking-widest mt-2 uppercase">
-                Para o seu objetivo
-            </span>
+          {/* H1 */}
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold leading-tight text-white drop-shadow-lg">
+            TREINOS <span className="text-gold-gradient drop-shadow-sm">PERSONALIZADOS</span> PARA O SEU OBJETIVO
           </h1>
           
-          {/* 3. CARD DE VIDRO (GLASSMORPHISM) */}
-          {/* Aqui está a grande mudança de design: Agrupar a info num box moderno */}
-          <div className="bg-white/5 border-l-2 border-gold-500 backdrop-blur-md p-5 md:p-8 rounded-r-xl max-w-xl mb-8 shadow-2xl animate-[slideRight_1s_ease-out_0.5s_both]">
-             
-             {/* Texto Descritivo */}
-             <p className="text-neutral-200 text-sm md:text-lg leading-relaxed mb-4 font-light">
-                Esqueça fichas genéricas. Meu trabalho começa com uma <strong className="text-white font-bold">avaliação técnica detalhada</strong> para destravar seus resultados.
-             </p>
+          {/* Texto de Apoio (Metodologia) */}
+          <p className="text-base md:text-xl text-neutral-200 font-medium max-w-lg leading-relaxed">
+            Eu não envio apenas treinos. Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
+          </p>
 
-             {/* Separador */}
-             <div className="w-full h-[1px] bg-white/10 mb-4"></div>
-
-             {/* A OFERTA (Com destaque visual) */}
-             <div className="flex gap-3 items-start">
-                <div className="p-1.5 bg-gold-500/20 rounded-full text-gold-400 mt-0.5 animate-pulse">
-                    <Zap size={16} fill="currentColor" />
-                </div>
-                <div>
-                    <p className="text-white text-xs md:text-sm font-medium">
-                        Temos uma <span className="text-gold-400 font-bold uppercase tracking-wide">condição especial</span> liberada para você hoje.
-                    </p>
-                    <p className="text-neutral-400 text-[10px] md:text-xs mt-0.5">
-                        Clique abaixo para garantir sua vaga no time.
-                    </p>
-                </div>
-             </div>
+          {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL --- */}
+          {/* Destaque visual para separar do texto acima e chamar atenção para o botão */}
+          <div className="max-w-lg bg-gold-500/10 border-l-4 border-gold-500 p-3 rounded-r-lg backdrop-blur-sm">
+            <p className="text-sm md:text-base text-white font-medium leading-snug">
+              Para isso, temos uma <span className="text-gold-400 font-bold uppercase">condição especial</span> pra você na nossa consultoria. Clique abaixo e fale conosco.
+            </p>
           </div>
 
-          {/* 4. BOTÕES REESTRUTURADOS */}
-          <div className="flex flex-col gap-4 w-full sm:max-w-md animate-[fadeInUp_1s_ease-out_0.8s_both]">
+          {/* BOTÕES */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
             
-            {/* Botão Principal - GRADIENTE E GLOW */}
+            {/* Botão 1: Principal - ATUALIZADO */}
             <a 
               href="https://wa.me/556881155392?text=Ol%C3%A1!%20Vi%20no%20site%20sobre%20a%20condi%C3%A7%C3%A3o%20especial%20da%20consultoria%20e%20quero%20saber%20mais."
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-full group overflow-hidden rounded-lg"
+              className="group relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm"
             >
-                {/* Background com Gradiente Animado */}
-                <div className="absolute inset-0 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 bg-[length:200%_auto] animate-[gradientPos_3s_linear_infinite]"></div>
-                
-                {/* Conteúdo do Botão */}
-                <div className="relative px-6 py-4 flex items-center justify-between">
-                    <div className="flex flex-col items-start">
-                        <span className="text-black font-black uppercase tracking-widest text-sm md:text-base leading-none">
-                            Quero Condição Especial
-                        </span>
-                        <span className="text-black/70 text-[10px] font-bold mt-1">
-                            Falar com o Braga agora
-                        </span>
-                    </div>
-                    <div className="bg-black/10 p-2 rounded-full group-hover:bg-black/20 transition-colors">
-                        <ArrowRight className="w-5 h-5 text-black" />
-                    </div>
-                </div>
+              QUERO CONDIÇÃO ESPECIAL
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
-            {/* Botão Secundário - CLEAN */}
+            {/* Botão 2: Antes e Depois */}
             <button 
               onClick={scrollToBeforeAfter}
-              className="w-full px-6 py-3 flex items-center justify-center gap-2 text-white/70 hover:text-white border border-white/10 hover:border-gold-500/50 rounded-lg transition-all text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white/5"
+              className="relative px-8 py-4 bg-black/60 border border-white/30 text-white font-bold uppercase tracking-widest overflow-hidden group w-full sm:w-auto h-[56px] flex items-center justify-center text-sm md:text-base cursor-pointer hover:border-white/50 transition-colors rounded-sm backdrop-blur-sm"
             >
-              <span>Ver transformações reais</span>
-              <ArrowRight size={14} />
+              <span className="relative z-10 whitespace-nowrap">Ver Antes e Depois</span>
+              
+              {/* Animação do botão */}
+              <div className="absolute inset-0 bg-white z-20 overflow-hidden animate-reveal left-0 pointer-events-none">
+                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                    <span className="text-black whitespace-nowrap font-bold tracking-widest uppercase px-8">Ver Antes e Depois</span>
+                 </div>
+              </div>
+              <div className="absolute top-0 bottom-0 w-[2px] bg-gold-500 z-30 shadow-[0_0_10px_#d4af37] animate-slider pointer-events-none"></div>
             </button>
+          </div>
+
+          {/* Features */}
+          <div className="pt-6 flex flex-wrap gap-3 text-xs md:text-sm text-neutral-300 font-medium opacity-80">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="text-gold-500 w-4 h-4" />
+              <span>Avaliação Física Detalhada</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="text-gold-500 w-4 h-4" />
+              <span>Protocolo Individualizado</span>
+            </div>
           </div>
 
         </div>
       </div>
-
-      {/* STYLES FOR ANIMATIONS */}
-      <style>{`
-        @keyframes gradientPos {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideRight {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   );
 };
