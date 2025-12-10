@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
               rel="noopener noreferrer"
               className="group relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm"
             >
-              QUERO CONDIÇÃO ESPECIAL
+              QUERO A CONDIÇÃO ESPECIAL
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
