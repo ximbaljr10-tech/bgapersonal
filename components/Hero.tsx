@@ -76,10 +76,13 @@ const Hero: React.FC = () => {
             Eu não envio apenas treinos seja online ou presencial, Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
           </p>
 
-          {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL --- */}
-          {/* Destaque visual para separar do texto acima e chamar atenção para o botão */}
-          <div className="max-w-lg bg-gold-500/10 border-l-4 border-gold-500 p-3 rounded-r-lg backdrop-blur-sm">
-            <p className="text-sm md:text-base text-white font-medium leading-snug">
+             {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL (EFEITO VIDRO) --- */}
+          {/* bg-black/40: Fundo preto com 40% de opacidade (transparente)
+              backdrop-blur-md: O "efeito vidro fosco" que embaça o que está atrás
+              border-white/10: Uma borda bem sutil para delimitar o vidro
+          */}
+          <div className="max-w-lg bg-black/40 backdrop-blur-md border border-white/10 border-l-4 border-l-gold-500 p-4 rounded-r-lg shadow-lg">
+            <p className="text-sm md:text-base text-white font-medium leading-snug drop-shadow-md">
               Para isso, temos uma <span className="text-gold-400 font-bold uppercase">condição especial</span> pra você na nossa consultoria. Clique abaixo e fale conosco.
             </p>
           </div>
