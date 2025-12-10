@@ -19,9 +19,9 @@ const BeforeAfter: React.FC = () => {
 
   const cases = [
     {
-      before: "https://i.postimg.cc/Th8jzDWP/1.png",
-      after: "https://i.postimg.cc/7bv1F2TH/2.png",
-      label: "Emagrecimento"
+      before: "/media/antes5.png",
+      after: "/media/before5.png",
+      label: "Definição"
     },
     {
       before: "https://i.postimg.cc/14x0kqNR/3.png",
@@ -29,9 +29,9 @@ const BeforeAfter: React.FC = () => {
       label: "Emagrecimento"
     },
     {
-      before: "https://i.postimg.cc/V5y9xCbM/5.png",
-      after: "https://i.postimg.cc/9z3P67qZ/6.png",
-      label: "Emagrecimento e Definição"
+      before: "https://i.postimg.cc/Th8jzDWP/1.png",
+      after: "https://i.postimg.cc/7bv1F2TH/2.png",
+      label: "Emagrecimento"
     }
   ];
 
