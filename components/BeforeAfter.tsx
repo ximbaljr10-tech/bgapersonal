@@ -19,8 +19,8 @@ const BeforeAfter: React.FC = () => {
 
   const cases = [
     {
-      before: "/media/antes5.png",
-      after: "/media/before5.png",
+      before: "/media/before5.png",
+      after: "/media/after5.png",
       label: "Definição"
     },
     {
