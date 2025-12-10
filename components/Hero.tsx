@@ -76,9 +76,9 @@ const Hero: React.FC = () => {
             Eu não envio apenas treinos. Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
           </p>
 
-          {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL --- */}
-          {/* Destaque visual para separar do texto acima e chamar atenção para o botão */}
-          <div className="max-w-lg bg-gold-500/10 border-l-4 border-gold-500 p-3 rounded-r-lg backdrop-blur-sm">
+          {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL (COM FUNDO ESCURO) --- */}
+          {/* Mudei bg-gold-500/10 para bg-black/80 e adicionei shadow-lg */}
+          <div className="max-w-lg bg-black/80 border-l-4 border-gold-500 p-4 rounded-r-lg backdrop-blur-md shadow-lg border-y border-r border-white/5">
             <p className="text-sm md:text-base text-white font-medium leading-snug">
               Para isso, temos uma <span className="text-gold-400 font-bold uppercase">condição especial</span> pra você na nossa consultoria. Clique abaixo e fale conosco.
             </p>
