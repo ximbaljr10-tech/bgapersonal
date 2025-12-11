@@ -10,6 +10,7 @@ import Presencial from './components/Presencial';
 import Evaluation from './components/Evaluation';
 import Feedbacks from './components/Feedbacks';
 import Results from './components/Results';
+import Pricing from './components/Pricing';
 import About from './components/About';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <BeforeAfter />
         <Feedbacks />
         <Results />
+        <Pricing />
         <About />
         <FAQ />
       </main>
