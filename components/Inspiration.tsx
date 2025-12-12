@@ -228,23 +228,7 @@ const Inspiration: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    {/* Grid Desafio/Conquista */}
-                                    <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/5">
-                                        <div>
-                                            <div className="flex items-center gap-1.5 mb-1 text-red-500/80">
-                                                <Target size={12} />
-                                                <span className="text-[9px] uppercase font-bold tracking-wider">Desafio</span>
-                                            </div>
-                                            <p className="text-neutral-400 text-[11px] leading-tight font-medium line-clamp-2">"{slide.pain}"</p>
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-1.5 mb-1 text-green-500">
-                                                <Trophy size={12} />
-                                                <span className="text-[9px] uppercase font-bold tracking-wider">Conquista</span>
-                                            </div>
-                                            <p className="text-white text-[11px] leading-tight font-bold line-clamp-2">{slide.result}</p>
-                                        </div>
-                                    </div>
+                                    
 
                                     {/* Quote */}
                                     <div className="relative bg-black/30 p-3 rounded border border-white/5">
