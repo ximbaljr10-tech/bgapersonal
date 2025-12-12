@@ -50,20 +50,20 @@ const Inspiration: React.FC = () => {
      {
       id: 5,
       image: "media/change5.jpeg",
-      name: "Renata Lins",
-      tag: "Iniciante",
-      pain: "Vergonha",
-      result: "-12kg com confiança total.",
-      quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
+     name: "Juliana Barros",
+      tag: "Empreendedora",
+      pain: "Tentava há anos",
+      result: "-9kg que nunca voltaram.",
+      quote: "Já tinha tentado tudo. Pela primeira vez consegui manter o resultado por mais de 6 meses."
     },
      {
       id: 6,
       image: "media/change6.jpeg",
-      name: "Renata Lins",
-      tag: "Iniciante",
-      pain: "Vergonha",
-      result: "-12kg com confiança total.",
-      quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
+        name: "Patrícia Rocha",
+      tag: "Pós-menopausa",
+      pain: "Metabolismo travado",
+      result: "-15kg de gordura pura.",
+      quote: "Médicos diziam que era impossível. Meu corpo hoje está melhor do que há 10 anos atrás."
     },
   ];
 
