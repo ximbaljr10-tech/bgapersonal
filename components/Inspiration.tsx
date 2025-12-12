@@ -31,7 +31,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 3,
-      image: "media/change3.jpeg",
+      image: "media/change4.jpeg",
       name: "Bruna Mendes",
       tag: "Estudante de Med.",
       pain: "Rotina louca",
@@ -40,7 +40,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 4,
-      image: "media/change4.jpeg",
+      image: "media/change3.jpeg",
       name: "Renata Lins",
       tag: "Iniciante",
       pain: "Vergonha",
