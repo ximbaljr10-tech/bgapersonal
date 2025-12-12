@@ -116,7 +116,7 @@ const Pricing: React.FC = () => {
              </ul>
 
              {/* Button */}
-             <a href="https://wa.me/5599999999999?text=Quero%20o%20plano%20Anual" className="block w-full py-4 text-center bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest text-sm rounded shadow-lg hover:shadow-gold-500/20 transition-all transform hover:-translate-y-1">
+             <a href="https://sun.eduzz.com/79778NXA9E" className="block w-full py-4 text-center bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest text-sm rounded shadow-lg hover:shadow-gold-500/20 transition-all transform hover:-translate-y-1">
                  Fazer Investimento VIP
              </a>
           </div>
@@ -160,7 +160,7 @@ const Pricing: React.FC = () => {
              </ul>
 
              {/* Button */}
-             <a href="https://wa.me/5599999999999?text=Quero%20o%20plano%20Semestral" className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all">
+             <a href="https://sun.eduzz.com/7WXQ3JKO9A" className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all">
                  Selecionar
              </a>
           </div>
