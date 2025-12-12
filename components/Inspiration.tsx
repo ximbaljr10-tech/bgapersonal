@@ -1,10 +1,14 @@
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Quote, ArrowRight, Trophy, Clock, Target } from 'lucide-react';
+import { Quote, ArrowRight, Trophy, Target, ChevronRight } from 'lucide-react';
 
 const Inspiration: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const [hasStartedAutoPlay, setHasStartedAutoPlay] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
 
   const slides = [
     {
@@ -12,8 +16,8 @@ const Inspiration: React.FC = () => {
       image: "https://images.unsplash.com/photo-1574680096141-98778bc42438?q=80&w=800&auto=format&fit=crop",
       name: "Mariana Costa",
       tag: "Mãe de 2 filhos",
-      pain: "Não tinha tempo",
-      result: "Recuperou o corpo de antes da gravidez treinando 40min/dia.",
+      pain: "Sem tempo",
+      result: "Recuperou corpo pré-gravidez.",
       quote: "Achava que ser mãe significava abrir mão da minha autoestima. O Braga me provou o contrário."
     },
     {
@@ -22,35 +26,89 @@ const Inspiration: React.FC = () => {
       name: "Carla Souza",
       tag: "Rotina Corporativa",
       pain: "Vivia cansada",
-      result: "Trocou a gordura por massa magra e eliminou a dor nas costas.",
+      result: "Trocou gordura por massa magra.",
       quote: "Eu usava o cansaço como desculpa. Hoje o treino é o que me dá energia para aguentar o dia."
     },
     {
-      id: 3, // ALTERADO AQUI: Removido menção à ansiedade médica
+      id: 3,
       image: "https://images.unsplash.com/photo-1541338784842-e6198811883e?q=80&w=800&auto=format&fit=crop",
       name: "Bruna Mendes",
       tag: "Estudante de Med.",
-      pain: "Rotina instável",
-      result: "Definição abdominal mantendo a constância nos plantões.",
-      quote: "Eu nunca conseguia seguir nada por causa dos horários loucos. O protocolo flexível me fez parar de desistir."
+      pain: "Rotina louca",
+      result: "Definição mantendo constância.",
+      quote: "Eu nunca conseguia seguir nada por causa dos horários. O protocolo flexível me salvou."
     },
     {
       id: 4,
       image: "https://images.unsplash.com/photo-1627483262769-04d0a140154c?q=80&w=800&auto=format&fit=crop",
       name: "Renata Lins",
       tag: "Iniciante",
-      pain: "Vergonha da academia",
-      result: "Perdeu 12kg e hoje treina com confiança total.",
+      pain: "Vergonha",
+      result: "-12kg com confiança total.",
       quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
     },
   ];
+
+  // 1. Detectar visibilidade
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 2. Lógica de Timer
+  useEffect(() => {
+    if (!isInView || isInteracting) return;
+
+    const delay = hasStartedAutoPlay ? 7000 : 3000;
+
+    const timeout = setTimeout(() => {
+      let nextIndex = activeIndex + 1;
+      if (nextIndex >= slides.length) {
+        nextIndex = 0;
+      }
+      scrollToIndex(nextIndex);
+      setHasStartedAutoPlay(true);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [isInView, hasStartedAutoPlay, activeIndex, isInteracting]);
+
+
+  const scrollToIndex = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cards = container.children;
+      
+      if (cards[index]) {
+        const card = cards[index] as HTMLElement;
+        const scrollLeft = card.offsetLeft - (container.offsetWidth / 2) + (card.offsetWidth / 2);
+        
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+        setActiveIndex(index);
+      }
+    }
+  };
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const center = container.scrollLeft + container.offsetWidth / 2;
-      const cardWidth = container.children[0].clientWidth; 
-      const newIndex = Math.round(container.scrollLeft / cardWidth);
       
       let closestIndex = 0;
       let minDistance = Infinity;
@@ -64,55 +122,52 @@ const Inspiration: React.FC = () => {
         }
       });
       
-      setActiveIndex(closestIndex);
+      if (closestIndex !== activeIndex) {
+        setActiveIndex(closestIndex);
+        setHasStartedAutoPlay(true);
+      }
     }
   };
 
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-        const container = scrollContainerRef.current;
-        const targetScroll = (container.children[1] as HTMLElement).offsetLeft - (container.offsetWidth / 2) + ((container.children[1] as HTMLElement).offsetWidth / 2);
-        container.scrollTo({ left: targetScroll, behavior: 'smooth' });
-    }
-  }, []);
-
   return (
-    <section className="py-24 bg-[#0a0a0a] relative overflow-hidden border-b border-white/5">
+    <section 
+      ref={sectionRef}
+      className="py-16 md:py-24 bg-[#0a0a0a] relative overflow-hidden border-b border-white/5"
+    >
       
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.03),transparent_70%)]"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Header - Stronger & Decision Focused */}
-        <div className="text-center mb-12 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 mb-3 opacity-80">
+        {/* Header */}
+        <div className="text-center mb-8 md:mb-10 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 mb-2 opacity-80">
             <div className="h-[1px] w-8 bg-gold-500"></div>
             <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-[10px]">
               Histórias Reais
             </span>
             <div className="h-[1px] w-8 bg-gold-500"></div>
           </div>
-          <h2 className="text-3xl md:text-5xl font-heading font-black text-white leading-tight mb-4">
+          <h2 className="text-3xl md:text-5xl font-heading font-black text-white leading-tight mb-2">
             ELAS DECIDIRAM <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gold-200 to-gold-500">
               MUDAR O JOGO
             </span>
           </h2>
-          <p className="text-neutral-400 text-sm md:text-base leading-relaxed px-4">
-            Todas elas tinham uma desculpa válida: falta de tempo, cansaço, vergonha... <br className="hidden md:block" />
-            <span className="text-white font-bold">Mas decidiram que o resultado seria maior que a desculpa.</span>
-          </p>
         </div>
 
-        {/* 3D Carousel Container */}
-        <div className="relative w-full max-w-md md:max-w-6xl mx-auto h-[520px] md:h-[550px]">
+        {/* Carousel Container */}
+        <div className="relative w-full">
             
             <div 
                 ref={scrollContainerRef}
                 onScroll={handleScroll}
-                className="flex overflow-x-auto snap-x snap-mandatory h-full items-center gap-4 md:gap-8 px-[50vw] md:px-[calc(50%-175px)] no-scrollbar py-4"
-                style={{ scrollBehavior: 'smooth' }}
+                onMouseDown={() => setIsInteracting(true)}
+                onMouseUp={() => setIsInteracting(false)}
+                onTouchStart={() => setIsInteracting(true)}
+                onTouchEnd={() => setIsInteracting(false)}
+                className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-8 md:px-[calc(50%-170px)] py-4 no-scrollbar scroll-smooth items-start"
             >
                 {slides.map((slide, index) => {
                     const isActive = index === activeIndex;
@@ -121,68 +176,78 @@ const Inspiration: React.FC = () => {
                             key={slide.id}
                             className={`
                                 relative shrink-0 snap-center transition-all duration-500 ease-out
-                                w-[280px] md:w-[350px] 
-                                ${isActive ? 'h-[480px] md:h-[500px] scale-100 opacity-100 z-20' : 'h-[380px] md:h-[400px] scale-90 opacity-40 grayscale z-10'}
+                                w-[300px] md:w-[340px]
+                                ${isActive ? 'scale-100 opacity-100 z-20' : 'scale-95 opacity-50 blur-[1px] z-10'}
                             `}
                         >
-                            {/* Card Content */}
+                            {/* Card Container */}
                             <div className={`
-                                w-full h-full rounded-2xl overflow-hidden shadow-2xl relative border bg-neutral-900
-                                ${isActive ? 'border-gold-500 shadow-[0_0_30px_rgba(212,175,55,0.15)]' : 'border-white/5'}
+                                w-full bg-neutral-900 rounded-2xl overflow-hidden border transition-all duration-500 shadow-xl flex flex-col
+                                ${isActive ? 'border-gold-500/40 shadow-[0_0_25px_rgba(212,175,55,0.1)]' : 'border-white/5'}
                             `}>
-                                {/* Image Half */}
-                                <div className={`relative w-full ${isActive ? 'h-[55%]' : 'h-full'} transition-all duration-500`}>
+                                
+                                {/* 1. FOTO TOTALMENTE LIMPA (Aspect Ratio 4:5 Instagram) */}
+                                <div className="relative w-full aspect-[4/5] bg-neutral-950">
                                     <img 
                                         src={slide.image} 
                                         alt={slide.name} 
                                         className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent"></div>
-                                    
-                                    {/* Name Overlay (Visible when inactive or active) */}
-                                    <div className="absolute bottom-4 left-4 z-10">
-                                        <p className="text-white font-heading font-bold text-xl uppercase italic">{slide.name}</p>
-                                        <div className="inline-block px-2 py-0.5 bg-gold-500/20 border border-gold-500/30 rounded text-[10px] font-bold text-gold-500 uppercase tracking-wide mt-1">
-                                            {slide.tag}
-                                        </div>
-                                    </div>
+                                    {/* Apenas uma borda sutil embaixo para separar do texto */}
+                                    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10"></div>
                                 </div>
 
-                                {/* Text Content Half (Only visible clearly when active) */}
-                                <div className={`
-                                    p-6 flex flex-col justify-between h-[45%] bg-neutral-900 relative
-                                    ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 hidden'}
-                                    transition-all duration-500
-                                `}>
-                                    <div className="space-y-4">
-                                        {/* Challenge vs Result */}
-                                        <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
-                                            <div className="mt-1 p-1.5 rounded-full bg-red-500/10 text-red-500">
-                                                <Target size={14} />
-                                            </div>
-                                            <div>
-                                                <p className="text-[10px] text-neutral-500 uppercase font-bold">O Desafio</p>
-                                                <p className="text-neutral-300 text-xs leading-snug">"{slide.pain}"</p>
-                                            </div>
+                                {/* 2. ÁREA DE INFORMAÇÕES (Embaixo da Foto) */}
+                                <div className="p-5 flex flex-col gap-4 relative bg-neutral-900">
+                                    
+                                    {/* Header do Card */}
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <h3 className="text-white font-heading font-bold text-lg uppercase italic leading-none">{slide.name}</h3>
+                                            <span className="text-[10px] text-neutral-500 uppercase font-bold tracking-widest mt-1 block">
+                                                {slide.tag}
+                                            </span>
                                         </div>
+                                    </div>
 
-                                        <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
-                                            <div className="mt-1 p-1.5 rounded-full bg-green-500/10 text-green-500">
-                                                <Trophy size={14} />
+                                    {/* Grid Desafio/Conquista */}
+                                    <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/5">
+                                        <div>
+                                            <div className="flex items-center gap-1.5 mb-1 text-red-500/80">
+                                                <Target size={12} />
+                                                <span className="text-[9px] uppercase font-bold tracking-wider">Desafio</span>
                                             </div>
-                                            <div>
-                                                <p className="text-[10px] text-neutral-500 uppercase font-bold">A Conquista</p>
-                                                <p className="text-white font-bold text-xs leading-snug">{slide.result}</p>
+                                            <p className="text-neutral-400 text-[11px] leading-tight font-medium line-clamp-2">"{slide.pain}"</p>
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-1.5 mb-1 text-green-500">
+                                                <Trophy size={12} />
+                                                <span className="text-[9px] uppercase font-bold tracking-wider">Conquista</span>
                                             </div>
+                                            <p className="text-white text-[11px] leading-tight font-bold line-clamp-2">{slide.result}</p>
                                         </div>
                                     </div>
 
                                     {/* Quote */}
-                                    <div className="mt-4 pt-4 border-t border-white/5 relative">
-                                        <Quote size={16} className="text-gold-500/30 absolute -top-2 left-0 fill-gold-500" />
-                                        <p className="text-neutral-400 text-xs italic pl-2 pt-1 leading-relaxed">
+                                    <div className="relative bg-black/30 p-3 rounded border border-white/5">
+                                        <Quote size={12} className="text-gold-500 absolute top-2 left-2 opacity-50" />
+                                        <p className="text-neutral-300 text-[11px] italic leading-relaxed pl-4">
                                             {slide.quote}
                                         </p>
+                                    </div>
+
+                                    {/* BARRA DE TIMER (No rodapé do card) */}
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-neutral-800">
+                                        <div 
+                                            className="h-full bg-gold-500 ease-linear"
+                                            style={{ 
+                                                width: isActive && isInView && !isInteracting ? '100%' : '0%',
+                                                transitionProperty: 'width',
+                                                transitionDuration: isActive && isInView && !isInteracting 
+                                                    ? (hasStartedAutoPlay ? '7000ms' : '3000ms') 
+                                                    : '0ms'
+                                            }}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -191,19 +256,18 @@ const Inspiration: React.FC = () => {
                 })}
             </div>
 
-            {/* Swipe Hint */}
-             <div className="md:hidden text-center mt-2 flex items-center justify-center gap-2 opacity-50">
-                 <div className="w-1.5 h-1.5 rounded-full bg-gold-500"></div>
-                 <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
-                 <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
+            {/* Hint de Swipe */}
+             <div className="flex items-center justify-center gap-2 mt-6 opacity-40 animate-pulse">
+                <span className="text-[10px] uppercase tracking-widest text-neutral-500">Arraste para o lado</span>
+                <ChevronRight size={14} className="text-gold-500" />
             </div>
         </div>
 
-        {/* Call to Action - Bridge to Pricing */}
+        {/* CTA */}
         <div className="mt-8 text-center">
-             <a href="#pricing" className="inline-flex items-center gap-3 text-white hover:text-gold-500 transition-colors group px-6 py-3 rounded-full border border-white/10 hover:border-gold-500/50 bg-neutral-900">
-                <span className="text-xs uppercase tracking-widest font-bold">Quero começar minha história</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform text-gold-500" />
+             <a href="#pricing" className="inline-flex items-center gap-2 text-gold-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest border-b border-gold-500/30 pb-1 hover:border-white">
+                Quero ser o próximo resultado
+                <ArrowRight size={14} />
              </a>
         </div>
 
@@ -213,3 +277,4 @@ const Inspiration: React.FC = () => {
 };
 
 export default Inspiration;
+
