@@ -8,6 +8,7 @@ import BeforeAfter from './components/BeforeAfter';
 import Methodology from './components/Methodology';
 import Presencial from './components/Presencial';
 import Evaluation from './components/Evaluation';
+import Inspiration from './components/Inspiration';
 import Feedbacks from './components/Feedbacks';
 import Results from './components/Results';
 import Pricing from './components/pricing';
@@ -24,6 +25,7 @@ const App: React.FC = () => {
         <Benefits />
         <ServicesIntro />
         <Methodology />
+        <Inspiration />
         <Evaluation />
         <Presencial />
         <BeforeAfter />
