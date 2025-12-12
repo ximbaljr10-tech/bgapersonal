@@ -13,7 +13,7 @@ const Inspiration: React.FC = () => {
   const slides = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1574680096141-98778bc42438?q=80&w=800&auto=format&fit=crop",
+      image: "media/1.png",
       name: "Mariana Costa",
       tag: "Mãe de 2 filhos",
       pain: "Sem tempo",
