@@ -13,7 +13,7 @@ const Inspiration: React.FC = () => {
   const slides = [
     {
       id: 1,
-      image: "media/1.png",
+      image: "media/change1",
       name: "Mariana Costa",
       tag: "Mãe de 2 filhos",
       pain: "Sem tempo",
@@ -22,7 +22,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1609643034861-122e232145e2?q=80&w=800&auto=format&fit=crop",
+      image: "media/change2",
       name: "Carla Souza",
       tag: "Rotina Corporativa",
       pain: "Vivia cansada",
@@ -31,7 +31,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1541338784842-e6198811883e?q=80&w=800&auto=format&fit=crop",
+      image: "media/change3",
       name: "Bruna Mendes",
       tag: "Estudante de Med.",
       pain: "Rotina louca",
@@ -40,7 +40,25 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1627483262769-04d0a140154c?q=80&w=800&auto=format&fit=crop",
+      image: "media/change4",
+      name: "Renata Lins",
+      tag: "Iniciante",
+      pain: "Vergonha",
+      result: "-12kg com confiança total.",
+      quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
+    },
+     {
+      id: 5,
+      image: "media/change5",
+      name: "Renata Lins",
+      tag: "Iniciante",
+      pain: "Vergonha",
+      result: "-12kg com confiança total.",
+      quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
+    },
+     {
+      id: 6,
+      image: "media/change6",
       name: "Renata Lins",
       tag: "Iniciante",
       pain: "Vergonha",
