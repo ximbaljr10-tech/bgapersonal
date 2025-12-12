@@ -65,7 +65,7 @@ const Pricing: React.FC = () => {
              </ul>
 
              {/* Button */}
-             <a href="https://wa.me/5599999999999?text=Quero%20o%20plano%20Trimestral" className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all">
+             <a href="https://sun.eduzz.com/801E5XNNW7" className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all">
                  Selecionar
              </a>
           </div>
