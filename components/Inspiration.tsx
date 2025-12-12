@@ -13,7 +13,7 @@ const Inspiration: React.FC = () => {
   const slides = [
     {
       id: 1,
-      image: "media/change1",
+      image: "media/change1.jpeg",
       name: "Mariana Costa",
       tag: "Mãe de 2 filhos",
       pain: "Sem tempo",
@@ -22,7 +22,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 2,
-      image: "media/change2",
+      image: "media/change2.jpeg",
       name: "Carla Souza",
       tag: "Rotina Corporativa",
       pain: "Vivia cansada",
@@ -31,7 +31,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 3,
-      image: "media/change3",
+      image: "media/change3.jpeg",
       name: "Bruna Mendes",
       tag: "Estudante de Med.",
       pain: "Rotina louca",
@@ -40,7 +40,7 @@ const Inspiration: React.FC = () => {
     },
     {
       id: 4,
-      image: "media/change4",
+      image: "media/change4.jpeg",
       name: "Renata Lins",
       tag: "Iniciante",
       pain: "Vergonha",
@@ -49,7 +49,7 @@ const Inspiration: React.FC = () => {
     },
      {
       id: 5,
-      image: "media/change5",
+      image: "media/change5.jpeg",
       name: "Renata Lins",
       tag: "Iniciante",
       pain: "Vergonha",
@@ -58,7 +58,7 @@ const Inspiration: React.FC = () => {
     },
      {
       id: 6,
-      image: "media/change6",
+      image: "media/change6.jpeg",
       name: "Renata Lins",
       tag: "Iniciante",
       pain: "Vergonha",
