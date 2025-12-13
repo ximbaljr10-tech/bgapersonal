@@ -14,7 +14,7 @@ const Inspiration: React.FC = () => {
     {
       id: 1,
       image: "media/change1.jpeg",
-      name: "Mariana Costa",
+      name: "Paula Luandra",
       tag: "Mãe de 2 filhos",
       pain: "Sem tempo",
       result: "Recuperou corpo pré-gravidez.",
@@ -23,7 +23,7 @@ const Inspiration: React.FC = () => {
     {
       id: 2,
       image: "media/change2.jpeg",
-      name: "Carla Souza",
+      name: "Pricila Melo",
       tag: "Rotina Corporativa",
       pain: "Vivia cansada",
       result: "Trocou gordura por massa magra.",
@@ -32,7 +32,7 @@ const Inspiration: React.FC = () => {
     {
       id: 3,
       image: "media/change4.jpeg",
-      name: "Bruna Mendes",
+      name: "Isabel Cavalcante",
       tag: "Estudante de Med.",
       pain: "Rotina louca",
       result: "Definição mantendo constância.",
@@ -41,7 +41,7 @@ const Inspiration: React.FC = () => {
     {
       id: 4,
       image: "media/change3.jpeg",
-      name: "Renata Lins",
+      name: "Valéria Albuquerque",
       tag: "Iniciante",
       pain: "Vergonha",
       result: "-12kg com confiança total.",
@@ -50,7 +50,7 @@ const Inspiration: React.FC = () => {
      {
       id: 5,
       image: "media/change5.jpeg",
-     name: "Juliana Barros",
+     name: "Verônica",
       tag: "Empreendedora",
       pain: "Tentava há anos",
       result: "-9kg que nunca voltaram.",
@@ -59,11 +59,11 @@ const Inspiration: React.FC = () => {
      {
       id: 6,
       image: "media/change6.jpeg",
-        name: "Patrícia Rocha",
+        name: "Alciene",
       tag: "Pós-menopausa",
       pain: "Metabolismo travado",
       result: "-15kg de gordura pura.",
-      quote: "Médicos diziam que era impossível. Meu corpo hoje está melhor do que há 10 anos atrás."
+      quote: "Médicos diziam que era impossível. Meu corpo hoje está melhor que há 10 anos atrás."
     },
   ];
 
