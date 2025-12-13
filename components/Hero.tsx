@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
           
           {/* Texto de Apoio (Metodologia) */}
           <p className="text-base md:text-xl text-neutral-200 font-medium max-w-lg leading-relaxed">
-            Eu não envio apenas treinos seja online ou presencial, Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
+            Eu não envio apenas treinos seja online ou presencial. Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
           </p>
 
              {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL (EFEITO VIDRO) --- */}
