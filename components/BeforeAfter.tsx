@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronRight, GripVertical, Hand } from 'lucide-react'; // Removi 'Layers' pois não será mais usado
+import { ChevronRight, GripVertical, Hand } from 'lucide-react';
 
 const BeforeAfter: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -39,7 +39,10 @@ const BeforeAfter: React.FC = () => {
   useEffect(() => {
     const animate = () => {
       if (isAutoPlaying && !isDragging && !isLoading) {
+        // Cria um movimento suave de onda (Senoide)
+        // Divide o tempo por 1500 para controlar a velocidade (quanto maior, mais lento)
         const time = Date.now() / 1500; 
+        // Move entre 20% e 80% para não bater nas bordas
         const newPos = 50 + Math.sin(time) * 30; 
         setSliderPosition(newPos);
       }
@@ -55,15 +58,20 @@ const BeforeAfter: React.FC = () => {
 
   // Função chamada quando o usuário INTERAGE (toca ou clica)
   const handleInteractionStart = () => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(false); // Para a animação
     setIsDragging(true);
+    
+    // Limpa qualquer timer existente para não reiniciar antes da hora
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
   };
 
   // Função chamada quando o usuário SOLTA
   const handleInteractionEnd = () => {
     setIsDragging(false);
+    
+    // Inicia contagem de 4 segundos para voltar a mexer sozinho
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
+    
     autoPlayTimerRef.current = setTimeout(() => {
       setIsAutoPlaying(true);
     }, 4000);
@@ -88,6 +96,7 @@ const BeforeAfter: React.FC = () => {
     createRipple(e);
     setIsLoading(true);
     
+    // Pausa a auto-animação durante a troca
     setIsAutoPlaying(false);
 
     setTimeout(() => {
@@ -97,6 +106,7 @@ const BeforeAfter: React.FC = () => {
 
     setTimeout(() => {
       setIsLoading(false);
+      // Reinicia o timer de 4s após carregar
       handleInteractionEnd(); 
     }, 2000);
   };
@@ -134,7 +144,7 @@ const BeforeAfter: React.FC = () => {
     if (isLoading) return;
     touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
     touchDirection.current = null;
-    handleInteractionStart();
+    handleInteractionStart(); // <--- INICIA INTERAÇÃO
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
@@ -181,6 +191,7 @@ const BeforeAfter: React.FC = () => {
           animation: arrow-bounce-x 1s infinite ease-in-out;
         }
         
+        /* Animação suave da mãozinha */
         @keyframes hand-nudge {
           0%, 100% { transform: translateX(0) scale(1); }
           50% { transform: translateX(-5px) scale(0.95); }
@@ -190,8 +201,10 @@ const BeforeAfter: React.FC = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* HEADER TEXT */}
+        {/* HEADER TEXT - Ajustado (Tag removida, Fonte menor e Texto Fluido) */}
         <div className="mb-10 text-left md:text-center max-w-3xl mx-auto">
+          
+          {/* Título Principal - Tamanho reduzido para evitar quebras bruscas */}
           <h2 className="text-2xl md:text-4xl font-heading font-black text-white mb-4 leading-tight">
             ELAS SEGUIRAM O PROTOCOLO. <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600 block md:inline mt-1 md:mt-0">
@@ -199,6 +212,7 @@ const BeforeAfter: React.FC = () => {
             </span>
           </h2>
 
+          {/* Texto de Apoio */}
           <div className="space-y-3">
              <p className="text-neutral-300 text-sm md:text-lg leading-relaxed font-medium">
                Cada transformação começou com uma decisão. Pessoas comuns que confiaram no processo e aplicaram sem negociar.
@@ -243,7 +257,7 @@ const BeforeAfter: React.FC = () => {
                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-xs px-2 py-1 rounded-sm z-10">ANTES</div>
             </div>
 
-            {/* SLIDER HANDLE */}
+            {/* SLIDER HANDLE + DEDINHO DE INSTRUÇÃO */}
             <div 
               className={`absolute top-0 bottom-0 w-1 bg-gold-500 cursor-ew-resize z-20 flex items-center justify-center shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`} 
               style={{ left: `${sliderPosition}%` }}
@@ -251,9 +265,10 @@ const BeforeAfter: React.FC = () => {
               <div className="relative w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center shadow-lg border-2 border-black">
                 <GripVertical size={16} className="text-black" />
                 
+                {/* DEDINHO DA AUTO-ANIMAÇÃO - Só aparece se estiver no modo AutoPlay */}
                 {isAutoPlaying && !isLoading && (
                   <div className="absolute top-6 left-1/2 -translate-x-1/2 pointer-events-none animate-hand z-30 drop-shadow-lg">
-                      <Hand className="text-white fill-white/20 rotate-12 w-8 h-8 md:w-10 md:h-10 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" strokeWidth={1.5} />
+                     <Hand className="text-white fill-white/20 rotate-12 w-8 h-8 md:w-10 md:h-10 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" strokeWidth={1.5} />
                   </div>
                 )}
 
@@ -266,13 +281,12 @@ const BeforeAfter: React.FC = () => {
           </div>
 
       
-          {/* CONTROLES ATUALIZADOS */}
-          <div className="mt-6 w-full">
+          {/* CONTROLES */}
+          <div className="mt-6 flex items-center justify-center w-full">
             <button 
               onClick={handleNextClick}
               disabled={isLoading}
-              // mudei de flex-1 para w-full para preencher todo o espaço
-              className="relative w-full overflow-hidden flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-4 h-14 rounded-lg font-bold uppercase text-xs md:text-sm tracking-wider transition-all disabled:opacity-80 active:scale-95 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]"
+              className="relative overflow-hidden w-full flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-6 h-14 rounded-lg font-bold uppercase text-sm md:text-base tracking-wider transition-all disabled:opacity-80 active:scale-95 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]"
             >
               {!isLoading && (
                 <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
@@ -289,8 +303,7 @@ const BeforeAfter: React.FC = () => {
               ))}
 
               <span className="relative z-30 flex items-center gap-2 whitespace-nowrap">
-                {/* Texto alterado conforme feedback */}
-                {isLoading ? 'Carregando...' : 'VER RESULTADOS REAIS'}
+                {isLoading ? 'Carregando...' : 'Ver Mais Resultados Reais'}
                 {!isLoading && (
                   <div className="animate-call-arrow">
                     <ChevronRight size={18} />
