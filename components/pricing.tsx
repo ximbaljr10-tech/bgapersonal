@@ -151,7 +151,7 @@ const Pricing: React.FC = () => {
                  </li>
                  <li className="flex items-start gap-3 text-sm text-neutral-400">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>1 Nutricional Bônus</span>
+                     <span>Treinos Para Sua Rotina</span>
                  </li>
                  <li className="flex items-start gap-3 text-sm text-neutral-400">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
