@@ -3,7 +3,7 @@ import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, A
 
 // --- CONFIGURAÇÃO ---
 // Coloque seu número aqui (ex: 5511999999999)
-const WHATSAPP_NUMBER = "5511999999999"; 
+const WHATSAPP_NUMBER = "556881155392"; 
 
 interface PlanData {
   name: string;
@@ -387,7 +387,7 @@ const Pricing: React.FC = () => {
                     paymentMethod === 'pix' ? 'bg-green-500 hover:bg-green-400 text-black shadow-green-500/20' : 'bg-gold-500 hover:bg-gold-400 text-black shadow-gold-500/20'
                 }`}
               >
-                {paymentMethod === 'pix' ? 'Resgatar Desconto no WhatsApp' : 'Ir para Pagamento Seguro'}
+                {paymentMethod === 'pix' ? 'Finalizar no WhatsApp' : 'Ir para Pagamento Seguro'}
                 <ArrowRight size={18} />
               </button>
               
