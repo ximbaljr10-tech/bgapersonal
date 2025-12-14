@@ -290,7 +290,7 @@ const BeforeAfter: React.FC = () => {
 
               <span className="relative z-30 flex items-center gap-2 whitespace-nowrap">
                 {/* Texto alterado conforme feedback */}
-                {isLoading ? 'Carregando...' : 'VER RESULTADOS REAIS'}
+                {isLoading ? 'Carregando...' : 'RESULTADOS REAIS'}
                 {!isLoading && (
                   <div className="animate-call-arrow">
                     <ChevronRight size={18} />
