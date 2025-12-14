@@ -20,9 +20,9 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
-      {/* STYLE INJECTION - ANIMAÇÕES */}
+      {/* STYLE INJECTION - CSS DO BOTÃO NEON ADAPTADO */}
       <style>{`
-        /* Animação do Botão Antes/Depois (Slider) */
+        /* Animações existentes */
         @keyframes revealLoop {
           0% { width: 0%; }
           45% { width: 100%; }
@@ -38,39 +38,90 @@ const Hero: React.FC = () => {
         .animate-reveal { animation: revealLoop 4s infinite ease-in-out alternate; }
         .animate-slider { animation: sliderLoop 4s infinite ease-in-out alternate; }
 
-        /* --- NOVA ANIMAÇÃO "RIPPLE" (MULTIPLE RADAR) --- */
-        @keyframes pulse-ring {
-          0% {
-            transform: scale(0.95);
-            opacity: 0.7; /* Começa visível */
-            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); /* Dourado */
-          }
-          70% {
-            transform: scale(1);
-            opacity: 0; /* Desaparece */
-            box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); /* Borda expande e some */
-          }
-          100% {
-            transform: scale(0.95);
-            opacity: 0;
-            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-          }
-        }
-        
-        @keyframes ripple-wave {
-          0% {
-            transform: scale(1);
-            opacity: 0.8;
-          }
-          100% {
-            transform: scale(1.5); /* Expande 50% além do botão */
-            opacity: 0;
-          }
+        /* --- NOVO ESTILO DO BOTÃO NEON FLOW --- */
+        .neon-btn {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s;
+          /* Gradiente Dourado de Fundo */
+          background: linear-gradient(to left top, #d4af37 50%, #c5a028 50%); 
+          box-shadow: 0px 1px 2px rgba(0,0,0,.2);
         }
 
-        .animate-ripple-1 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1); }
-        .animate-ripple-2 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1) 0.6s; } /* Delay */
-        .animate-ripple-3 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1) 1.2s; } /* Delay maior */
+        .neon-btn:hover {
+          transform: rotate(-3deg) scale(1.1);
+          box-shadow: 0px 10px 20px rgba(212, 175, 55, 0.4); /* Sombra Dourada */
+          z-index: 50;
+        }
+
+        .neon-btn span {
+          position: absolute;
+          display: block;
+        }
+
+        /* Linha Superior */
+        .neon-btn span:nth-child(1) {
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(to right, transparent, #fff);
+          animation: btn-anim1 2s linear infinite;
+        }
+        @keyframes btn-anim1 {
+          0% { left: -100%; }
+          50%, 100% { left: 100%; }
+        }
+
+        /* Linha Direita */
+        .neon-btn span:nth-child(2) {
+          top: -100%;
+          right: 0;
+          width: 3px;
+          height: 100%;
+          background: linear-gradient(to bottom, transparent, #fff);
+          animation: btn-anim2 2s linear infinite;
+          animation-delay: 0.5s;
+        }
+        @keyframes btn-anim2 {
+          0% { top: -100%; }
+          50%, 100% { top: 100%; }
+        }
+
+        /* Linha Inferior */
+        .neon-btn span:nth-child(3) {
+          bottom: 0;
+          right: -100%;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(to left, transparent, #fff);
+          animation: btn-anim3 2s linear infinite;
+          animation-delay: 1s;
+        }
+        @keyframes btn-anim3 {
+          0% { right: -100%; }
+          50%, 100% { right: 100%; }
+        }
+
+        /* Linha Esquerda */
+        .neon-btn span:nth-child(4) {
+          bottom: -100%;
+          left: 0;
+          width: 3px;
+          height: 100%;
+          background: linear-gradient(to top, transparent, #fff);
+          animation: btn-anim4 2s linear infinite;
+          animation-delay: 1.5s;
+        }
+        @keyframes btn-anim4 {
+          0% { bottom: -100%; }
+          50%, 100% { bottom: 100%; }
+        }
+
+        /* Pausa a animação das linhas ao passar o mouse (opcional, conforme seu CSS original) */
+        .neon-btn:hover span {
+          animation-play-state: paused;
+        }
       `}</style>
 
       {/* Background Image */}
@@ -112,27 +163,21 @@ const Hero: React.FC = () => {
           {/* BOTÕES */}
           <div className="flex flex-col sm:flex-row gap-8 pt-4 w-full sm:w-auto items-center sm:items-start">
             
-            {/* --- BOTÃO COM EFEITO RIPPLE "MULTIPLE RADAR" --- */}
-            <div className="relative group w-full sm:w-auto flex justify-center sm:justify-start">
+            {/* --- BOTÃO ESTILO NEON FLOW --- */}
+            <a 
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="neon-btn w-full sm:w-auto px-8 py-5 text-black font-bold uppercase tracking-widest text-center flex items-center justify-center gap-2 text-sm md:text-base rounded-sm cursor-pointer"
+            >
+              <span></span> {/* Top Line */}
+              <span></span> {/* Right Line */}
+              <span></span> {/* Bottom Line */}
+              <span></span> {/* Left Line */}
               
-              {/* Onda 1 */}
-              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/40 rounded-sm animate-ripple-1 z-0"></div>
-              {/* Onda 2 (Com atraso) */}
-              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/30 rounded-sm animate-ripple-2 z-0"></div>
-              {/* Onda 3 (Com mais atraso) */}
-              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/20 rounded-sm animate-ripple-3 z-0"></div>
-
-              {/* Botão Físico (Fica por cima das ondas) */}
-              <a 
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-10 px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm"
-              >
-                QUERO A CONDIÇÃO ESPECIAL
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
+              QUERO A CONDIÇÃO ESPECIAL
+              <ArrowRight className="w-5 h-5 relative z-10" />
+            </a>
 
             {/* Botão 2: Antes e Depois */}
             <button 
