@@ -172,7 +172,7 @@ const Pricing: React.FC = () => {
                  {/* GRUPO VIP COM ÍCONE DO WHATSAPP */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <WhatsAppIcon className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
-                     <span className="text-gold-400">Acesso ao Grupo VIP (WhatsApp)</span>
+                     <span className="text-gold-400">Acesso ao Grupo VIP</span>
                  </li>
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
