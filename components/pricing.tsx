@@ -3,14 +3,12 @@ import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, A
 
 // --- CONFIGURAÇÃO ---
 // Coloque seu número aqui (ex: 5511999999999)
-const WHATSAPP_NUMBER = "556881155392"; 
+const WHATSAPP_NUMBER = "5511999999999"; 
 
 interface PlanData {
   name: string;
   price: number;
   originalLink: string;
-  installments: number;       // Novo: Número de parcelas
-  installmentValue: string;   // Novo: Valor da parcela (string para manter formatação exata)
 }
 
 const Pricing: React.FC = () => {
@@ -46,7 +44,7 @@ const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="py-24 bg-neutral-900 relative border-t border-white/5">
-      {/* Estilos para animações */}
+      {/* Estilos para a animação do Modal */}
       <style>{`
         @keyframes modalFadeIn {
           from { opacity: 0; }
@@ -56,32 +54,17 @@ const Pricing: React.FC = () => {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        @keyframes pulseGreen {
-          0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-          70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        @keyframes bounce-slight {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
         .animate-modal-backdrop {
           animation: modalFadeIn 0.3s ease-out forwards;
         }
         .animate-modal-content {
           animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .animate-pulse-green {
-          animation: pulseGreen 2s infinite;
-        }
-        .animate-bounce-slight {
-            animation: bounce-slight 2s infinite;
-        }
       `}</style>
 
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Header */}
+        {/* Header - Investment Theme */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 mb-4 bg-gold-500/10 border border-gold-500/20 px-4 py-1.5 rounded-full">
             <TrendingUp size={14} className="text-gold-500" />
@@ -97,10 +80,10 @@ const Pricing: React.FC = () => {
           </p>
         </div>
 
-        {/* Container - Grid */}
+        {/* Container - Vertical Stack on Mobile, Grid on Desktop */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6 max-w-7xl mx-auto items-center md:items-stretch">
           
-          {/* 1. TRIMESTRAL (Order-3 Mobile) */}
+          {/* 1. TRIMESTRAL (Alterado: Order-3 no mobile para ficar por último) */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-1 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
              
@@ -130,6 +113,7 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
+                 {/* ITEM GRUPO VIP (NEGATIVO/X VERMELHO) */}
                  <li className="flex items-start gap-3 text-sm text-neutral-600 opacity-60">
                      <X className="text-red-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span className="line-through decoration-red-500/30">Acesso ao Grupo VIP (WhatsApp)</span>
@@ -137,20 +121,14 @@ const Pricing: React.FC = () => {
              </ul>
 
              <button 
-                onClick={() => handleOpenModal({ 
-                    name: 'Trimestral', 
-                    price: 697.00, 
-                    installments: 3, 
-                    installmentValue: '248,74', 
-                    originalLink: 'https://sun.eduzz.com/801E5XNNW7' 
-                })}
+                onClick={() => handleOpenModal({ name: 'Trimestral', price: 697.00, originalLink: 'https://sun.eduzz.com/801E5XNNW7' })}
                 className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
              >
                  Selecionar
              </button>
           </div>
 
-          {/* 2. ANUAL (Order-1 Mobile) */}
+          {/* 2. ANUAL (Featured - Order 1 no mobile) */}
           <div className="w-full relative bg-gradient-to-b from-neutral-800 to-black border-2 border-gold-500 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.15)] z-10 flex flex-col order-1 md:order-2 transform md:-translate-y-6">
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold uppercase px-6 py-2 rounded-full tracking-widest shadow-lg flex items-center gap-2 whitespace-nowrap">
                  <Star size={12} fill="black" /> Melhor Valor
@@ -194,20 +172,14 @@ const Pricing: React.FC = () => {
              </ul>
 
              <button 
-                onClick={() => handleOpenModal({ 
-                    name: 'Anual', 
-                    price: 1497.00, 
-                    installments: 12, 
-                    installmentValue: '154,82', 
-                    originalLink: 'https://sun.eduzz.com/79778NXA9E' 
-                })}
+                onClick={() => handleOpenModal({ name: 'Anual', price: 1497.00, originalLink: 'https://sun.eduzz.com/79778NXA9E' })}
                 className="block w-full py-4 text-center bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest text-sm rounded shadow-lg hover:shadow-gold-500/20 transition-all transform hover:-translate-y-1 cursor-pointer"
              >
                  Fazer Investimento VIP
              </button>
           </div>
 
-          {/* 3. SEMESTRAL (Order-2 Mobile) */}
+          {/* 3. SEMESTRAL (Alterado: Order-2 no mobile para ficar no meio) */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-3 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
 
@@ -244,13 +216,7 @@ const Pricing: React.FC = () => {
              </ul>
 
              <button 
-                onClick={() => handleOpenModal({ 
-                    name: 'Semestral', 
-                    price: 997.00, 
-                    installments: 6, 
-                    installmentValue: '187,04', 
-                    originalLink: 'https://sun.eduzz.com/7WXQ3JKO9A' 
-                })}
+                onClick={() => handleOpenModal({ name: 'Semestral', price: 997.00, originalLink: 'https://sun.eduzz.com/7WXQ3JKO9A' })}
                 className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
              >
                  Selecionar
@@ -272,36 +238,39 @@ const Pricing: React.FC = () => {
       {/* --- MODAL DE PAGAMENTO --- */}
       {selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay */}
+          {/* Overlay Escuro (Backdrop) com Animação */}
           <div 
             className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-modal-backdrop"
             onClick={handleCloseModal}
           ></div>
 
-          {/* Conteúdo */}
+          {/* Conteúdo do Modal com Animação Pop */}
           <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-modal-content">
             
-            {/* Header */}
+            {/* Header Modal */}
             <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
               <div>
                 <div className="flex items-center gap-2 text-gold-500 mb-2">
-                 
+                  <Star size={16} fill="currentColor" />
                   <span className="text-xs font-bold uppercase tracking-wider">Passo Final</span>
                 </div>
                 <h3 className="text-xl font-bold text-white">Você está quase lá!</h3>
                 <p className="text-neutral-400 text-sm mt-1">
-                  Plano selecionado: <span className="text-white font-semibold">{selectedPlan.name}</span>
+                  Selecione a forma de pagamento para o plano <span className="text-white font-semibold">{selectedPlan.name}</span>.
                 </p>
               </div>
-              <button onClick={handleCloseModal} className="text-neutral-500 hover:text-white transition-colors">
+              <button 
+                onClick={handleCloseModal}
+                className="text-neutral-500 hover:text-white transition-colors"
+              >
                 <X size={24} />
               </button>
             </div>
 
-            {/* Corpo - Seleção */}
+            {/* Corpo do Modal - Seleção */}
             <div className="p-6 space-y-4">
               
-              {/* CARTÃO */}
+              {/* Opção Cartão / Boleto */}
               <label 
                 className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
                   paymentMethod === 'card' 
@@ -318,67 +287,43 @@ const Pricing: React.FC = () => {
                     <span className="font-bold text-white">Cartão ou Boleto</span>
                     <CreditCard size={18} className="text-neutral-400" />
                   </div>
-                  <p className="text-xs text-neutral-400 mt-1">Parcelamento disponível.</p>
+                  <p className="text-xs text-neutral-400 mt-1">Acesso imediato via checkout seguro.</p>
                 </div>
               </label>
 
-              {/* PIX (Com Animação de Ênfase) */}
+              {/* Opção PIX */}
               <label 
-                className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all relative overflow-hidden ${
+                className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
                   paymentMethod === 'pix' 
                     ? 'border-green-500 bg-green-500/10' 
-                    : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/80 animate-pulse-green'
+                    : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/80'
                 }`}
                 onClick={() => setPaymentMethod('pix')}
               >
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'pix' ? 'border-green-500' : 'border-neutral-500'}`}>
                   {paymentMethod === 'pix' && <div className="w-2.5 h-2.5 rounded-full bg-green-500" />}
                 </div>
-                <div className="flex-1 relative z-10">
+                <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-white">PIX</span>
-                    <div className="flex items-center gap-2">
-                        <span className="animate-bounce-slight bg-green-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
-                            Desconto VIP
-                        </span>
-                        <Smartphone size={18} className="text-neutral-400" />
-                    </div>
+                    <span className="font-bold text-white">PIX <span className="text-green-400 text-xs ml-2 font-normal bg-green-400/10 px-2 py-0.5 rounded">-5% OFF</span></span>
+                    <Smartphone size={18} className="text-neutral-400" />
                   </div>
-                  <p className="text-xs text-neutral-400 mt-1">Use esta opção para ganhar 5% OFF.</p>
+                  <p className="text-xs text-neutral-400 mt-1">Finalize no WhatsApp com desconto.</p>
                 </div>
               </label>
 
             </div>
 
-            {/* Footer - Valores Dinâmicos */}
+            {/* Footer Modal - Ação */}
             <div className="p-6 pt-0">
-              <div className="mb-6 p-4 rounded-lg bg-neutral-800/50 border border-white/5 text-center">
-                
-                {paymentMethod === 'card' ? (
-                    // VISUAL CARTÃO
-                    <div className="animate-modal-backdrop">
-                        <p className="text-neutral-400 text-xs uppercase tracking-widest mb-1">Investimento Parcelado</p>
-                        <div className="flex items-center justify-center gap-1.5">
-                            <span className="text-xl text-gold-500 font-bold">{selectedPlan.installments}x</span>
-                            <span className="text-3xl font-heading font-black text-white">R$ {selectedPlan.installmentValue}</span>
-                        </div>
-                        <p className="text-neutral-500 text-xs mt-2">
-                            ou R$ {selectedPlan.price.toFixed(2).replace('.', ',')} à vista
-                        </p>
-                    </div>
-                ) : (
-                    // VISUAL PIX
-                    <div className="animate-modal-backdrop">
-                        <p className="text-green-400 text-xs uppercase tracking-widest mb-1 font-bold">Valor com Desconto Aplicado</p>
-                        <span className="text-3xl font-heading font-black text-white block">
-                           R$ {(selectedPlan.price * 0.95).toFixed(2).replace('.', ',')}
-                        </span>
-                        <p className="text-green-500/70 text-xs mt-2 font-medium">
-                            Você economiza R$ {(selectedPlan.price * 0.05).toFixed(2).replace('.', ',')}
-                        </p>
-                    </div>
-                )}
-
+              <div className="flex items-center justify-between mb-6 text-sm">
+                <span className="text-neutral-400">Total a pagar:</span>
+                <span className="text-2xl font-bold text-white">
+                  R$ {paymentMethod === 'pix' 
+                    ? (selectedPlan.price * 0.95).toFixed(2).replace('.', ',') 
+                    : selectedPlan.price.toFixed(2).replace('.', ',')
+                  }
+                </span>
               </div>
 
               <button 
@@ -387,12 +332,12 @@ const Pricing: React.FC = () => {
                     paymentMethod === 'pix' ? 'bg-green-500 hover:bg-green-400 text-black shadow-green-500/20' : 'bg-gold-500 hover:bg-gold-400 text-black shadow-gold-500/20'
                 }`}
               >
-                {paymentMethod === 'pix' ? 'Finalizar no WhatsApp' : 'Ir para Pagamento Seguro'}
+                {paymentMethod === 'pix' ? 'Finalizar no WhatsApp' : 'Ir para Pagamento'}
                 <ArrowRight size={18} />
               </button>
               
-              <p className="text-center text-[10px] text-neutral-500 mt-4 flex justify-center items-center gap-1">
-                <ShieldCheck size={10} /> Ambiente criptografado e seguro.
+              <p className="text-center text-[10px] text-neutral-500 mt-4">
+                Ambiente seguro. Seus dados estão protegidos.
               </p>
             </div>
           </div>
