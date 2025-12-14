@@ -95,6 +95,11 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
+                 {/* ITEM GENÉRICO ADICIONADO */}
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Conteúdos Motivacionais</span>
+                 </li>
              </ul>
 
              <button 
@@ -137,6 +142,11 @@ const Pricing: React.FC = () => {
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Zap className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Prioridade Máxima no Suporte</span>
+                 </li>
+                 {/* GRUPO VIP ADICIONADO */}
+                 <li className="flex items-start gap-3 text-sm text-white font-medium">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
@@ -181,6 +191,11 @@ const Pricing: React.FC = () => {
                  <li className="flex items-start gap-3 text-sm text-neutral-400">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
+                 </li>
+                 {/* GRUPO VIP ADICIONADO */}
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
              </ul>
 
