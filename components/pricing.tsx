@@ -2,8 +2,20 @@ import React, { useState } from 'react';
 import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, ArrowRight } from 'lucide-react';
 
 // --- CONFIGURAÇÃO ---
-// Coloque seu número aqui (ex: 5511999999999)
 const WHATSAPP_NUMBER = "5511999999999"; 
+
+// --- ÍCONE CUSTOMIZADO DO WHATSAPP ---
+// (Criado manualmente pois o lucide-react não tem logos de marcas)
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className} 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+  </svg>
+);
 
 interface PlanData {
   name: string;
@@ -17,7 +29,7 @@ const Pricing: React.FC = () => {
 
   const handleOpenModal = (plan: PlanData) => {
     setSelectedPlan(plan);
-    setPaymentMethod('card'); // Reset para cartão ao abrir
+    setPaymentMethod('card'); 
   };
 
   const handleCloseModal = () => {
@@ -28,14 +40,12 @@ const Pricing: React.FC = () => {
     if (!selectedPlan) return;
 
     if (paymentMethod === 'pix') {
-      // PIX - Envia para WhatsApp
       const discountedPrice = (selectedPlan.price * 0.95).toFixed(2).replace('.', ',');
       const message = `Olá! Decidi investir na minha melhor versão. Quero contratar o plano *${selectedPlan.name}* via PIX com 5% de desconto (Valor final: R$ ${discountedPrice}). Como prossigo?`;
       
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     } else {
-      // Cartão/Boleto - Abre link de pagamento
       window.open(selectedPlan.originalLink, '_blank');
     }
     
@@ -44,7 +54,6 @@ const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="py-24 bg-neutral-900 relative border-t border-white/5">
-      {/* Estilos para a animação do Modal */}
       <style>{`
         @keyframes modalFadeIn {
           from { opacity: 0; }
@@ -64,7 +73,7 @@ const Pricing: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Header - Investment Theme */}
+        {/* Header */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 mb-4 bg-gold-500/10 border border-gold-500/20 px-4 py-1.5 rounded-full">
             <TrendingUp size={14} className="text-gold-500" />
@@ -80,10 +89,10 @@ const Pricing: React.FC = () => {
           </p>
         </div>
 
-        {/* Container - Vertical Stack on Mobile, Grid on Desktop */}
+        {/* Container */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6 max-w-7xl mx-auto items-center md:items-stretch">
           
-          {/* 1. TRIMESTRAL (Order-3 no mobile) */}
+          {/* 1. TRIMESTRAL */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-1 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
              
@@ -113,7 +122,6 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 {/* ITEM GRUPO VIP (Mantive como X pois não tem nesse plano) */}
                  <li className="flex items-start gap-3 text-sm text-neutral-600 opacity-60">
                      <X className="text-red-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span className="line-through decoration-red-500/30">Acesso ao Grupo VIP (WhatsApp)</span>
@@ -128,7 +136,7 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
-          {/* 2. ANUAL (Featured - Order 1 no mobile) */}
+          {/* 2. ANUAL */}
           <div className="w-full relative bg-gradient-to-b from-neutral-800 to-black border-2 border-gold-500 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.15)] z-10 flex flex-col order-1 md:order-2 transform md:-translate-y-6">
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold uppercase px-6 py-2 rounded-full tracking-widest shadow-lg flex items-center gap-2 whitespace-nowrap">
                  <Star size={12} fill="black" /> Melhor Valor
@@ -157,14 +165,13 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Treinos Personalizados</span>
                  </li>
-                 {/* PRIORIDADE MAXIMA (Destaque original) */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Zap className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Prioridade Máxima no Suporte</span>
                  </li>
-                 {/* GRUPO VIP (AGORA DESTACADO) */}
+                 {/* GRUPO VIP COM ÍCONE DO WHATSAPP */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
-                     <Star className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <WhatsAppIcon className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
@@ -181,7 +188,7 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
-          {/* 3. SEMESTRAL (Order-2 no mobile) */}
+          {/* 3. SEMESTRAL */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-3 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
 
@@ -211,9 +218,9 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 {/* GRUPO VIP (AGORA DESTACADO) */}
+                 {/* GRUPO VIP COM ÍCONE DO WHATSAPP */}
                  <li className="flex items-start gap-3 text-sm text-white font-bold">
-                     <Star className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <WhatsAppIcon className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
              </ul>
@@ -228,7 +235,7 @@ const Pricing: React.FC = () => {
 
         </div>
 
-        {/* Guarantee Compact */}
+        {/* Guarantee */}
         <div className="mt-16 text-center">
             <div className="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-white/5 bg-black/50">
                  <ShieldCheck size={18} className="text-gold-500" />
@@ -241,16 +248,13 @@ const Pricing: React.FC = () => {
       {/* --- MODAL DE PAGAMENTO --- */}
       {selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay Escuro (Backdrop) com Animação */}
           <div 
             className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-modal-backdrop"
             onClick={handleCloseModal}
           ></div>
 
-          {/* Conteúdo do Modal com Animação Pop */}
           <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-modal-content">
             
-            {/* Header Modal */}
             <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
               <div>
                 <div className="flex items-center gap-2 text-gold-500 mb-2">
@@ -270,10 +274,7 @@ const Pricing: React.FC = () => {
               </button>
             </div>
 
-            {/* Corpo do Modal - Seleção */}
             <div className="p-6 space-y-4">
-              
-              {/* Opção Cartão / Boleto */}
               <label 
                 className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
                   paymentMethod === 'card' 
@@ -294,7 +295,6 @@ const Pricing: React.FC = () => {
                 </div>
               </label>
 
-              {/* Opção PIX */}
               <label 
                 className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
                   paymentMethod === 'pix' 
@@ -317,7 +317,6 @@ const Pricing: React.FC = () => {
 
             </div>
 
-            {/* Footer Modal - Ação */}
             <div className="p-6 pt-0">
               <div className="flex items-center justify-between mb-6 text-sm">
                 <span className="text-neutral-400">Total a pagar:</span>
