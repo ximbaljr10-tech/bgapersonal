@@ -44,6 +44,24 @@ const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="py-24 bg-neutral-900 relative border-t border-white/5">
+      {/* Estilos para a animação do Modal */}
+      <style>{`
+        @keyframes modalFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes modalScaleUp {
+          from { opacity: 0; transform: scale(0.95) translateY(10px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-modal-backdrop {
+          animation: modalFadeIn 0.3s ease-out forwards;
+        }
+        .animate-modal-content {
+          animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
+
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Header - Investment Theme */}
@@ -65,8 +83,8 @@ const Pricing: React.FC = () => {
         {/* Container - Vertical Stack on Mobile, Grid on Desktop */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6 max-w-7xl mx-auto items-center md:items-stretch">
           
-          {/* 1. TRIMESTRAL */}
-          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-1 relative group shadow-lg">
+          {/* 1. TRIMESTRAL (Alterado: Order-3 no mobile para ficar por último) */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-1 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
              
              <div className="mb-6 border-b border-white/10 pb-6">
@@ -95,10 +113,10 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 {/* ITEM GENÉRICO ADICIONADO */}
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Conteúdos Motivacionais</span>
+                 {/* ITEM GRUPO VIP (NEGATIVO/X VERMELHO) */}
+                 <li className="flex items-start gap-3 text-sm text-neutral-600 opacity-60">
+                     <X className="text-red-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span className="line-through decoration-red-500/30">Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
              </ul>
 
@@ -110,7 +128,7 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
-          {/* 2. ANUAL (Featured) */}
+          {/* 2. ANUAL (Featured - Order 1 no mobile) */}
           <div className="w-full relative bg-gradient-to-b from-neutral-800 to-black border-2 border-gold-500 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.15)] z-10 flex flex-col order-1 md:order-2 transform md:-translate-y-6">
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold uppercase px-6 py-2 rounded-full tracking-widest shadow-lg flex items-center gap-2 whitespace-nowrap">
                  <Star size={12} fill="black" /> Melhor Valor
@@ -143,7 +161,6 @@ const Pricing: React.FC = () => {
                      <Zap className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Prioridade Máxima no Suporte</span>
                  </li>
-                 {/* GRUPO VIP ADICIONADO */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Acesso ao Grupo VIP (WhatsApp)</span>
@@ -162,8 +179,8 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
-          {/* 3. SEMESTRAL */}
-          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-3 relative group shadow-lg">
+          {/* 3. SEMESTRAL (Alterado: Order-2 no mobile para ficar no meio) */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-3 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
 
              <div className="mb-6 border-b border-white/10 pb-6">
@@ -192,7 +209,6 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 {/* GRUPO VIP ADICIONADO */}
                  <li className="flex items-start gap-3 text-sm text-neutral-400">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Acesso ao Grupo VIP (WhatsApp)</span>
@@ -222,14 +238,14 @@ const Pricing: React.FC = () => {
       {/* --- MODAL DE PAGAMENTO --- */}
       {selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay Escuro (Backdrop) */}
+          {/* Overlay Escuro (Backdrop) com Animação */}
           <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity"
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-modal-backdrop"
             onClick={handleCloseModal}
           ></div>
 
-          {/* Conteúdo do Modal */}
-          <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden">
+          {/* Conteúdo do Modal com Animação Pop */}
+          <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-modal-content">
             
             {/* Header Modal */}
             <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
