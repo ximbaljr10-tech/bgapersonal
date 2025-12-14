@@ -14,15 +14,15 @@ const Hero: React.FC = () => {
   };
 
   // --- LINK DO WHATSAPP ---
-  // Mensagem codificada: "Olá! Quero mudar de vida aproveitando a condição especial que vi no site."
   const whatsappNumber = "556881155392";
   const whatsappMessage = "Ol%C3%A1!%20Quero%20mudar%20de%20vida%20aproveitando%20a%20condi%C3%A7%C3%A3o%20especial%20que%20vi%20no%20site.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
-      {/* STYLE INJECTION */}
+      {/* STYLE INJECTION - ANIMAÇÕES */}
       <style>{`
+        /* Animação do Botão Antes/Depois (Slider) */
         @keyframes revealLoop {
           0% { width: 0%; }
           45% { width: 100%; }
@@ -37,31 +37,53 @@ const Hero: React.FC = () => {
         }
         .animate-reveal { animation: revealLoop 4s infinite ease-in-out alternate; }
         .animate-slider { animation: sliderLoop 4s infinite ease-in-out alternate; }
+
+        /* --- NOVA ANIMAÇÃO "RIPPLE" (MULTIPLE RADAR) --- */
+        @keyframes pulse-ring {
+          0% {
+            transform: scale(0.95);
+            opacity: 0.7; /* Começa visível */
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); /* Dourado */
+          }
+          70% {
+            transform: scale(1);
+            opacity: 0; /* Desaparece */
+            box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); /* Borda expande e some */
+          }
+          100% {
+            transform: scale(0.95);
+            opacity: 0;
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+          }
+        }
+        
+        @keyframes ripple-wave {
+          0% {
+            transform: scale(1);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(1.5); /* Expande 50% além do botão */
+            opacity: 0;
+          }
+        }
+
+        .animate-ripple-1 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1); }
+        .animate-ripple-2 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1) 0.6s; } /* Delay */
+        .animate-ripple-3 { animation: ripple-wave 2s infinite cubic-bezier(0, 0, 0.2, 1) 1.2s; } /* Delay maior */
       `}</style>
 
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        {/* Mobile Background */}
-        <img 
-          src="/media/hero.png" 
-          alt="Background Mobile" 
-          className="block md:hidden w-full h-full object-cover"
-        />
-        {/* Desktop Background */}
-        <img 
-          src="/media/hero2.png" 
-          alt="Background Desktop" 
-          className="hidden md:block w-full h-full object-cover object-top"
-        />
+        <img src="/media/hero.png" alt="Background Mobile" className="block md:hidden w-full h-full object-cover"/>
+        <img src="/media/hero2.png" alt="Background Desktop" className="hidden md:block w-full h-full object-cover object-top"/>
         
-        {/* Camadas de Contraste */}
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent md:from-black/80 md:via-black/50 md:to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-richblack via-richblack/60 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        {/* Conteúdo Principal */}
         <div className="w-full lg:w-2/3 space-y-4 md:space-y-6 pt-20 pb-10 md:pt-32 md:pb-20 drop-shadow-md">          
           
           {/* Tag */}
@@ -77,12 +99,10 @@ const Hero: React.FC = () => {
             TREINOS <span className="text-gold-gradient drop-shadow-sm">PERSONALIZADOS</span> PARA O SEU OBJETIVO
           </h1>
           
-          {/* Texto de Apoio (Metodologia) */}
           <p className="text-base md:text-xl text-neutral-200 font-medium max-w-lg leading-relaxed">
             Eu não envio apenas treinos seja online ou presencial. Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
           </p>
 
-          {/* BOX DE CONDIÇÃO ESPECIAL (EFEITO VIDRO) */}
           <div className="max-w-lg bg-black/40 backdrop-blur-md border border-white/10 border-l-4 border-l-gold-500 p-4 rounded-r-lg shadow-lg">
             <p className="text-sm md:text-base text-white font-medium leading-snug drop-shadow-md">
               Para isso, temos uma <span className="text-gold-400 font-bold uppercase">condição especial</span> pra você na nossa consultoria. Clique abaixo e fale conosco.
@@ -90,26 +110,29 @@ const Hero: React.FC = () => {
           </div>
 
           {/* BOTÕES */}
-          <div className="flex flex-col sm:flex-row gap-6 pt-2 w-full sm:w-auto items-center sm:items-start">
+          <div className="flex flex-col sm:flex-row gap-8 pt-4 w-full sm:w-auto items-center sm:items-start">
             
-            {/* Botão 1: Principal - COM EFEITO DE BORDAS EXPANDINDO */}
-            <a 
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group w-full sm:w-auto"
-            >
-              {/* Onda 1 (Ping Lento) */}
-              <span className="absolute inset-0 rounded-sm border-2 border-gold-500 opacity-75 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
-              {/* Onda 2 (Ping com Delay) */}
-              <span className="absolute inset-0 rounded-sm border border-gold-400 opacity-50 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] delay-300"></span>
+            {/* --- BOTÃO COM EFEITO RIPPLE "MULTIPLE RADAR" --- */}
+            <div className="relative group w-full sm:w-auto flex justify-center sm:justify-start">
+              
+              {/* Onda 1 */}
+              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/40 rounded-sm animate-ripple-1 z-0"></div>
+              {/* Onda 2 (Com atraso) */}
+              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/30 rounded-sm animate-ripple-2 z-0"></div>
+              {/* Onda 3 (Com mais atraso) */}
+              <div className="absolute top-0 left-0 w-full h-full bg-gold-500/20 rounded-sm animate-ripple-3 z-0"></div>
 
-              {/* Botão Real */}
-              <div className="relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm z-10">
+              {/* Botão Físico (Fica por cima das ondas) */}
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm"
+              >
                 QUERO A CONDIÇÃO ESPECIAL
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
+              </a>
+            </div>
 
             {/* Botão 2: Antes e Depois */}
             <button 
@@ -117,8 +140,6 @@ const Hero: React.FC = () => {
               className="relative px-8 py-4 bg-black/60 border border-white/30 text-white font-bold uppercase tracking-widest overflow-hidden group w-full sm:w-auto h-[56px] flex items-center justify-center text-sm md:text-base cursor-pointer hover:border-white/50 transition-colors rounded-sm backdrop-blur-sm"
             >
               <span className="relative z-10 whitespace-nowrap">Ver Antes e Depois</span>
-              
-              {/* Animação do botão */}
               <div className="absolute inset-0 bg-white z-20 overflow-hidden animate-reveal left-0 pointer-events-none">
                   <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                      <span className="text-black whitespace-nowrap font-bold tracking-widest uppercase px-8">Ver Antes e Depois</span>
@@ -128,7 +149,6 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          {/* Features */}
           <div className="pt-6 flex flex-wrap gap-3 text-xs md:text-sm text-neutral-300 font-medium opacity-80">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="text-gold-500 w-4 h-4" />
