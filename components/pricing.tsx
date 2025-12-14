@@ -285,7 +285,7 @@ const Pricing: React.FC = () => {
             <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
               <div>
                 <div className="flex items-center gap-2 text-gold-500 mb-2">
-                  <Star size={16} fill="currentColor" />
+                 
                   <span className="text-xs font-bold uppercase tracking-wider">Passo Final</span>
                 </div>
                 <h3 className="text-xl font-bold text-white">Você está quase lá!</h3>
