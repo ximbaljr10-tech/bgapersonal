@@ -119,7 +119,7 @@ const Evaluation: React.FC = () => {
                 </span>
 
                 <a 
-                   href="https://wa.me/556881155392?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20minha%20avalia%C3%A7%C3%A3o%20biomec%C3%A2nica%20online%20com%20a%20condi%C3%A7%C3%A3o%20especial." 
+                   href="https://wa.me/556881155392?text=Gostaria%20de%20garantir%20o%20plano%20on-line%20e%20mandar%20as%20fotos%20para%20avalia%C3%A7%C3%A3o%20com%20garantindo%20a%20condi%C3%A7%C3%A3o%20especial."
                    target="_blank"
                    rel="noopener noreferrer"
                    className="group relative w-full flex items-center justify-center gap-3 bg-gold-500 text-black font-black uppercase tracking-widest py-4 rounded-lg shadow-[0_0_25px_rgba(212,175,55,0.4)] overflow-hidden transform transition-all hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(212,175,55,0.6)] active:scale-95"
