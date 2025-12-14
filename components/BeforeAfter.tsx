@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronRight, GripVertical, Layers } from 'lucide-react';
+import { ChevronRight, GripVertical, Hand } from 'lucide-react'; // Removi 'Layers' pois não será mais usado
 
 const BeforeAfter: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -7,6 +7,7 @@ const BeforeAfter: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [ripples, setRipples] = useState<{x: number, y: number, id: number}[]>([]);
   
+  // Estado para controlar a animação automática
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -20,21 +21,21 @@ const BeforeAfter: React.FC = () => {
     {
       before: "/media/before5.png",
       after: "/media/after5.png",
-      label: "Definição Muscular"
+      label: "Definição"
     },
     {
       before: "https://i.postimg.cc/14x0kqNR/3.png",
       after: "https://i.postimg.cc/xqrGwzbT/4.png",
-      label: "Transformação Corporal"
+      label: "Emagrecimento"
     },
     {
       before: "https://i.postimg.cc/Th8jzDWP/1.png",
       after: "https://i.postimg.cc/7bv1F2TH/2.png",
-      label: "Emagrecimento Real"
+      label: "Emagrecimento"
     }
   ];
 
-  // Auto-animação
+  // --- LÓGICA DE AUTO-ANIMAÇÃO (DEMO MODE) ---
   useEffect(() => {
     const animate = () => {
       if (isAutoPlaying && !isDragging && !isLoading) {
@@ -52,12 +53,14 @@ const BeforeAfter: React.FC = () => {
     };
   }, [isAutoPlaying, isDragging, isLoading]);
 
+  // Função chamada quando o usuário INTERAGE (toca ou clica)
   const handleInteractionStart = () => {
     setIsAutoPlaying(false);
     setIsDragging(true);
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
   };
 
+  // Função chamada quando o usuário SOLTA
   const handleInteractionEnd = () => {
     setIsDragging(false);
     if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current);
@@ -65,6 +68,8 @@ const BeforeAfter: React.FC = () => {
       setIsAutoPlaying(true);
     }, 4000);
   };
+
+  // --- LÓGICA DE MOVIMENTO E CLIQUE (MANTIDA) ---
 
   const createRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget;
@@ -82,6 +87,7 @@ const BeforeAfter: React.FC = () => {
     if (isLoading) return;
     createRipple(e);
     setIsLoading(true);
+    
     setIsAutoPlaying(false);
 
     setTimeout(() => {
@@ -174,13 +180,18 @@ const BeforeAfter: React.FC = () => {
         .animate-call-arrow {
           animation: arrow-bounce-x 1s infinite ease-in-out;
         }
+        
+        @keyframes hand-nudge {
+          0%, 100% { transform: translateX(0) scale(1); }
+          50% { transform: translateX(-5px) scale(0.95); }
+        }
+        .animate-hand { animation: hand-nudge 2s infinite ease-in-out; }
       `}</style>
 
       <div className="container mx-auto px-4 relative z-10">
         
         {/* HEADER TEXT */}
         <div className="mb-10 text-left md:text-center max-w-3xl mx-auto">
-          
           <h2 className="text-2xl md:text-4xl font-heading font-black text-white mb-4 leading-tight">
             ELAS SEGUIRAM O PROTOCOLO. <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600 block md:inline mt-1 md:mt-0">
@@ -198,7 +209,7 @@ const BeforeAfter: React.FC = () => {
           </div>
         </div>
 
-        {/* SLIDER COMPONENT */}
+        {/* COMPONENTE DO SLIDER */}
         <div className="max-w-md md:max-w-2xl mx-auto">
           <div 
             ref={containerRef}
@@ -224,12 +235,12 @@ const BeforeAfter: React.FC = () => {
             {/* IMAGENS */}
             <div className="absolute inset-0">
                <img src={cases[activeCase].after} alt="Depois" className="w-full h-full object-cover pointer-events-none" />
-               <div className="absolute top-4 right-4 bg-gold-500 text-black font-bold text-xs px-3 py-1.5 rounded-md shadow-lg">DEPOIS</div>
+               <div className="absolute top-4 right-4 bg-gold-500 text-black font-bold text-xs px-2 py-1 rounded-sm z-10">DEPOIS</div>
             </div>
 
             <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}>
               <img src={cases[activeCase].before} alt="Antes" className="w-full h-full object-cover pointer-events-none" />
-               <div className="absolute top-4 left-4 bg-white/90 text-black font-bold text-xs px-3 py-1.5 rounded-md shadow-lg">ANTES</div>
+               <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-xs px-2 py-1 rounded-sm z-10">ANTES</div>
             </div>
 
             {/* SLIDER HANDLE */}
@@ -237,35 +248,31 @@ const BeforeAfter: React.FC = () => {
               className={`absolute top-0 bottom-0 w-1 bg-gold-500 cursor-ew-resize z-20 flex items-center justify-center shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`} 
               style={{ left: `${sliderPosition}%` }}
             >
-              <div className="relative w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center shadow-lg border-2 border-black">
-                <GripVertical size={18} className="text-black" />
+              <div className="relative w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center shadow-lg border-2 border-black">
+                <GripVertical size={16} className="text-black" />
+                
+                {isAutoPlaying && !isLoading && (
+                  <div className="absolute top-6 left-1/2 -translate-x-1/2 pointer-events-none animate-hand z-30 drop-shadow-lg">
+                      <Hand className="text-white fill-white/20 rotate-12 w-8 h-8 md:w-10 md:h-10 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" strokeWidth={1.5} />
+                  </div>
+                )}
+
               </div>
             </div>
             
-            {/* LABEL NA PARTE INFERIOR - SEM INDICADORES */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-16 pointer-events-none z-10">
-               <p className="text-white font-bold text-lg md:text-xl uppercase drop-shadow-lg tracking-wide">
-                 {cases[activeCase].label}
-               </p>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-12 pointer-events-none z-10">
+               <p className="text-white font-bold text-lg uppercase drop-shadow-md">{cases[activeCase].label}</p>
             </div>
           </div>
 
-          {/* CONTROLES */}
-          <div className="mt-6 flex items-center justify-between w-full gap-4">
-            <div className="flex-1 flex items-center gap-3 bg-neutral-900 border border-white/10 px-4 h-14 rounded-lg overflow-hidden">
-              <Layers className="text-gold-500 w-5 h-5 shrink-0" />
-              <div className="flex flex-col justify-center overflow-hidden">
-                <span className="text-[10px] text-neutral-500 uppercase font-bold tracking-wider leading-tight">Caso</span>
-                <span className="text-white font-bold text-sm leading-tight truncate">
-                  {activeCase + 1} <span className="text-neutral-600">/ {cases.length}</span>
-                </span>
-              </div>
-            </div>
-
+      
+          {/* CONTROLES ATUALIZADOS */}
+          <div className="mt-6 w-full">
             <button 
               onClick={handleNextClick}
               disabled={isLoading}
-              className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-4 h-14 rounded-lg font-bold uppercase text-xs md:text-sm tracking-wider transition-all disabled:opacity-80 active:scale-95 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]"
+              // mudei de flex-1 para w-full para preencher todo o espaço
+              className="relative w-full overflow-hidden flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-400 text-black px-4 h-14 rounded-lg font-bold uppercase text-xs md:text-sm tracking-wider transition-all disabled:opacity-80 active:scale-95 shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]"
             >
               {!isLoading && (
                 <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
@@ -282,7 +289,8 @@ const BeforeAfter: React.FC = () => {
               ))}
 
               <span className="relative z-30 flex items-center gap-2 whitespace-nowrap">
-                {isLoading ? 'Carregando...' : 'Próximo Resultado'}
+                {/* Texto alterado conforme feedback */}
+                {isLoading ? 'Carregando...' : 'VER RESULTADOS REAIS'}
                 {!isLoading && (
                   <div className="animate-call-arrow">
                     <ChevronRight size={18} />
