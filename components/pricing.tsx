@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone } from 'lucide-react';
+import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, ArrowRight } from 'lucide-react';
 
 // --- CONFIGURAÇÃO ---
 // Coloque seu número aqui (ex: 5511999999999)
@@ -13,34 +13,34 @@ interface PlanData {
 
 const Pricing: React.FC = () => {
   const [selectedPlan, setSelectedPlan] = useState<PlanData | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'pix'>('card');
 
   const handleOpenModal = (plan: PlanData) => {
     setSelectedPlan(plan);
+    setPaymentMethod('card'); // Reset para cartão ao abrir
   };
 
   const handleCloseModal = () => {
     setSelectedPlan(null);
   };
 
-  const handlePixPayment = () => {
+  const handleFinishPurchase = () => {
     if (!selectedPlan) return;
+
+    if (paymentMethod === 'pix') {
+      // PIX - Envia para WhatsApp
+      const discountedPrice = (selectedPlan.price * 0.95).toFixed(2).replace('.', ',');
+      const message = `Olá! Decidi investir na minha melhor versão. Quero contratar o plano *${selectedPlan.name}* via PIX com 5% de desconto (Valor final: R$ ${discountedPrice}). Como prossigo?`;
+      
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    } else {
+      // Cartão/Boleto - Abre link de pagamento
+      window.open(selectedPlan.originalLink, '_blank');
+    }
     
-    const discountedPrice = (selectedPlan.price * 0.95).toFixed(2).replace('.', ',');
-    const message = `Olá! Decidi investir na minha melhor versão. Quero contratar o plano *${selectedPlan.name}* via PIX com 5% de desconto (Valor final: R$ ${discountedPrice}). Como prossigo?`;
-    
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
     handleCloseModal();
   };
-
-  const handleCardPayment = () => {
-    if (!selectedPlan) return;
-    window.open(selectedPlan.originalLink, '_blank');
-    handleCloseModal();
-  };
-
-  // Calcula valor com desconto para mostrar no modal
-  const discountValue = selectedPlan ? (selectedPlan.price * 0.95).toFixed(2).replace('.', ',') : '0,00';
 
   return (
     <section id="pricing" className="py-24 bg-neutral-900 relative border-t border-white/5">
@@ -204,17 +204,17 @@ const Pricing: React.FC = () => {
 
       </div>
 
-{/* --- MODAL DE PAGAMENTO --- */}
+      {/* --- MODAL DE PAGAMENTO --- */}
       {selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Overlay Escuro (Backdrop) */}
           <div 
             className="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity"
-            onClick={() => setSelectedPlan(null)} // Fecha ao clicar fora
+            onClick={handleCloseModal}
           ></div>
 
           {/* Conteúdo do Modal */}
-          <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-in fade-in zoom-in duration-200">
+          <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden">
             
             {/* Header Modal */}
             <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
@@ -229,7 +229,7 @@ const Pricing: React.FC = () => {
                 </p>
               </div>
               <button 
-                onClick={() => setSelectedPlan(null)}
+                onClick={handleCloseModal}
                 className="text-neutral-500 hover:text-white transition-colors"
               >
                 <X size={24} />
@@ -275,7 +275,7 @@ const Pricing: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-white">PIX <span className="text-green-400 text-xs ml-2 font-normal bg-green-400/10 px-2 py-0.5 rounded">-5% OFF</span></span>
-                    <QrCode size={18} className="text-neutral-400" />
+                    <Smartphone size={18} className="text-neutral-400" />
                   </div>
                   <p className="text-xs text-neutral-400 mt-1">Finalize no WhatsApp com desconto.</p>
                 </div>
