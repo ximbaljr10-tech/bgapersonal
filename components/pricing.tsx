@@ -204,75 +204,109 @@ const Pricing: React.FC = () => {
 
       </div>
 
-      {/* --- PAYMENT MODAL --- */}
+{/* --- MODAL DE PAGAMENTO --- */}
       {selectedPlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={handleCloseModal}></div>
-          
-          <div className="relative bg-neutral-900 border border-white/10 rounded-2xl w-full max-w-md p-8 shadow-2xl animate-fade-in-up">
-            <button 
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors"
-            >
-              <X size={20} />
-            </button>
+          {/* Overlay Escuro (Backdrop) */}
+          <div 
+            className="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity"
+            onClick={() => setSelectedPlan(null)} // Fecha ao clicar fora
+          ></div>
 
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-bold text-white mb-2">Finalizar Investimento</h3>
-              <p className="text-gold-500 text-xs font-bold uppercase tracking-widest mb-4">
-                Plano {selectedPlan.name}
-              </p>
-              <p className="text-neutral-400 text-sm leading-relaxed">
-                Você está a um passo de mudar sua vida. <br/> Escolha como prefere começar:
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              {/* Option 1: PIX */}
-              <button 
-                onClick={handlePixPayment}
-                className="group w-full bg-gold-500/10 hover:bg-gold-500 border border-gold-500/50 hover:border-gold-500 p-4 rounded-xl flex items-center justify-between transition-all duration-300"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="bg-gold-500/20 group-hover:bg-black/20 p-2 rounded-lg transition-colors">
-                    <Smartphone size={24} className="text-gold-500 group-hover:text-black transition-colors" />
-                  </div>
-                  <div className="text-left">
-                    <span className="block text-white group-hover:text-black font-bold uppercase tracking-wide text-sm transition-colors">
-                      Pagar via PIX
-                    </span>
-                    <span className="block text-gold-500 group-hover:text-black/70 text-xs font-medium transition-colors">
-                      Economize 5% (R$ {discountValue})
-                    </span>
-                  </div>
-                </div>
-                <div className="bg-gold-500 text-black text-[10px] font-bold px-2 py-1 rounded group-hover:bg-black group-hover:text-gold-500 transition-colors">
-                  -5% OFF
-                </div>
-              </button>
-
-              {/* Option 2: Card/Boleto */}
-              <button 
-                onClick={handleCardPayment}
-                className="group w-full bg-transparent hover:bg-neutral-800 border border-white/10 hover:border-white/30 p-4 rounded-xl flex items-center gap-4 transition-all duration-300"
-              >
-                 <div className="bg-white/5 group-hover:bg-white/10 p-2 rounded-lg transition-colors">
-                    <CreditCard size={24} className="text-neutral-400 group-hover:text-white transition-colors" />
-                 </div>
-                 <div className="text-left">
-                    <span className="block text-neutral-300 group-hover:text-white font-bold uppercase tracking-wide text-sm">
-                      Cartão ou Boleto
-                    </span>
-                    <span className="block text-neutral-500 group-hover:text-neutral-400 text-xs">
-                      Checkout seguro via Eduzz
-                    </span>
-                 </div>
-              </button>
-            </div>
+          {/* Conteúdo do Modal */}
+          <div className="bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-in fade-in zoom-in duration-200">
             
-            <div className="mt-6 text-center">
-              <p className="text-neutral-600 text-[10px] uppercase tracking-widest">
-                Ambiente Seguro & Criptografado
+            {/* Header Modal */}
+            <div className="p-6 border-b border-white/5 flex justify-between items-start bg-neutral-800/50">
+              <div>
+                <div className="flex items-center gap-2 text-gold-500 mb-2">
+                  <Star size={16} fill="currentColor" />
+                  <span className="text-xs font-bold uppercase tracking-wider">Passo Final</span>
+                </div>
+                <h3 className="text-xl font-bold text-white">Você está quase lá!</h3>
+                <p className="text-neutral-400 text-sm mt-1">
+                  Selecione a forma de pagamento para o plano <span className="text-white font-semibold">{selectedPlan.name}</span>.
+                </p>
+              </div>
+              <button 
+                onClick={() => setSelectedPlan(null)}
+                className="text-neutral-500 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Corpo do Modal - Seleção */}
+            <div className="p-6 space-y-4">
+              
+              {/* Opção Cartão / Boleto */}
+              <label 
+                className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
+                  paymentMethod === 'card' 
+                    ? 'border-gold-500 bg-gold-500/10' 
+                    : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/80'
+                }`}
+                onClick={() => setPaymentMethod('card')}
+              >
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'card' ? 'border-gold-500' : 'border-neutral-500'}`}>
+                  {paymentMethod === 'card' && <div className="w-2.5 h-2.5 rounded-full bg-gold-500" />}
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-white">Cartão ou Boleto</span>
+                    <CreditCard size={18} className="text-neutral-400" />
+                  </div>
+                  <p className="text-xs text-neutral-400 mt-1">Acesso imediato via checkout seguro.</p>
+                </div>
+              </label>
+
+              {/* Opção PIX */}
+              <label 
+                className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
+                  paymentMethod === 'pix' 
+                    ? 'border-green-500 bg-green-500/10' 
+                    : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/80'
+                }`}
+                onClick={() => setPaymentMethod('pix')}
+              >
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'pix' ? 'border-green-500' : 'border-neutral-500'}`}>
+                  {paymentMethod === 'pix' && <div className="w-2.5 h-2.5 rounded-full bg-green-500" />}
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-white">PIX <span className="text-green-400 text-xs ml-2 font-normal bg-green-400/10 px-2 py-0.5 rounded">-5% OFF</span></span>
+                    <QrCode size={18} className="text-neutral-400" />
+                  </div>
+                  <p className="text-xs text-neutral-400 mt-1">Finalize no WhatsApp com desconto.</p>
+                </div>
+              </label>
+
+            </div>
+
+            {/* Footer Modal - Ação */}
+            <div className="p-6 pt-0">
+              <div className="flex items-center justify-between mb-6 text-sm">
+                <span className="text-neutral-400">Total a pagar:</span>
+                <span className="text-2xl font-bold text-white">
+                  R$ {paymentMethod === 'pix' 
+                    ? (selectedPlan.price * 0.95).toFixed(2).replace('.', ',') 
+                    : selectedPlan.price.toFixed(2).replace('.', ',')
+                  }
+                </span>
+              </div>
+
+              <button 
+                onClick={handleFinishPurchase}
+                className={`w-full py-4 rounded-xl font-bold uppercase tracking-wide flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 ${
+                    paymentMethod === 'pix' ? 'bg-green-500 hover:bg-green-400 text-black shadow-green-500/20' : 'bg-gold-500 hover:bg-gold-400 text-black shadow-gold-500/20'
+                }`}
+              >
+                {paymentMethod === 'pix' ? 'Finalizar no WhatsApp' : 'Ir para Pagamento'}
+                <ArrowRight size={18} />
+              </button>
+              
+              <p className="text-center text-[10px] text-neutral-500 mt-4">
+                Ambiente seguro. Seus dados estão protegidos.
               </p>
             </div>
           </div>
