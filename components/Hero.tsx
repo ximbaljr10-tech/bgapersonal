@@ -13,6 +13,12 @@ const Hero: React.FC = () => {
     }
   };
 
+  // --- LINK DO WHATSAPP ---
+  // Mensagem codificada: "Olá! Quero mudar de vida aproveitando a condição especial que vi no site."
+  const whatsappNumber = "556881155392";
+  const whatsappMessage = "Ol%C3%A1!%20Quero%20mudar%20de%20vida%20aproveitando%20a%20condi%C3%A7%C3%A3o%20especial%20que%20vi%20no%20site.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
   return (
     <section id="home" className="relative min-h-[600px] lg:min-h-screen flex flex-col justify-end pb-20 md:justify-center bg-richblack overflow-hidden">      
       {/* STYLE INJECTION */}
@@ -76,11 +82,7 @@ const Hero: React.FC = () => {
             Eu não envio apenas treinos seja online ou presencial. Meu trabalho começa com uma <strong className="text-white">avaliação técnica detalhada</strong> para identificar exatamente o que você precisa.
           </p>
 
-             {/* --- NOVO TEXTO DE CONDIÇÃO ESPECIAL (EFEITO VIDRO) --- */}
-          {/* bg-black/40: Fundo preto com 40% de opacidade (transparente)
-              backdrop-blur-md: O "efeito vidro fosco" que embaça o que está atrás
-              border-white/10: Uma borda bem sutil para delimitar o vidro
-          */}
+          {/* BOX DE CONDIÇÃO ESPECIAL (EFEITO VIDRO) */}
           <div className="max-w-lg bg-black/40 backdrop-blur-md border border-white/10 border-l-4 border-l-gold-500 p-4 rounded-r-lg shadow-lg">
             <p className="text-sm md:text-base text-white font-medium leading-snug drop-shadow-md">
               Para isso, temos uma <span className="text-gold-400 font-bold uppercase">condição especial</span> pra você na nossa consultoria. Clique abaixo e fale conosco.
@@ -88,17 +90,25 @@ const Hero: React.FC = () => {
           </div>
 
           {/* BOTÕES */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-6 pt-2 w-full sm:w-auto items-center sm:items-start">
             
-            {/* Botão 1: Principal - ATUALIZADO */}
+            {/* Botão 1: Principal - COM EFEITO DE BORDAS EXPANDINDO */}
             <a 
-              href="https://wa.me/556881155392?text=Ol%C3%A1!%20Vi%20no%20site%20sobre%20a%20condi%C3%A7%C3%A3o%20especial%20da%20consultoria%20e%20quero%20saber%20mais."
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm"
+              className="relative group w-full sm:w-auto"
             >
-              QUERO A CONDIÇÃO ESPECIAL
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              {/* Onda 1 (Ping Lento) */}
+              <span className="absolute inset-0 rounded-sm border-2 border-gold-500 opacity-75 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
+              {/* Onda 2 (Ping com Delay) */}
+              <span className="absolute inset-0 rounded-sm border border-gold-400 opacity-50 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] delay-300"></span>
+
+              {/* Botão Real */}
+              <div className="relative px-6 py-4 bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base whitespace-nowrap rounded-sm z-10">
+                QUERO A CONDIÇÃO ESPECIAL
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
             </a>
 
             {/* Botão 2: Antes e Depois */}
@@ -110,9 +120,9 @@ const Hero: React.FC = () => {
               
               {/* Animação do botão */}
               <div className="absolute inset-0 bg-white z-20 overflow-hidden animate-reveal left-0 pointer-events-none">
-                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                    <span className="text-black whitespace-nowrap font-bold tracking-widest uppercase px-8">Ver Antes e Depois</span>
-                 </div>
+                  <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                     <span className="text-black whitespace-nowrap font-bold tracking-widest uppercase px-8">Ver Antes e Depois</span>
+                  </div>
               </div>
               <div className="absolute top-0 bottom-0 w-[2px] bg-gold-500 z-30 shadow-[0_0_10px_#d4af37] animate-slider pointer-events-none"></div>
             </button>
