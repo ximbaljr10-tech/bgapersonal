@@ -83,7 +83,7 @@ const Pricing: React.FC = () => {
         {/* Container - Vertical Stack on Mobile, Grid on Desktop */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6 max-w-7xl mx-auto items-center md:items-stretch">
           
-          {/* 1. TRIMESTRAL (Alterado: Order-3 no mobile para ficar por último) */}
+          {/* 1. TRIMESTRAL (Order-3 no mobile) */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-1 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
              
@@ -113,7 +113,7 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 {/* ITEM GRUPO VIP (NEGATIVO/X VERMELHO) */}
+                 {/* ITEM GRUPO VIP (Mantive como X pois não tem nesse plano) */}
                  <li className="flex items-start gap-3 text-sm text-neutral-600 opacity-60">
                      <X className="text-red-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span className="line-through decoration-red-500/30">Acesso ao Grupo VIP (WhatsApp)</span>
@@ -157,13 +157,15 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Treinos Personalizados</span>
                  </li>
+                 {/* PRIORIDADE MAXIMA (Destaque original) */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Zap className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
                      <span className="text-gold-400">Prioridade Máxima no Suporte</span>
                  </li>
+                 {/* GRUPO VIP (AGORA DESTACADO) */}
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Acesso ao Grupo VIP (WhatsApp)</span>
+                     <Star className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <span className="text-gold-400">Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
                  <li className="flex items-start gap-3 text-sm text-white font-medium">
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
@@ -179,7 +181,7 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
-          {/* 3. SEMESTRAL (Alterado: Order-2 no mobile para ficar no meio) */}
+          {/* 3. SEMESTRAL (Order-2 no mobile) */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-3 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
 
@@ -209,9 +211,10 @@ const Pricing: React.FC = () => {
                      <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
                      <span>Suporte via WhatsApp</span>
                  </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Acesso ao Grupo VIP (WhatsApp)</span>
+                 {/* GRUPO VIP (AGORA DESTACADO) */}
+                 <li className="flex items-start gap-3 text-sm text-white font-bold">
+                     <Star className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <span className="text-gold-400">Acesso ao Grupo VIP (WhatsApp)</span>
                  </li>
              </ul>
 
