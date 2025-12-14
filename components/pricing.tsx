@@ -3,7 +3,7 @@ import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, A
 
 // --- CONFIGURAÇÃO ---
 // Coloque seu número aqui (ex: 5511999999999)
-const WHATSAPP_NUMBER = "5511999999999"; 
+const WHATSAPP_NUMBER = "556881155392"; 
 
 interface PlanData {
   name: string;
