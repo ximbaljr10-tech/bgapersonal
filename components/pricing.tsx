@@ -1,75 +1,52 @@
 import React, { useState } from 'react';
-import { Check, TrendingUp, X, CreditCard, QrCode, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
+import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone } from 'lucide-react';
 
-// Dados para configuração (Links e Preços)
-const PHONE_NUMBER = "5500000000000"; // SEU WHATSAPP AQUI
+// --- CONFIGURAÇÃO ---
+// Coloque seu número aqui (ex: 5511999999999)
+const WHATSAPP_NUMBER = "5511999999999"; 
 
-const plansData = [
-  {
-    id: 'trimestral',
-    title: 'TRIMESTRAL',
-    price: '297',
-    priceNumber: 297,
-    period: '/trimestre',
-    description: 'A porta de entrada para sua mudança.',
-    features: ['Acesso por 3 meses', 'Treinos em PDF', 'Suporte básico'],
-    linkCheckout: 'https://seulink.com/trimestral',
-    isHighlight: false
-  },
-  {
-    id: 'anual',
-    title: 'ANUAL',
-    price: '497',
-    priceNumber: 497,
-    period: '/ano',
-    description: 'O melhor custo-benefício para resultados reais.',
-    features: ['Acesso por 1 ano', 'Suporte WhatsApp VIP', 'Mentoria Mensal', 'Análise de Técnica'],
-    linkCheckout: 'https://seulink.com/anual',
-    isHighlight: true // Esse é o destaque
-  },
-  {
-    id: 'vitalicio',
-    title: 'VITALÍCIO',
-    price: '997',
-    priceNumber: 997,
-    period: 'pagamento único',
-    description: 'Compromisso definitivo com sua saúde.',
-    features: ['Acesso para sempre', 'Grupo Networking', 'Calls individuais', 'Tudo do plano anual'],
-    linkCheckout: 'https://seulink.com/vitalicio',
-    isHighlight: false
-  }
-];
+interface PlanData {
+  name: string;
+  price: number;
+  originalLink: string;
+}
 
 const Pricing: React.FC = () => {
-  const [selectedPlan, setSelectedPlan] = useState<any>(null);
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'pix'>('card');
+  const [selectedPlan, setSelectedPlan] = useState<PlanData | null>(null);
 
-  // Função para abrir o modal
-  const handleOpenModal = (plan: any) => {
+  const handleOpenModal = (plan: PlanData) => {
     setSelectedPlan(plan);
-    setPaymentMethod('card'); // Reset para cartão ao abrir
   };
 
-  // Função de Finalização
-  const handleFinish = () => {
+  const handleCloseModal = () => {
+    setSelectedPlan(null);
+  };
+
+  const handlePixPayment = () => {
     if (!selectedPlan) return;
-
-    if (paymentMethod === 'pix') {
-      // Lógica PIX: Desconto + WhatsApp
-      const discounted = (selectedPlan.priceNumber * 0.95).toFixed(2);
-      const text = `Olá! Escolhi o plano *${selectedPlan.title}* e quero pagar via PIX com 5% de desconto (R$ ${discounted}). Pode me enviar a chave?`;
-      window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
-    } else {
-      // Lógica Cartão: Checkout direto
-      window.open(selectedPlan.linkCheckout, '_blank');
-    }
+    
+    const discountedPrice = (selectedPlan.price * 0.95).toFixed(2).replace('.', ',');
+    const message = `Olá! Decidi investir na minha melhor versão. Quero contratar o plano *${selectedPlan.name}* via PIX com 5% de desconto (Valor final: R$ ${discountedPrice}). Como prossigo?`;
+    
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+    handleCloseModal();
   };
+
+  const handleCardPayment = () => {
+    if (!selectedPlan) return;
+    window.open(selectedPlan.originalLink, '_blank');
+    handleCloseModal();
+  };
+
+  // Calcula valor com desconto para mostrar no modal
+  const discountValue = selectedPlan ? (selectedPlan.price * 0.95).toFixed(2).replace('.', ',') : '0,00';
 
   return (
     <section id="pricing" className="py-24 bg-neutral-900 relative border-t border-white/5">
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Header - EXATAMENTE COMO VOCÊ ENVIOU */}
+        {/* Header - Investment Theme */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 mb-4 bg-gold-500/10 border border-gold-500/20 px-4 py-1.5 rounded-full">
             <TrendingUp size={14} className="text-gold-500" />
@@ -85,152 +62,223 @@ const Pricing: React.FC = () => {
           </p>
         </div>
 
-        {/* Container dos Cards */}
+        {/* Container - Vertical Stack on Mobile, Grid on Desktop */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6 max-w-7xl mx-auto items-center md:items-stretch">
           
-          {plansData.map((plan) => (
-            <div 
-              key={plan.id}
-              className={`w-full bg-black border rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col relative group shadow-lg
-                ${plan.isHighlight 
-                  ? 'border-gold-500 md:-mt-8 md:mb-8 z-20 order-1 md:order-2 bg-neutral-900/50' // Estilo Destaque
-                  : 'border-white/10 order-2 md:order-1' // Estilo Padrão (Trimestral/Vitalício)
-                }
-              `}
-            >
-               {/* Hover Glow original */}
-               <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
-
-               {/* Badge de Destaque (Só no Anual) */}
-               {plan.isHighlight && (
-                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
-                   Recomendado
+          {/* 1. TRIMESTRAL */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 md:order-1 relative group shadow-lg">
+             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+             
+             <div className="mb-6 border-b border-white/10 pb-6">
+                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Trimestral</h3>
+                 <p className="text-neutral-500 text-xs mt-2">Compromisso Inicial</p>
+             </div>
+             
+             <div className="mb-6">
+                 <div className="flex items-baseline gap-1">
+                     <span className="text-lg text-gold-500 font-bold">3x</span>
+                     <span className="text-4xl font-heading font-black text-white">248,74</span>
                  </div>
-               )}
+                 <p className="text-neutral-500 text-xs mt-1">ou R$ 697,00 à vista</p>
+             </div>
 
-               <h3 className="text-white text-xl font-bold mb-2">{plan.title}</h3>
-               <p className="text-neutral-400 text-sm mb-6 min-h-[40px]">{plan.description}</p>
-               
-               <div className="mb-6">
-                 <span className="text-3xl md:text-4xl font-bold text-white">R$ {plan.price}</span>
-                 <span className="text-neutral-500 text-sm ml-2">{plan.period}</span>
-               </div>
+             <ul className="space-y-4 mb-8 grow">
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>3 Meses de Acompanhamento</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Protocolo de Treino Full</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Suporte via WhatsApp</span>
+                 </li>
+             </ul>
 
-               <ul className="space-y-4 mb-8 flex-1">
-                 {plan.features.map((feature, i) => (
-                   <li key={i} className="flex items-start gap-3 text-neutral-300 text-sm">
-                     <Check size={16} className="text-gold-500 mt-0.5 shrink-0" />
-                     {feature}
-                   </li>
-                 ))}
-               </ul>
+             <button 
+                onClick={() => handleOpenModal({ name: 'Trimestral', price: 697.00, originalLink: 'https://sun.eduzz.com/801E5XNNW7' })}
+                className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
+             >
+                 Selecionar
+             </button>
+          </div>
 
-               {/* Botão que aciona o Modal */}
-               <button 
-                onClick={() => handleOpenModal(plan)}
-                className={`w-full py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-colors
-                  ${plan.isHighlight 
-                    ? 'bg-gold-500 text-black hover:bg-gold-400' 
-                    : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
-                  }
-                `}
-               >
-                 Escolher Plano
-               </button>
-            </div>
-          ))}
+          {/* 2. ANUAL (Featured) */}
+          <div className="w-full relative bg-gradient-to-b from-neutral-800 to-black border-2 border-gold-500 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.15)] z-10 flex flex-col order-1 md:order-2 transform md:-translate-y-6">
+             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold uppercase px-6 py-2 rounded-full tracking-widest shadow-lg flex items-center gap-2 whitespace-nowrap">
+                 <Star size={12} fill="black" /> Melhor Valor
+             </div>
+
+             <div className="mb-6 border-b border-gold-500/20 pb-6 mt-2">
+                 <h3 className="text-2xl font-bold text-white uppercase tracking-wider text-gold-500">Anual</h3>
+                 <p className="text-neutral-400 text-xs mt-2">Transformação Definitiva</p>
+             </div>
+             
+             <div className="mb-6">
+                 <p className="text-neutral-500 text-[10px] uppercase font-bold tracking-wider mb-1 line-through">De R$ 1.797</p>
+                 <div className="flex items-baseline gap-1">
+                     <span className="text-2xl text-gold-500 font-bold">12x</span>
+                     <span className="text-5xl font-heading font-black text-white">154,82</span>
+                 </div>
+                 <p className="text-neutral-400 text-xs mt-1">ou R$ 1.497,00 à vista</p>
+             </div>
+
+             <ul className="space-y-4 mb-8 grow">
+                 <li className="flex items-start gap-3 text-sm text-white font-medium">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>12 Meses de Acompanhamento</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-white font-medium">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Treinos Personalizados</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-white font-medium">
+                     <Zap className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <span className="text-gold-400">Prioridade Máxima no Suporte</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-white font-medium">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Acesso Vitalício à Comunidade</span>
+                 </li>
+             </ul>
+
+             <button 
+                onClick={() => handleOpenModal({ name: 'Anual', price: 1497.00, originalLink: 'https://sun.eduzz.com/79778NXA9E' })}
+                className="block w-full py-4 text-center bg-gold-500 hover:bg-gold-400 text-black font-bold uppercase tracking-widest text-sm rounded shadow-lg hover:shadow-gold-500/20 transition-all transform hover:-translate-y-1 cursor-pointer"
+             >
+                 Fazer Investimento VIP
+             </button>
+          </div>
+
+          {/* 3. SEMESTRAL */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-3 md:order-3 relative group shadow-lg">
+             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+
+             <div className="mb-6 border-b border-white/10 pb-6">
+                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Semestral</h3>
+                 <p className="text-neutral-500 text-xs mt-2">Equilíbrio Ideal</p>
+             </div>
+             
+             <div className="mb-6">
+                 <div className="flex items-baseline gap-1">
+                     <span className="text-lg text-gold-500 font-bold">6x</span>
+                     <span className="text-4xl font-heading font-black text-white">187,04</span>
+                 </div>
+                 <p className="text-neutral-500 text-xs mt-1">ou R$ 997,00 à vista</p>
+             </div>
+
+             <ul className="space-y-4 mb-8 grow">
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>6 Meses de Acompanhamento</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Treinos Para Sua Rotina</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Suporte via WhatsApp</span>
+                 </li>
+             </ul>
+
+             <button 
+                onClick={() => handleOpenModal({ name: 'Semestral', price: 997.00, originalLink: 'https://sun.eduzz.com/7WXQ3JKO9A' })}
+                className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
+             >
+                 Selecionar
+             </button>
+          </div>
 
         </div>
+
+        {/* Guarantee Compact */}
+        <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-white/5 bg-black/50">
+                 <ShieldCheck size={18} className="text-gold-500" />
+                 <span className="text-neutral-400 text-xs uppercase tracking-widest">7 dias de garantia incondicional</span>
+            </div>
+        </div>
+
       </div>
 
-      {/* --- MODAL DE PAGAMENTO (OVERLAY) --- */}
+      {/* --- PAYMENT MODAL --- */}
       {selectedPlan && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm" 
-            onClick={() => setSelectedPlan(null)}
-          ></div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={handleCloseModal}></div>
+          
+          <div className="relative bg-neutral-900 border border-white/10 rounded-2xl w-full max-w-md p-8 shadow-2xl animate-fade-in-up">
+            <button 
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors"
+            >
+              <X size={20} />
+            </button>
 
-          <div className="relative bg-neutral-900 border border-white/10 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
-            
-            {/* Cabeçalho do Modal */}
-            <div className="p-5 border-b border-white/10 flex justify-between items-center bg-neutral-800/30">
-              <div>
-                <h3 className="text-lg font-bold text-white">Quase lá!</h3>
-                <p className="text-xs text-neutral-400">Finalizando: <span className="text-gold-500">{selectedPlan.title}</span></p>
-              </div>
-              <button onClick={() => setSelectedPlan(null)} className="text-neutral-500 hover:text-white">
-                <X size={20} />
-              </button>
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-bold text-white mb-2">Finalizar Investimento</h3>
+              <p className="text-gold-500 text-xs font-bold uppercase tracking-widest mb-4">
+                Plano {selectedPlan.name}
+              </p>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                Você está a um passo de mudar sua vida. <br/> Escolha como prefere começar:
+              </p>
             </div>
 
-            {/* Seleção */}
-            <div className="p-6 space-y-3">
-              <button
-                onClick={() => setPaymentMethod('card')}
-                className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
-                  paymentMethod === 'card' 
-                  ? 'border-gold-500 bg-gold-500/10' 
-                  : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/50'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <CreditCard size={20} className={paymentMethod === 'card' ? 'text-gold-500' : 'text-neutral-400'} />
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-white">Cartão ou Boleto</div>
-                    <div className="text-[10px] text-neutral-400">Liberação imediata</div>
-                  </div>
-                </div>
-                {paymentMethod === 'card' && <div className="w-3 h-3 rounded-full bg-gold-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>}
-              </button>
-
-              <button
-                onClick={() => setPaymentMethod('pix')}
-                className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
-                  paymentMethod === 'pix' 
-                  ? 'border-green-500 bg-green-500/10' 
-                  : 'border-white/10 bg-neutral-800 hover:bg-neutral-800/50'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <QrCode size={20} className={paymentMethod === 'pix' ? 'text-green-500' : 'text-neutral-400'} />
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-white">PIX <span className="bg-green-500/20 text-green-400 text-[10px] px-1.5 py-0.5 rounded ml-1">-5% OFF</span></div>
-                    <div className="text-[10px] text-neutral-400">Finalize no WhatsApp</div>
-                  </div>
-                </div>
-                {paymentMethod === 'pix' && <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>}
-              </button>
-            </div>
-
-            {/* Footer com Preço e Botão */}
-            <div className="p-6 pt-0">
-              <div className="flex justify-between items-end mb-4 border-t border-white/5 pt-4">
-                <span className="text-xs text-neutral-400">Valor Final:</span>
-                <span className={`text-2xl font-bold ${paymentMethod === 'pix' ? 'text-green-400' : 'text-white'}`}>
-                  R$ {paymentMethod === 'pix' 
-                    ? (selectedPlan.priceNumber * 0.95).toFixed(2).replace('.', ',') 
-                    : selectedPlan.priceNumber.toFixed(2).replace('.', ',')
-                  }
-                </span>
-              </div>
-
+            <div className="space-y-4">
+              {/* Option 1: PIX */}
               <button 
-                onClick={handleFinish}
-                className={`w-full py-3.5 rounded-lg font-bold text-sm uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 ${
-                  paymentMethod === 'pix' 
-                  ? 'bg-green-600 hover:bg-green-500 text-white' 
-                  : 'bg-gold-500 hover:bg-gold-400 text-black'
-                }`}
+                onClick={handlePixPayment}
+                className="group w-full bg-gold-500/10 hover:bg-gold-500 border border-gold-500/50 hover:border-gold-500 p-4 rounded-xl flex items-center justify-between transition-all duration-300"
               >
-                {paymentMethod === 'pix' ? 'Pedir Chave no WhatsApp' : 'Ir para Pagamento Seguro'}
-                <ArrowRight size={16} />
+                <div className="flex items-center gap-4">
+                  <div className="bg-gold-500/20 group-hover:bg-black/20 p-2 rounded-lg transition-colors">
+                    <Smartphone size={24} className="text-gold-500 group-hover:text-black transition-colors" />
+                  </div>
+                  <div className="text-left">
+                    <span className="block text-white group-hover:text-black font-bold uppercase tracking-wide text-sm transition-colors">
+                      Pagar via PIX
+                    </span>
+                    <span className="block text-gold-500 group-hover:text-black/70 text-xs font-medium transition-colors">
+                      Economize 5% (R$ {discountValue})
+                    </span>
+                  </div>
+                </div>
+                <div className="bg-gold-500 text-black text-[10px] font-bold px-2 py-1 rounded group-hover:bg-black group-hover:text-gold-500 transition-colors">
+                  -5% OFF
+                </div>
+              </button>
+
+              {/* Option 2: Card/Boleto */}
+              <button 
+                onClick={handleCardPayment}
+                className="group w-full bg-transparent hover:bg-neutral-800 border border-white/10 hover:border-white/30 p-4 rounded-xl flex items-center gap-4 transition-all duration-300"
+              >
+                 <div className="bg-white/5 group-hover:bg-white/10 p-2 rounded-lg transition-colors">
+                    <CreditCard size={24} className="text-neutral-400 group-hover:text-white transition-colors" />
+                 </div>
+                 <div className="text-left">
+                    <span className="block text-neutral-300 group-hover:text-white font-bold uppercase tracking-wide text-sm">
+                      Cartão ou Boleto
+                    </span>
+                    <span className="block text-neutral-500 group-hover:text-neutral-400 text-xs">
+                      Checkout seguro via Eduzz
+                    </span>
+                 </div>
               </button>
             </div>
-
+            
+            <div className="mt-6 text-center">
+              <p className="text-neutral-600 text-[10px] uppercase tracking-widest">
+                Ambiente Seguro & Criptografado
+              </p>
+            </div>
           </div>
         </div>
       )}
+
     </section>
   );
 };
