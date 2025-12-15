@@ -16,24 +16,24 @@ const Inspiration: React.FC = () => {
       image: "media/change1.jpeg",
       name: "Paula Luandra",
       tag: "Mãe de 2 filhos",
-      pain: "Sem tempo",
+      pain: "",
       result: "Recuperou corpo pré-gravidez.",
-      quote: "Achava que ser mãe significava abrir mão da minha autoestima. O Braga me provou o contrário."
+      quote: "Já são 2 anos sendo acompanhada através da consultoria e estou cada dia mais feliz!"
     },
     {
       id: 2,
       image: "media/change2.jpeg",
       name: "Pricila Melo",
       tag: "Rotina Corporativa",
-      pain: "Vivia cansada",
+      pain: "",
       result: "Trocou gordura por massa magra.",
-      quote: "Eu usava o cansaço como desculpa. Hoje o treino é o que me dá energia para aguentar o dia."
+      quote: "Mesmo com a rotina cansativa o Braga conciliou meus treinos e tivemos um resultado incrível! Gratidão!"
     },
     {
       id: 3,
       image: "media/change4.jpeg",
       name: "Isabel Cavalcante",
-      tag: "Estudante de Med.",
+      tag: "",
       pain: "Rotina louca",
       result: "Definição mantendo constância.",
       quote: "Em 1 ano mudei completamente físico e meu mental com a consultoria! Estou com meu melhor corpo pós gravidez."
@@ -42,7 +42,7 @@ const Inspiration: React.FC = () => {
       id: 4,
       image: "media/change3.jpeg",
       name: "Valéria Albuquerque",
-      tag: "Iniciante",
+      tag: "",
       pain: "Vergonha",
       result: "-12kg com confiança total.",
       quote: "Eu tinha vergonha de ir treinar. O app me deu a segurança de saber exatamente o que fazer."
@@ -51,7 +51,7 @@ const Inspiration: React.FC = () => {
       id: 5,
       image: "media/change5.jpeg",
      name: "Verônica",
-      tag: "Empreendedora",
+      tag: "",
       pain: "Tentava há anos",
       result: "-9kg que nunca voltaram.",
       quote: "Já tinha tentado tudo. Pela primeira vez consegui manter o resultado por mais de 6 meses."
@@ -60,7 +60,7 @@ const Inspiration: React.FC = () => {
       id: 6,
       image: "media/change6.jpeg",
         name: "Alciene",
-      tag: "Pós-menopausa",
+      tag: "",
       pain: "Metabolismo travado",
       result: "-15kg de gordura pura.",
       quote: "Já estou há 4 anos com o Braga e esse é o meu melhor shape. Obrigado 🙏🏿"
