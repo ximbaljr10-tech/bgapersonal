@@ -15,7 +15,7 @@ const Inspiration: React.FC = () => {
       id: 1,
       image: "media/change1.jpeg",
       name: "Paula Luandra",
-      tag: "Mãe de 2 filhos",
+      tag: "",
       pain: "",
       result: "Recuperou corpo pré-gravidez.",
       quote: "Já são 2 anos sendo acompanhada através da consultoria e estou cada dia mais feliz!"
@@ -24,7 +24,7 @@ const Inspiration: React.FC = () => {
       id: 2,
       image: "media/change2.jpeg",
       name: "Pricila Melo",
-      tag: "Rotina Corporativa",
+      tag: "",
       pain: "",
       result: "Trocou gordura por massa magra.",
       quote: "Mesmo com a rotina cansativa o Braga conciliou meus treinos e tivemos um resultado incrível! Gratidão!"
