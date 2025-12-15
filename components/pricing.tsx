@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Check, Star, Zap, ShieldCheck, TrendingUp, X, CreditCard, Smartphone, ArrowRight } from 'lucide-react';
 
 // --- CONFIGURAÇÃO ---
-const WHATSAPP_NUMBER = "5511999999999"; 
+const WHATSAPP_NUMBER = "556881155392"; 
 
 // --- ÍCONE CUSTOMIZADO DO WHATSAPP ---
 // (Criado manualmente pois o lucide-react não tem logos de marcas)
