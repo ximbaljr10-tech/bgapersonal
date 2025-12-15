@@ -16,7 +16,7 @@ const Results: React.FC = () => {
       image: '/media/copy1.jpeg',
       type: 'online',
       tag: '100% ONLINE',
-      location: 'Campina Grande, PB',
+      location: 'Tarauaca, AC',
       quote: 'Braga, mesmo me acompanhando de tão longe olha que resultado incrível que alcançamos.'
     },
     {
@@ -32,7 +32,7 @@ const Results: React.FC = () => {
       image: '/media/copy3.jpeg',
       type: 'online',
       tag: '100% ONLINE',
-      location: 'São Paulo, SP',
+      location: 'Rio Branco, AC',
       quote: 'Se eu tinha alguma dúvida de que era possível ter esse nível de resultado com consultoria online, ela acabou hoje. Você superou todas as minhas expectativas, Braga!'
     }
   ];
