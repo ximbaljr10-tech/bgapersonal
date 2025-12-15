@@ -91,7 +91,7 @@ const About: React.FC = () => {
                   Especialista (Hoje)
                 </h3>
                 <p className="text-neutral-500 text-sm mt-1">
-                  Atuando como Personal Trainer desde 2016, liderei a transformação de mais de 1.500 vidas através do Time Braga.
+                  Atuando como Personal Trainer desde 2016, liderei a transformação de mais de 2.500 vidas através do Time Braga.
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ const About: React.FC = () => {
               <div className="bg-neutral-900/50 p-4 border border-neutral-800 rounded hover:border-gold-500/30 transition-colors">
                 <div className="flex items-center gap-3 mb-2">
                   <Users className="text-gold-500" size={24} />
-                  <span className="text-2xl font-bold text-white">+1.500</span>
+                  <span className="text-2xl font-bold text-white">+2.500</span>
                 </div>
                 <p className="text-xs text-neutral-400 uppercase">Vidas Transformadas</p>
               </div>
