@@ -14,7 +14,7 @@ const Inspiration: React.FC = () => {
     {
       id: 1,
       image: "media/change1.jpeg",
-      name: "Paula Luandra",
+      name: "Paula Lauandra",
       tag: "",
       pain: "",
       result: "Recuperou corpo pré-gravidez.",
@@ -23,7 +23,7 @@ const Inspiration: React.FC = () => {
     {
       id: 2,
       image: "media/change2.jpeg",
-      name: "Pricila Melo",
+      name: "Priscila Melo",
       tag: "",
       pain: "",
       result: "Trocou gordura por massa magra.",
@@ -59,7 +59,7 @@ const Inspiration: React.FC = () => {
      {
       id: 6,
       image: "media/change6.jpeg",
-        name: "Alciene",
+        name: "Alcieny",
       tag: "",
       pain: "Metabolismo travado",
       result: "-15kg de gordura pura.",
