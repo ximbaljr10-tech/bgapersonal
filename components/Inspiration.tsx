@@ -36,7 +36,7 @@ const Inspiration: React.FC = () => {
       tag: "Estudante de Med.",
       pain: "Rotina louca",
       result: "Definição mantendo constância.",
-      quote: "Eu nunca conseguia seguir nada por causa dos horários. O protocolo flexível me salvou."
+      quote: "Em 1 ano mudei completamente físico e meu mental com a consultoria! Estou com meu melhor corpo pós gravidez."
     },
     {
       id: 4,
@@ -63,7 +63,7 @@ const Inspiration: React.FC = () => {
       tag: "Pós-menopausa",
       pain: "Metabolismo travado",
       result: "-15kg de gordura pura.",
-      quote: "Médicos diziam que era impossível. Meu corpo hoje está melhor que há 10 anos atrás."
+      quote: "Já estou há 4 anos com o Braga e esse é o meu melhor shape. Obrigado 🙏🏿"
     },
   ];
 
