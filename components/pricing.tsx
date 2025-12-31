@@ -103,9 +103,9 @@ const Pricing: React.FC = () => {
              <div className="mb-6">
                  <div className="flex items-baseline gap-1">
                      <span className="text-lg text-gold-500 font-bold">12x</span>
-                     <span className="text-4xl font-heading font-black text-white">17,27</span>
+                     <span className="text-4xl font-heading font-black text-white">26,58</span>
                  </div>
-                 <p className="text-neutral-500 text-xs mt-1">ou R$ 167,00 à vista</p>
+                 <p className="text-neutral-500 text-xs mt-1">ou R$ 257,00 à vista</p>
              </div>
 
              <ul className="space-y-4 mb-8 grow">
