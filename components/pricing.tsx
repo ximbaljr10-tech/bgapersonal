@@ -91,95 +91,7 @@ const Pricing: React.FC = () => {
         {/* Container dos Cards - 4 colunas em telas grandes */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-6 max-w-[1400px] mx-auto items-start xl:items-stretch">
           
-          {/* --- 1. MENSAL (NOVO PADRÃO) --- */}
-          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-1 xl:order-1 relative group shadow-lg mt-8 xl:mt-0">
-             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
-             
-             <div className="mb-6 border-b border-white/10 pb-6">
-                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Mensal</h3>
-                 <p className="text-neutral-500 text-xs mt-2">Primeiro Passo</p>
-             </div>
-             
-             <div className="mb-6">
-                 <div className="flex items-baseline gap-1">
-                     <span className="text-lg text-gold-500 font-bold">12x</span>
-                     <span className="text-4xl font-heading font-black text-white">26,58</span>
-                 </div>
-                 <p className="text-neutral-500 text-xs mt-1">ou R$ 257,00 à vista</p>
-             </div>
-
-             <ul className="space-y-4 mb-8 grow">
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>1 Mês de Acompanhamento</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Treinos Personalizados</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>App com Vídeos</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Suporte via WhatsApp</span>
-                 </li>
-             </ul>
-
-             <button 
-               onClick={() => handleOpenModal({ name: 'Mensal', price: 167.00, originalLink: 'https://sun.eduzz.com/40Q3NPKQ0B' })}
-               className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
-             >
-                 Selecionar
-             </button>
-          </div>
-
-          {/* 2. SEMESTRAL */}
-          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 xl:order-2 relative group shadow-lg">
-             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
-
-             <div className="mb-6 border-b border-white/10 pb-6">
-                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Semestral</h3>
-                 <p className="text-neutral-500 text-xs mt-2">Equilíbrio Ideal</p>
-             </div>
-             
-             <div className="mb-6">
-                 <div className="flex items-baseline gap-1">
-                     <span className="text-lg text-gold-500 font-bold">6x</span>
-                     <span className="text-4xl font-heading font-black text-white">187,04</span>
-                 </div>
-                 <p className="text-neutral-500 text-xs mt-1">ou R$ 997,00 à vista</p>
-             </div>
-
-             <ul className="space-y-4 mb-8 grow">
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>6 Meses de Acompanhamento</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Treinos Para Sua Rotina</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-neutral-400">
-                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
-                     <span>Suporte via WhatsApp</span>
-                 </li>
-                 <li className="flex items-start gap-3 text-sm text-white font-bold">
-                     <WhatsAppIcon className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
-                     <span className="text-gold-400">Acesso ao Grupo VIP</span>
-                 </li>
-             </ul>
-
-             <button 
-               onClick={() => handleOpenModal({ name: 'Semestral', price: 997.00, originalLink: 'https://sun.eduzz.com/7WXQ3JKO9A' })}
-               className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
-             >
-                 Selecionar
-             </button>
-          </div>
-
-          {/* 3. ANUAL (BEST VALUE) */}
+        {/* 3. ANUAL (BEST VALUE) */}
           <div className="w-full relative bg-gradient-to-b from-neutral-800 to-black border-2 border-gold-500 rounded-2xl p-8 shadow-[0_0_30px_rgba(212,175,55,0.15)] z-10 flex flex-col order-3 xl:order-3 transform xl:-translate-y-6 mt-6 xl:mt-0">
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-black text-xs font-bold uppercase px-6 py-2 rounded-full tracking-widest shadow-lg flex items-center gap-2 whitespace-nowrap">
                  <Star size={12} fill="black" /> Melhor Valor
@@ -230,6 +142,51 @@ const Pricing: React.FC = () => {
              </button>
           </div>
 
+          {/* 2. SEMESTRAL */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-2 xl:order-2 relative group shadow-lg">
+             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+
+             <div className="mb-6 border-b border-white/10 pb-6">
+                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Semestral</h3>
+                 <p className="text-neutral-500 text-xs mt-2">Equilíbrio Ideal</p>
+             </div>
+             
+             <div className="mb-6">
+                 <div className="flex items-baseline gap-1">
+                     <span className="text-lg text-gold-500 font-bold">6x</span>
+                     <span className="text-4xl font-heading font-black text-white">187,04</span>
+                 </div>
+                 <p className="text-neutral-500 text-xs mt-1">ou R$ 997,00 à vista</p>
+             </div>
+
+             <ul className="space-y-4 mb-8 grow">
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>6 Meses de Acompanhamento</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Treinos Para Sua Rotina</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Suporte via WhatsApp</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-white font-bold">
+                     <WhatsAppIcon className="text-gold-500 shrink-0 w-4 h-4 mt-0.5 fill-gold-500" />
+                     <span className="text-gold-400">Acesso ao Grupo VIP</span>
+                 </li>
+             </ul>
+
+             <button 
+               onClick={() => handleOpenModal({ name: 'Semestral', price: 997.00, originalLink: 'https://sun.eduzz.com/7WXQ3JKO9A' })}
+               className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
+             >
+                 Selecionar
+             </button>
+          </div>
+
+        
           {/* 4. TRIMESTRAL */}
           <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-4 xl:order-4 relative group shadow-lg">
              <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
@@ -268,6 +225,49 @@ const Pricing: React.FC = () => {
 
              <button 
                onClick={() => handleOpenModal({ name: 'Trimestral', price: 697.00, originalLink: 'https://sun.eduzz.com/801E5XNNW7' })}
+               className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
+             >
+                 Selecionar
+             </button>
+          </div>
+    {/* --- 1. MENSAL (NOVO PADRÃO) --- */}
+          <div className="w-full bg-black border border-white/10 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-300 flex flex-col order-1 xl:order-1 relative group shadow-lg mt-8 xl:mt-0">
+             <div className="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+             
+             <div className="mb-6 border-b border-white/10 pb-6">
+                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Mensal</h3>
+                 <p className="text-neutral-500 text-xs mt-2">Primeiro Passo</p>
+             </div>
+             
+             <div className="mb-6">
+                 <div className="flex items-baseline gap-1">
+                     <span className="text-lg text-gold-500 font-bold">12x</span>
+                     <span className="text-4xl font-heading font-black text-white">26,58</span>
+                 </div>
+                 <p className="text-neutral-500 text-xs mt-1">ou R$ 257,00 à vista</p>
+             </div>
+
+             <ul className="space-y-4 mb-8 grow">
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>1 Mês de Acompanhamento</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Treinos Personalizados</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>App com Vídeos</span>
+                 </li>
+                 <li className="flex items-start gap-3 text-sm text-neutral-400">
+                     <Check className="text-gold-500 shrink-0 w-4 h-4 mt-0.5" />
+                     <span>Suporte via WhatsApp</span>
+                 </li>
+             </ul>
+
+             <button 
+               onClick={() => handleOpenModal({ name: 'Mensal', price: 167.00, originalLink: 'https://sun.eduzz.com/40Q3NPKQ0B' })}
                className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
              >
                  Selecionar
