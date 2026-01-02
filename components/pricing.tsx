@@ -267,7 +267,7 @@ const Pricing: React.FC = () => {
              </ul>
 
              <button 
-               onClick={() => handleOpenModal({ name: 'Mensal', price: 167.00, originalLink: 'https://sun.eduzz.com/40Q3NPKQ0B' })}
+               onClick={() => handleOpenModal({ name: 'Mensal', price: 257.00, originalLink: 'https://sun.eduzz.com/40Q3NPKQ0B' })}
                className="block w-full py-4 text-center border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs rounded transition-all cursor-pointer"
              >
                  Selecionar
